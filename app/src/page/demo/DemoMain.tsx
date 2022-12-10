@@ -1,15 +1,17 @@
-import styled from 'styled-components';
-import Header from '../../component/Header';
-import SmallBox from '../../component/SmallBox';
+import styled from "styled-components";
+import Header from "../../component/Header";
+import SmallBox from "../../component/SmallBox";
 
 const DemoMain = () => {
   return (
-    <Container>
+    <>
       <Header />
-      <Title>데모데이 투표</Title>
-      <SmallBox text={'투표하기'} link="/demo/vote" />
-      <SmallBox text={'결과보기'} link="/demo/result" />
-    </Container>
+      <Container>
+        <Title>데모데이 투표</Title>
+        <SmallBox text={"투표하기"} link="/demo/vote" />
+        <SmallBox text={"결과보기"} link="/demo/result" />
+      </Container>
+    </>
   );
 };
 
@@ -20,12 +22,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 90vh;
 `;
 
 const Title = styled.div`
   color: #242957;
-  font-size: 4rem;
-  margin-top: 7rem;
-  margin-bottom: 7rem;
+  font-size: 2.3rem;
+  margin: -3rem 0 7rem 0;
 `;

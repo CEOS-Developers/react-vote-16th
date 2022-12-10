@@ -1,16 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
-import Main from './page/Main';
-import Login from './page/Login';
-import SignUp from './page/SignUp';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled, { createGlobalStyle } from "styled-components";
+import Main from "./page/Main";
+import Login from "./page/Login";
+import SignUp from "./page/SignUp";
 
-import PartMain from './page/part/PartMain';
-import PartVote from './page/part/PartVote';
-import PartResult from './page/part/PartResult';
+import PartMain from "./page/part/PartMain";
+import PartVote from "./page/part/PartVote";
+import PartResult from "./page/part/PartResult";
 
-import DemoMain from './page/demo/DemoMain';
-import DemoVote from './page/demo/DemoVote';
-import DemoResult from './page/demo/DemoResult';
+import DemoMain from "./page/demo/DemoMain";
+import DemoVote from "./page/demo/DemoVote";
+import DemoResult from "./page/demo/DemoResult";
 
 const App = () => {
   return (
@@ -42,7 +42,7 @@ export default App;
 
 const GlobalStyle = createGlobalStyle`
   html, body{
-    height: 100%;
+    height: 100vh;
     padding: 0;
     margin: 0;
   }
@@ -53,4 +53,5 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-contents: center;
+  width: 100%;
 `;
