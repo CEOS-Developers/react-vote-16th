@@ -6,8 +6,9 @@ const LargeBox = ({ text1, text2, link }: any) => {
     <>
       <Link to={link} style={{ textDecoration: 'none' }}>
         <Box>
-          <Text> {text1} </Text>
-          <Text> {text2} </Text>
+          {/* <Text> {text1} </Text>
+          <Text> {text2} </Text> */}
+          {text1} <br /> {text2}
         </Box>
       </Link>
     </>
@@ -27,14 +28,18 @@ const Box = styled.div`
   border-radius: 1rem;
   margin-left: 5rem;
   margin-right: 5rem;
+
+  text-align: center;
+  font-size: 3rem;
+  color: black;
+
   &:hover {
     background-color: #384084;
-    font-color: #ffffff;
+    color: #ffffff;
   }
 `;
 const Text = styled.div`
   font-size: 3rem;
-  // font-weight: 600
   color: #242957;
   &:hover {
     color: #ffffff;

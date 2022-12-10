@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
 const Header = () => {
   let login = false;
   let team = 'FINBLE';
@@ -11,7 +12,9 @@ const Header = () => {
   return (
     <>
       <Container>
-        <img />
+        <div style={{ marginLeft: '1.5rem' }}>
+          <Link to="/">CEOS 로고 왜 안들어가지</Link>
+        </div>
 
         <ButtonContainer>
           {login ? (
@@ -25,7 +28,7 @@ const Header = () => {
                 <Button>로그인</Button>
               </Link>
               <Link to={'/signUp'} style={{ textDecoration: 'none' }}>
-                <Button>로그아웃</Button>
+                <Button>회원가입</Button>
               </Link>
             </>
           )}
@@ -40,6 +43,7 @@ export default Header;
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
   justify-content: space-between;
 `;
 
@@ -47,6 +51,7 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 1.5rem;
+  margin-right: 1.5rem;
 `;
 
 const Button = styled.div`
@@ -57,8 +62,14 @@ const Button = styled.div`
   width: 6rem;
   border: 1px #384084 solid;
   border-radius: 2rem;
-  margin-left: 2rem;
+  margin-left: 1.5rem;
   font-size: 1rem;
+  color: black;
+
+  &:hover {
+    background-color: #384084;
+    color: white;
+  }
 `;
 
 const Text = styled.div`
