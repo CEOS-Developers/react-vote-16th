@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import styled, { createGlobalStyle } from 'styled-components';
 import Main from './page/Main';
 import Login from './page/Login';
 import SignUp from './page/SignUp';
@@ -13,22 +14,43 @@ import DemoResult from './page/demo/DemoResult';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
 
-        <Route path="/part" element={<PartMain />} />
-        <Route path="/part/vote" element={<PartVote />} />
-        <Route path="/part/result" element={<PartResult />} />
+            <Route path="/" element={<Main />} />
 
-        <Route path="/demo" element={<DemoMain />} />
-        <Route path="/demo/vote" element={<DemoVote />} />
-        <Route path="/demo/result" element={<DemoResult />} />
-      </Routes>
-    </BrowserRouter>
+            <Route path="/part" element={<PartMain />} />
+            <Route path="/part/vote" element={<PartVote />} />
+            <Route path="/part/result" element={<PartResult />} />
+
+            <Route path="/demo" element={<DemoMain />} />
+            <Route path="/demo/vote" element={<DemoVote />} />
+            <Route path="/demo/result" element={<DemoResult />} />
+          </Routes>
+        </BrowserRouter>
+      </Wrapper>
+    </>
   );
 };
 
 export default App;
+
+const GlobalStyle = createGlobalStyle`
+  html, body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-contents: center;
+`;
