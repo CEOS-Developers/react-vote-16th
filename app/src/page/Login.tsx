@@ -1,9 +1,16 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Login = () => {
-  return(<>로그인 페이지</>)
-}
+  return (
+    <>
+      <Container>로그인 페이지</Container>
+    </>
+  );
+};
 
 export default Login;
 
-const 
+const Container = styled.div`
+  background-color: #384084;
+  height: 100%;
+`;
