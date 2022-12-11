@@ -4,21 +4,37 @@ interface text {
   fontsize?: number;
   width?: number;
   fontWeight?: number;
+  padding?: number;
 }
 
-const NameBox = ({ name, teamName, teamDesc, text, color, bgColor }: any) => {
+interface props {
+  name?: string;
+  teamName?: string;
+  teamDesc?: string;
+  text: string;
+  color: string;
+  bgColor: string;
+}
+
+const NameBox = ({ name, teamName, teamDesc, text, color, bgColor }: props) => {
   return (
     <Box style={{ color: color, background: bgColor }}>
       {text == "person" ? (
         <>
           <Text> {teamName} </Text>
           <Text fontsize={1.2} fontWeight={900}>
-            {" "}
-            {name}{" "}
+            {name}
           </Text>
         </>
       ) : (
-        <Text> {text} </Text>
+        <>
+          <Text fontsize={1.8} padding={0.7}>
+            {teamName}
+          </Text>
+          <Text fontsize={0.8} width={15}>
+            {teamDesc}
+          </Text>
+        </>
       )}
     </Box>
   );
@@ -50,4 +66,5 @@ const Text = styled.div<text>`
   font-size: ${(props) => props.fontsize || 1}rem;
   width: ${(props) => props.width || 10}rem;
   font-weight: ${(props) => props.fontWeight || 500};
+  padding: ${(props) => props.padding || 0}rem;
 `;
