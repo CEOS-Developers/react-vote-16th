@@ -100,20 +100,22 @@ const BE = [
   {
     name: "채승희",
     team: "Finble",
-    vote: 1,
+    vote: 0,
   },
   {
     name: "박준열",
     team: "Finble",
-    vote: 1,
+    vote: 0,
   },
 ];
+const grade = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const PartResult = () => {
   const location = useLocation();
   const part = location.state.data;
+  let currPart: any;
+  let myGrade: any;
 
-  let currPart;
   if (part === "FE") {
     currPart = FE;
   } else {
@@ -126,15 +128,26 @@ const PartResult = () => {
       <Container>
         <Title>{part === "FE" ? "FE" : "BE"} 파트장 결과</Title>
         <BoxContainer>
-          {currPart.map((i, index) => (
-            <VoteBox
-              grade={index + 1}
-              name={i.name}
-              team={i.team}
-              vote={i.vote}
-              type={true}
-            />
-          ))}
+          {currPart.map((i: any, index: number) => {
+            myGrade = grade[index];
+            if (
+              index != 0 &&
+              currPart[index].vote === currPart[index - 1].vote
+            ) {
+              grade[index] = grade[index - 1];
+              myGrade = grade[index];
+            }
+
+            return (
+              <VoteBox
+                grade={myGrade}
+                name={i.name}
+                team={i.team}
+                vote={i.vote}
+                type={true}
+              />
+            );
+          })}
         </BoxContainer>
       </Container>
     </>

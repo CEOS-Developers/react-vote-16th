@@ -30,10 +30,12 @@ const Team = [
     vote: 1,
   },
 ];
+const grade = [1, 2, 3, 4, 5];
 
 const DemoResult = () => {
   const location = useLocation();
   const part = location.state.data;
+  let myGrade;
 
   return (
     <>
@@ -41,15 +43,24 @@ const DemoResult = () => {
       <Container>
         <Title>데모데이 투표 결과</Title>
         <BoxContainer>
-          {Team.map((i, index) => (
-            <VoteBox
-              grade={index + 1}
-              name={i.name}
-              team={i.desc}
-              vote={i.vote}
-              type={false}
-            />
-          ))}
+          {Team.map((i, index) => {
+            myGrade = grade[index];
+
+            if (index != 0 && Team[index].vote === Team[index - 1].vote) {
+              grade[index] = grade[index - 1];
+              myGrade = grade[index - 1];
+            }
+
+            return (
+              <VoteBox
+                grade={myGrade}
+                name={i.name}
+                team={i.desc}
+                vote={i.vote}
+                type={false}
+              />
+            );
+          })}
         </BoxContainer>
       </Container>
     </>
