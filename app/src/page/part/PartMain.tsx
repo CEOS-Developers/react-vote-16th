@@ -1,22 +1,26 @@
-import styled from 'styled-components';
-import LargeBox from '../../component/LargeBox';
-import Header from '../../component/Header';
-import SmallBox from '../../component/SmallBox';
+import styled from "styled-components";
+import LargeBox from "../../component/LargeBox";
+import Header from "../../component/Header";
+import SmallBox from "../../component/SmallBox";
 
 const PartMain = () => {
   return (
-    <Container>
+    <>
       <Header />
-      <Title>파트장 투표</Title>
-      <BoxContainer>
-        <LargeBox text1={'FRONT-END'} text2={'파트장 투표'} link="/part/vote" />
-        <LargeBox text1={'BACK-END'} text2={'파트장 투표'} link="/part/vote" />
-      </BoxContainer>
-      <BoxContainer style={{ marginTop: '2rem' }}>
-        <SmallBox text={'결과보기'} link="/part/result" />
-        <SmallBox text={'결과보기'} link="/part/result" />
-      </BoxContainer>
-    </Container>
+      <Container>
+        <Title>파트장 투표</Title>
+        <BoxContainer>
+          <BoxItem>
+            <LargeBox text1="FRONT-END" text2="파트장 투표" link="/part/vote" />
+            <SmallBox text={"결과보기"} link="/part/result" text1="FE" />
+          </BoxItem>
+          <BoxItem>
+            <LargeBox text1="BACK-END" text2="파트장 투표" link="/part/vote" />
+            <SmallBox text="결과보기" link="/part/result" text1="BE" />
+          </BoxItem>
+        </BoxContainer>
+      </Container>
+    </>
   );
 };
 
@@ -27,17 +31,23 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 90vh;
 `;
 
 const Title = styled.div`
   color: #242957;
-  font-size: 4rem;
-  margin-top: 7rem;
-  margin-bottom: 7rem;
+  font-size: 2.3rem;
+  margin-bottom: 4rem;
 `;
 
 const BoxContainer = styled.div`
   display: flex;
-  flex-direction: row;
+`;
+
+const BoxItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 `;
