@@ -97,9 +97,14 @@ const PartVote = () => {
   const location = useLocation();
   const part = location.state.data;
 
-  let currPart;
-  if (part === "FRONT-END") currPart = FE;
-  else currPart = BE;
+  let currPart, voteCategory;
+  if (part === "FRONT-END") {
+    currPart = FE;
+    voteCategory = "FE";
+  } else {
+    currPart = BE;
+    voteCategory = "BE";
+  }
 
   return (
     <>
@@ -121,7 +126,11 @@ const PartVote = () => {
         </BoxContainer>
         <SmallBoxContainer>
           <SmallBox text={"투표하기"} link="/part/vote" />
-          <SmallBox text={"결과보기"} link="/part/result" />
+          <SmallBox
+            text={"결과보기"}
+            link="/part/result"
+            text1={voteCategory}
+          />
         </SmallBoxContainer>
       </Container>
     </>

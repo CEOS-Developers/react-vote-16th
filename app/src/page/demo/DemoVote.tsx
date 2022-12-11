@@ -49,8 +49,8 @@ const DemoVote = () => {
           ))}
         </BoxContainer>
         <SmallBoxContainer>
-          <SmallBox text={"투표하기"} link="/part/vote" />
-          <SmallBox text={"결과보기"} link="/part/result" />
+          <SmallBox text="투표하기" link="/part/vote" />
+          <SmallBox text="결과보기" link="/part/result" text1="데모데이" />
         </SmallBoxContainer>
       </Container>
     </>

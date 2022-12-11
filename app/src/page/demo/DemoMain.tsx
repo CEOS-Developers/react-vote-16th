@@ -8,8 +8,8 @@ const DemoMain = () => {
       <Header />
       <Container>
         <Title>데모데이 투표</Title>
-        <SmallBox text={"투표하기"} link="/demo/vote" />
-        <SmallBox text={"결과보기"} link="/demo/result" />
+        <SmallBox text="투표하기" link="/demo/vote" />
+        <SmallBox text="결과보기" link="/part/result" text1="데모데이" />
       </Container>
     </>
   );

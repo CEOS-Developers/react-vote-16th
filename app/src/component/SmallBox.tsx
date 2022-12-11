@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const SmallBox = ({ text, link }: any) => {
+const SmallBox = ({ text1, text, link }: any) => {
   return (
     <>
-      <Link to={link} style={{ textDecoration: "none" }}>
+      <Link
+        to={link}
+        style={{ textDecoration: "none" }}
+        state={{ data: text1 }}
+      >
         {text == "투표하기" ? (
           <Box style={{ opacity: 1 }}>
             <Text> {text} </Text>

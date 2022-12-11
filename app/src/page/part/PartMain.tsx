@@ -11,20 +11,12 @@ const PartMain = () => {
         <Title>파트장 투표</Title>
         <BoxContainer>
           <BoxItem>
-            <LargeBox
-              text1={"FRONT-END"}
-              text2={"파트장 투표"}
-              link="/part/vote"
-            />
-            <SmallBox text={"결과보기"} link="/part/result" />
+            <LargeBox text1="FRONT-END" text2="파트장 투표" link="/part/vote" />
+            <SmallBox text={"결과보기"} link="/part/result" text1="FE" />
           </BoxItem>
           <BoxItem>
-            <LargeBox
-              text1={"BACK-END"}
-              text2={"파트장 투표"}
-              link="/part/vote"
-            />
-            <SmallBox text={"결과보기"} link="/part/result" />
+            <LargeBox text1="BACK-END" text2="파트장 투표" link="/part/vote" />
+            <SmallBox text="결과보기" link="/part/result" text1="BE" />
           </BoxItem>
         </BoxContainer>
       </Container>
