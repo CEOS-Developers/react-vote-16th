@@ -25,11 +25,9 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3.5rem;
-  width: 18rem;
   border: 3px #384084 solid;
   border-radius: 1rem;
-  margin-bottom: 3rem;
+  padding: 0.5rem 2.5rem;
   background-color: #384084;
   opacity: 0.5;
 `;

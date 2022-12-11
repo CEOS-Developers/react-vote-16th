@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 const LargeBox = ({ text1, text2, link }: any) => {
   return (
     <>
-      <Link to={link} style={{ textDecoration: "none" }}>
+      <Link
+        to={link}
+        state={{ data: text1 }}
+        style={{ textDecoration: "none" }}
+      >
         <Box>
           {/* <Text> {text1} </Text>
           <Text> {text2} </Text> */}
