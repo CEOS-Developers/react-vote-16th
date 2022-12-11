@@ -132,6 +132,7 @@ const PartResult = () => {
               name={i.name}
               team={i.team}
               vote={i.vote}
+              type={true}
             />
           ))}
         </BoxContainer>

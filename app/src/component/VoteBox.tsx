@@ -5,6 +5,7 @@ interface props {
   name: string;
   team: string;
   vote: number;
+  type: boolean;
 }
 
 interface text {
@@ -14,8 +15,9 @@ interface text {
   currGrade: boolean;
 }
 
-const VoteBox = ({ grade, name, team, vote }: props) => {
-  let currGrade = false;
+const VoteBox = ({ grade, name, team, vote, type }: props) => {
+  let currGrade = false,
+    currType = type;
 
   if (grade === 1) {
     currGrade = true;
@@ -24,7 +26,7 @@ const VoteBox = ({ grade, name, team, vote }: props) => {
   }
 
   return (
-    <Box currGrade={currGrade}>
+    <Box currGrade={currGrade} currType={currType}>
       <div style={{ display: "flex" }}>
         <Grade currGrade={currGrade}>{grade}</Grade>
         <Text currGrade={currGrade}>{name}</Text>
@@ -46,12 +48,12 @@ const VoteBox = ({ grade, name, team, vote }: props) => {
 
 export default VoteBox;
 
-const Box = styled.div<{ currGrade: boolean }>`
+const Box = styled.div<{ currGrade: boolean; currType: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: auto;
-  width: 300px;
+  width: ${({ currType }) => (currType ? "300px" : "500px")};
   border: 3px #384084 solid;
   border-radius: 1rem;
   padding: 0.5rem 1rem;

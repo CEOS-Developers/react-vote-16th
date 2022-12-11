@@ -9,7 +9,7 @@ const DemoMain = () => {
       <Container>
         <Title>데모데이 투표</Title>
         <SmallBox text="투표하기" link="/demo/vote" />
-        <SmallBox text="결과보기" link="/part/result" text1="데모데이" />
+        <SmallBox text="결과보기" link="/demo/result" text1="데모데이" />
       </Container>
     </>
   );
@@ -23,10 +23,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 90vh;
+  gap: 2rem;
 `;
 
 const Title = styled.div`
   color: #242957;
   font-size: 2.3rem;
-  margin: -3rem 0 7rem 0;
+  margin: -7rem 0 5rem 0;
 `;
