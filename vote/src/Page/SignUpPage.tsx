@@ -78,18 +78,18 @@ const SignUpPage = () => {
           <label>
             <Input
               type="radio"
-              value="Frontend"
+              value="FE"
               onChange={partHandler}
-              checked={part === 'Frontend'}
+              checked={part === 'FE'}
             />
             Frontend
           </label>
           <label>
             <Input
               type="radio"
-              value="Backend"
+              value="BE"
               onChange={partHandler}
-              checked={part === 'Backend'}
+              checked={part === 'BE'}
             />
             Backend
           </label>
