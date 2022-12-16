@@ -7,8 +7,10 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signin" element={<SignInPage />} />
+        {/* 첫 화면은 로그인(/): SignInPage */}
+        {/* 로그인 후 메인화면(/home): HomePage*/}
+        <Route path="/" element={<SignInPage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </BrowserRouter>
