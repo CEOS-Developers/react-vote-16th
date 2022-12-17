@@ -1,29 +1,29 @@
-import { useState } from "react";
-import styled from "styled-components";
-import Header from "../../component/Header";
-import NameBox from "../../component/NameBox";
-import SmallBox from "../../component/SmallBox";
+import { useState } from 'react';
+import styled from 'styled-components';
+import Header from '../../component/Header';
+import NameBox from '../../component/NameBox';
+import SmallBox from '../../component/SmallBox';
 
 const Team = [
   {
-    name: "Finble",
-    desc: "주식 관리 포트폴리오 서비스",
+    name: 'Finble',
+    desc: '주식 관리 포트폴리오 서비스',
   },
   {
-    name: "Pre:folio",
-    desc: "대학생 포트폴리오 공유 서비스",
+    name: 'Pre:folio',
+    desc: '대학생 포트폴리오 공유 서비스',
   },
   {
-    name: "diaMEtes",
-    desc: "당뇨병 환자를 위한 식단 관리 서비스",
+    name: 'diaMEtes',
+    desc: '당뇨병 환자를 위한 식단 관리 서비스',
   },
   {
-    name: "Reciepigy",
-    desc: "음식 레시피 추천 서비스",
+    name: 'Reciepigy',
+    desc: '음식 레시피 추천 서비스',
   },
   {
-    name: "Teample",
-    desc: "팀플 활동을 위한 협업 플랫폼",
+    name: 'Teample',
+    desc: '팀플 활동을 위한 협업 플랫폼',
   },
 ];
 
@@ -42,15 +42,15 @@ const DemoVote = () => {
                 text="demo"
                 teamName={i.name}
                 teamDesc={i.desc}
-                color={index === currIndex ? "#fff" : "black"}
-                bgColor={index === currIndex ? "#384084" : "#fff"}
+                color={index === currIndex ? '#fff' : 'black'}
+                bgColor={index === currIndex ? '#384084' : '#fff'}
               />
             </div>
           ))}
         </BoxContainer>
         <SmallBoxContainer>
-          <SmallBox text="투표하기" link="/part/vote" />
-          <SmallBox text="결과보기" link="/part/result" text1="데모데이" />
+          <SmallBox text="투표하기" link="/part/result" text1="데모데이" />
+          {/* <SmallBox text="결과보기" link="/part/result" text1="데모데이" /> */}
         </SmallBoxContainer>
       </Container>
     </>

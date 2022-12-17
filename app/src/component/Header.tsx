@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   let login = false;
-  let team = "FINBLE";
-  let part = "FE";
-  let name = "오지은";
+  let team = 'FINBLE';
+  let part = 'FE';
+  let name = '오지은';
 
-  let state = team + " " + part + " " + name;
+  let state = team + ' ' + part + ' ' + name;
 
   return (
     <Container>
@@ -23,10 +23,16 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Link to={"/login"} style={{ textDecoration: "none" }}>
+            <Link
+              to={'/login'}
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
               <Button>로그인</Button>
             </Link>
-            <Link to={"/signUp"} style={{ textDecoration: "none" }}>
+            <Link
+              to={'/signUp'}
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
               <Button>회원가입</Button>
             </Link>
           </>
