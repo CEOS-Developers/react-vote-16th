@@ -76,7 +76,7 @@ const SignUpPage = () => {
           />
           <Input placeholder="이메일" value={email} onChange={emailHandler} />
           <RadioBtnContainer>
-            <Label >
+            <Label>
               <RInput
                 type="radio"
                 value="FE"
@@ -110,8 +110,7 @@ const SignUpPage = () => {
   );
 };
 
-const Form = styled.form`
-`;
+const Form = styled.form``;
 
 const Input = styled.input`
   margin-top: 20px;
@@ -180,7 +179,7 @@ const Label = styled.label`
   }
   border: none;
   margin-right: 30px;
-  vertical-align:middle;
+  vertical-align: middle;
 `;
 
 export default SignUpPage;

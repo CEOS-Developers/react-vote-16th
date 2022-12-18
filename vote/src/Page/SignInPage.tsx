@@ -25,39 +25,82 @@ const SignInPage = () => {
   };
 
   return (
-    <Form onSubmit={onSubmit}>
-      <h3>CEOS 운영진 선출 투표</h3>
-      <InputContainer>
-        <Input placeholder="이메일" value={email} onChange={emailHandler} />
-        <Input
-          placeholder="비밀번호"
-          value={password}
-          onChange={passwordHandler}
-        />
-      </InputContainer>
-      <SignInBtn onClick={signinHandler}>로그인</SignInBtn>
-      <SignUpBtn
-        onClick={() => {
-          navigate('/signup');
-        }}
-      >
-        회원가입
-      </SignUpBtn>
-    </Form>
+    <SignInContainer>
+      <h2>CEOS 운영진 선출 투표</h2>
+      <Form onSubmit={onSubmit}>
+        <InputContainer>
+          <Input placeholder="이메일" value={email} onChange={emailHandler} />
+          <Input
+            placeholder="비밀번호"
+            value={password}
+            onChange={passwordHandler}
+          />
+          <SignInBtn onClick={signinHandler}>로그인</SignInBtn>
+          <br />
+          <SignUpBtn
+            onClick={() => {
+              navigate('/signup');
+            }}
+          >
+            회원가입
+          </SignUpBtn>
+        </InputContainer>
+      </Form>
+    </SignInContainer>
   );
 };
 
 const Form = styled.form``;
 
-const Input = styled.input``;
+const Input = styled.input`
+  margin-top: 20px;
+  font-size: 16px;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  &:focus {
+    outline: none;
+    border-color: blue;
+  }
+`;
 
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 300px;
+  height: 250px;
 `;
 
-const SignInBtn = styled.button``;
-const SignUpBtn = styled.button``;
+const SignInBtn = styled.button`
+  height: 50px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: whitesmoke;
+`;
+const SignUpBtn = styled.span`
+  text-decoration: underline;
+`;
+
+const SignInContainer = styled.div`
+  width: 400px;
+  height: 350px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #e9ecef;
+  box-shadow: 0px 0px 8px gray;
+  border-radius: 15px;
+`;
 
 export default SignInPage;
