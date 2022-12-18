@@ -8,7 +8,7 @@ const Router = () => {
   return (
     <BrowserRouter>
     {/* Header는 로그인 상태일 때만 표시 */}
-      <Header />
+      {/* <Header /> */}
       <Routes>
         {/* 첫 화면은 로그인(/): SignInPage */}
         {/* 로그인 후 메인화면(/home): HomePage*/}
