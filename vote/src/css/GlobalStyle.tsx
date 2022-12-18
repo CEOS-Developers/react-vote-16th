@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button {
+    border: none;
       :hover {
           cursor: pointer;
           background-color: #a9a9a9;

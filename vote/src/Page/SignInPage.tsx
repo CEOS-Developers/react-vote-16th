@@ -26,7 +26,7 @@ const SignInPage = () => {
 
   return (
     <SignInContainer>
-      <h2>CEOS 운영진 선출 투표</h2>
+      <h2>CEOS 운영진 선출 투표 🗳</h2>
       <Form onSubmit={onSubmit}>
         <InputContainer>
           <Input placeholder="이메일" value={email} onChange={emailHandler} />
