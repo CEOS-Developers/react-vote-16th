@@ -22,7 +22,7 @@ const NameBox = ({ name, teamName, teamDesc, text, color, bgColor }: props) => {
       {text == "person" ? (
         <>
           <Text> {teamName} </Text>
-          <Text fontsize={1.2} fontWeight={900}>
+          <Text fontsize={1.2} fontWeight={700}>
             {name}
           </Text>
         </>
