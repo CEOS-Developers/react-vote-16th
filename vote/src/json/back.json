@@ -1,18 +1,18 @@
 {
-    "UserList" :[
-        {
-            "part" : "back",
-            "userId" : 0,
-            "userName" : "전수민",
-            "teamName" : "팀플",
-            "voteNum" : 0
-        },
-        {
-            "part" : "back",
-            "userId" : 1,
-            "userName" : "정상훈",
-            "teamName" : "팀플",
-            "voteNum" : 0
-        }
-    ]
+  "UserList": [
+    {
+      "part": "back",
+      "userId": "0",
+      "userName": "전수민",
+      "teamName": "팀플",
+      "voteNum": 0
+    },
+    {
+      "part": "back",
+      "userId": "1",
+      "userName": "정상훈",
+      "teamName": "팀플",
+      "voteNum": 0
+    }
+  ]
 }
