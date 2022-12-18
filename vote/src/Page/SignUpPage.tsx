@@ -155,9 +155,6 @@ const SignUpBtn = styled.button`
 `;
 const SignInBtn = styled.span`
   text-decoration: underline;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const RadioBtnContainer = styled.div`
@@ -165,8 +162,8 @@ const RadioBtnContainer = styled.div`
 `;
 
 const SignUpContainer = styled.div`
-  width: 330px;
-  height: 480px;
+  width: 400px;
+  height: 550px;
   padding: 30px;
   display: flex;
   flex-direction: column;
