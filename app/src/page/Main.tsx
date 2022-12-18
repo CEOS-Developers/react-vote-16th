@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import LargeBox from "../component/LargeBox";
-import Header from "../component/Header";
+import styled from 'styled-components';
+import LargeBox from '../component/LargeBox';
+import Header from '../component/Header';
 
 const Main = () => {
   return (
@@ -9,8 +9,8 @@ const Main = () => {
       <Container>
         <Title>파트장 / 데모데이 투표</Title>
         <BoxContainer>
-          <LargeBox text1={"파트장 투표"} text2={"바로가기"} link="/part" />
-          <LargeBox text1={"데모데이 투표"} text2={"바로가기"} link="/demo" />
+          <LargeBox text1={'파트장 투표'} text2={'바로가기'} link="/part" />
+          <LargeBox text1={'데모데이 투표'} text2={'바로가기'} link="/demo" />
         </BoxContainer>
       </Container>
     </>

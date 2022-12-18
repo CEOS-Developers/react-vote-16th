@@ -49,7 +49,17 @@ const DemoVote = () => {
           ))}
         </BoxContainer>
         <SmallBoxContainer>
-          <SmallBox text="투표하기" link="/part/result" text1="데모데이" />
+          {currIndex == 20 ? (
+            <SmallBox
+              text="투표하기"
+              link="/demo/vote"
+              text1="데모데이"
+              disable={true}
+            />
+          ) : (
+            <SmallBox text="투표하기" link="/demo/result" text1="데모데이" />
+          )}
+
           {/* <SmallBox text="결과보기" link="/part/result" text1="데모데이" /> */}
         </SmallBoxContainer>
       </Container>

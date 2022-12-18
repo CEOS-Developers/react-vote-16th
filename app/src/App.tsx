@@ -1,16 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import styled, { createGlobalStyle } from "styled-components";
-import Main from "./page/Main";
-import Login from "./page/Login";
-import SignUp from "./page/SignUp";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import styled, { createGlobalStyle } from 'styled-components';
 
-import PartMain from "./page/part/PartMain";
-import PartVote from "./page/part/PartVote";
-import PartResult from "./page/part/PartResult";
+import Main from './page/Main';
+import Login from './page/Login';
+import SignUp from './page/SignUp';
 
-import DemoMain from "./page/demo/DemoMain";
-import DemoVote from "./page/demo/DemoVote";
-import DemoResult from "./page/demo/DemoResult";
+import PartMain from './page/part/PartMain';
+import PartVote from './page/part/PartVote';
+import PartResult from './page/part/PartResult';
+
+import DemoMain from './page/demo/DemoMain';
+import DemoVote from './page/demo/DemoVote';
+import DemoResult from './page/demo/DemoResult';
 
 const App = () => {
   return (
