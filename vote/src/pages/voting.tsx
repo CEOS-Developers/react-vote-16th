@@ -30,7 +30,7 @@ const Voting = () => {
   const onVote = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (vote !== '999') {
       alert('투표가 완료되었습니다.');
-      navigate(-1);
+      navigate('/');
     } else {
       alert('후보자를 선택해주세요.');
     }

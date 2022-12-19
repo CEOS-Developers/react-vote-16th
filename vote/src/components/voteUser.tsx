@@ -21,9 +21,12 @@ const UserBox = styled.div<PropsInfo>`
 `;
 
 const Children = styled.div`
+  margin-top: 5px;
   .voteNum {
+    font-size: 5px;
     text-align: right;
     margin-right: 10px;
+    margin-top: 5px;
   }
   .userInfo {
     margin-left: 10px;
@@ -45,7 +48,7 @@ const VoteUser = ({ user }: { user: UserInfo }) => {
         <div className="userInfo">
           {user.userName} ({user.teamName})
         </div>
-        <div className="voteNum">{user.voteNum}</div>
+        <div className="voteNum">현재 득표수 : {user.voteNum}</div>
       </Children>
     </UserBox>
   );
