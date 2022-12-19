@@ -3,6 +3,8 @@ import HomePage from './Page/HomePage';
 import SignInPage from './Page/SignInPage';
 import SignUpPage from './Page/SignUpPage';
 import Header from './Components/Header';
+import Voting from './Page/voting';
+import VoteResult from './Page/voteResult';
 
 const Router = () => {
   return (
@@ -15,6 +17,8 @@ const Router = () => {
         <Route path="/" element={<SignInPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/voting" element={<Voting />} />
+        <Route path="/result" element={<VoteResult />} />
       </Routes>
     </BrowserRouter>
   );
