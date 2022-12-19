@@ -1,21 +1,16 @@
-import React from 'react';
+import Router from './Router';
 import { RecoilRoot } from 'recoil';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Voting from './pages/voting';
-import { GlobalStyle } from './styles/global-style';
-import VoteResult from './pages/voteResult';
+import { GlobalStyle } from './css/GlobalStyle';
+
 
 function App() {
   return (
-    <BrowserRouter>
+    <div>
       <RecoilRoot>
         <GlobalStyle />
-        <Routes>
-          <Route path="/voting" element={<Voting />} />
-          <Route path="/result" element={<VoteResult />} />
-        </Routes>
+        <Router />
       </RecoilRoot>
-    </BrowserRouter>
+    </div>
   );
 }
 

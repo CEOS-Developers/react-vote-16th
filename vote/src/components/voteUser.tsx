@@ -6,7 +6,7 @@ import { clickState, voteState } from '../state/state';
 
 const UserBox = styled.div<PropsInfo>`
   background-color: ${(props) =>
-    props.isClick === props.id ? 'white' : '#d9d9d9'};
+    props.isClick === props.id ? 'black' : '#d9d9d9'};
   color: ${(props) => (props.isClick === props.id ? '#FF8787' : 'black')};
   border-radius: 10px;
   margin-bottom: 10px;
@@ -16,7 +16,7 @@ const UserBox = styled.div<PropsInfo>`
 
   &:hover {
     color: #ff8787;
-    background-color: white;
+    background-color: black;
   }
 `;
 
