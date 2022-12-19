@@ -1,16 +1,10 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { UserInfo } from '../interface/interfaces';
+import { UserInfo, PropsInfo } from '../interface/interfaces';
 import { clickState, voteState } from '../state/state';
 
-interface propsInfo {
-  id: string;
-  onClick: React.MouseEventHandler;
-  isClick: string;
-}
-
-const UserBox = styled.div<propsInfo>`
+const UserBox = styled.div<PropsInfo>`
   background-color: ${(props) =>
     props.isClick === props.id ? 'white' : '#d9d9d9'};
   color: ${(props) => (props.isClick === props.id ? '#FF8787' : 'black')};

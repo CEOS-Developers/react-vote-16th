@@ -5,3 +5,9 @@ export interface UserInfo {
   teamName: string;
   voteNum: number;
 }
+
+export interface PropsInfo {
+  id: string;
+  onClick: React.MouseEventHandler;
+  isClick: string;
+}

@@ -5,19 +5,7 @@ import { UserInfo } from '../interface/interfaces';
 import VoteUser from '../components/voteUser';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const Wrapper = styled.div`
-  width: 400px;
-  height: 300px;
-  display: flex;
-  flex-flow: wrap;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-`;
+import { Wrapper } from '../styles/wrapper';
 
 const SubmitBtn = styled.button`
   width: 100px;
