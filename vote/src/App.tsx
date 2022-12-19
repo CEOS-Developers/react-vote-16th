@@ -1,8 +1,16 @@
-import React from 'react';
+import Router from './Router';
+import { RecoilRoot } from 'recoil';
+import { GlobalStyle } from './css/GlobalStyle';
+
 
 function App() {
   return (
-    <div>vote</div>
+    <div>
+      <RecoilRoot>
+        <GlobalStyle />
+        <Router />
+      </RecoilRoot>
+    </div>
   );
 }
 
