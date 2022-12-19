@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdHowToVote } from 'react-icons/md';
 import { FaVoteYea } from 'react-icons/fa';
 import '../css/animation.css';
@@ -22,25 +22,33 @@ const HomePage = () => {
           <BtnContainer>
             <Vote>
               {part === 'FE' ? (
-                <Part id="hv">
-                  <MdHowToVote style={{ marginRight: '10px' }} />
-                  {part} 투표하기
-                </Part>
+                <Link to="/voting">
+                  <Part id="hv">
+                    <MdHowToVote style={{ marginRight: '10px' }} />
+                    {part} 투표하기
+                  </Part>
+                </Link>
               ) : (
-                <Part id="hv">
-                  <MdHowToVote style={{ marginRight: '10px' }} />
-                  {part} 투표하기
-                </Part>
+                <Link to="/voting">
+                  <Part id="hv">
+                    <MdHowToVote style={{ marginRight: '10px' }} />
+                    {part} 투표하기
+                  </Part>
+                </Link>
               )}
             </Vote>
-            <Part id="hv">
-              <FaVoteYea style={{ marginRight: '10px' }} />
-              FE 투표 결과
-            </Part>
-            <Part id="hv">
-              <FaVoteYea style={{ marginRight: '10px' }} />
-              BE 투표 결과
-            </Part>
+            <Link to="/result">
+              <Part id="hv">
+                <FaVoteYea style={{ marginRight: '10px' }} />
+                FE 투표 결과
+              </Part>
+            </Link>
+            <Link to="/result">
+              <Part id="hv">
+                <FaVoteYea style={{ marginRight: '10px' }} />
+                BE 투표 결과
+              </Part>
+            </Link>
           </BtnContainer>
         </Slide>
       </HomeContainer>

@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { UserInfo } from '../interface/interfaces';
 import { frontUserState } from '../state/state';
-import { ResultWrapper, Wrapper } from '../styles/wrapper';
+import { ResultWrapper, Wrapper } from '../css/wrapper';
 
 const Rank = styled.div`
   width: 350px;
