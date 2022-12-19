@@ -5,7 +5,7 @@ import { UserInfo } from '../interface/interfaces';
 import VoteUser from '../Components/voteUser';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Wrapper } from '../styles/wrapper';
+import { Wrapper } from '../css/wrapper';
 
 const SubmitBtn = styled.button`
   width: 100px;
