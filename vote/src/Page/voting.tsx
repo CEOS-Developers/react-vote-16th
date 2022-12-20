@@ -44,11 +44,14 @@ const Voting = () => {
   };
     const putVote = async () =>{
         try{
-            await url.put("/api/votes/candidates/",{
-              name:vote,
-              part:part
-            })
+            await url.put("/api/votes/candidates/"
+            ,{
+              name : vote,
+              part : part
+            }
+            )
             .then((res)=>{
+              console.log(res);
               setIsClick('999');
               setVote('999');
               navigate('/home');
