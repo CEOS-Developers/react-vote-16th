@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const part = atom<string>({
-    key: "devPart",
-    default: "none",
-})
+  key: 'devPart',
+  default: 'none',
+});
