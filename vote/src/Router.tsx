@@ -5,6 +5,7 @@ import SignUpPage from './Page/SignUpPage';
 import Voting from './Page/voting';
 import VoteResult from './Page/voteResult';
 import Header from './components/Header';
+import PrivateRouter from './components/privateRouter';
 
 const Router = () => {
   return (
@@ -12,10 +13,13 @@ const Router = () => {
       <Header />
       <Routes>
         <Route path="/" element={<SignInPage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={
+        <PrivateRouter>
+        <HomePage />
+        </PrivateRouter>} />     
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/voting" element={<Voting />} />
-        <Route path="/result" element={<VoteResult />} />
+        <Route path="/voting" element={<PrivateRouter><Voting /></PrivateRouter>} />
+        <Route path="/result" element={<PrivateRouter><VoteResult /></PrivateRouter>} />
       </Routes>
     </BrowserRouter>
   );
