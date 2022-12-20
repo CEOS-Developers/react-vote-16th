@@ -4,13 +4,14 @@ import { MdHowToVote } from 'react-icons/md';
 import { FaVoteYea } from 'react-icons/fa';
 import '../css/animation.css';
 import { Slide, Fade } from 'react-awesome-reveal';
-import { useRecoilState } from 'recoil';
-import { isSignInState,nameState,partState } from '../state/state';
+// import { useRecoilState } from 'recoil';
+// import { isSignInState, nameState, partState } from '../state/state';
 
 const HomePage = () => {
-  //일단 frontend로 둠
-  const [part, setPart] = useRecoilState<string>(partState);
-  const [name, setName] = useRecoilState<string>(nameState);
+  // const [part, setPart] = useRecoilState<string>(partState);
+  // const [name, setName] = useRecoilState<string>(nameState);
+  const name = localStorage.getItem("name");
+  const part = localStorage.getItem("part");
 
   return (
     <Fade>

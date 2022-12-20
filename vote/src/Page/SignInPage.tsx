@@ -32,6 +32,10 @@ const SignInPage = () => {
         setName(response.data.user.username);
         setPart(response.data.user.part);
         setIsSignIn(true);
+        localStorage.clear();
+        localStorage.setItem('token', response.data.access_token);
+        localStorage.setItem('name', response.data.user.username);
+        localStorage.setItem('part', response.data.user.part);
         navigate('/home'); //메인 화면으로 이동
       })
       .catch(function (error) {
