@@ -38,13 +38,9 @@ const DemoVote = () => {
 
   //link="/demo/vote"
   const clickVote = () => {
-    console.log(currIndex + 1);
     const request = {
       id: currIndex + 1,
     };
-
-    // console.log(axios.defaults.headers.common['Authorization']);
-    console.log(localStorage.getItem('token'));
 
     fetch(`${USER_SERVER}/vote/demo-results/`, {
       method: 'PATCH',
@@ -60,6 +56,7 @@ const DemoVote = () => {
         if (data.status == 200) {
           alert('투표가 반영되었습니다');
           window.location.replace('/demo/result');
+          localStorage.setItem('demo_voted', 'true');
         } else {
           alert(data);
         }

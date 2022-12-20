@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import styled from "styled-components";
-import Header from "../../component/Header";
-import NameBox from "../../component/NameBox";
-import SmallBox from "../../component/SmallBox";
-import { USER_SERVER } from "../../config";
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import Header from '../../component/Header';
+import NameBox from '../../component/NameBox';
+import { USER_SERVER } from '../../config';
 
 const PartVote = () => {
   const [team, setTeam] = useState<any[]>([]);
@@ -14,10 +13,10 @@ const PartVote = () => {
   let currPart: string;
   const [member, setMember] = useState<any[]>([]);
 
-  if (part === "FRONT-END") {
-    currPart = "front";
+  if (part === 'FRONT-END') {
+    currPart = 'front';
   } else {
-    currPart = "back";
+    currPart = 'back';
   }
 
   useEffect(() => {
@@ -34,11 +33,37 @@ const PartVote = () => {
       });
   }, []);
 
+  const onClick = () => {
+    const request = {
+      id: currIndex + 1,
+    };
+
+    fetch(`${USER_SERVER}/vote/results/${currPart}/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      } as any,
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data[0]) {
+          alert(data[0]);
+        } else {
+          alert('투표가 반영되었습니다');
+          localStorage.setItem('part_voted', 'true');
+          localStorage.setItem('result', 'front');
+          window.location.replace('/part/result');
+        }
+      });
+  };
+
   return (
     <>
       <Header />
       <Container>
-        <Title>{part === "FRONT-END" ? "FE" : "BE"} 파트장 투표</Title>
+        <Title>{part === 'FRONT-END' ? 'FE' : 'BE'} 파트장 투표</Title>
         <BoxContainer>
           {member.map((i, index) => (
             <div onClick={() => setCurrIndex(index)}>
@@ -46,22 +71,28 @@ const PartVote = () => {
                 text="person"
                 name={i.name}
                 teamName={team[i.team - 1].name}
-                color={index === currIndex ? "#fff" : "black"}
-                bgColor={index === currIndex ? "#384084" : "#fff"}
+                color={index === currIndex ? '#fff' : 'black'}
+                bgColor={index === currIndex ? '#384084' : '#fff'}
               />
             </div>
           ))}
         </BoxContainer>
         <SmallBoxContainer>
           {currIndex != 20 ? (
-            <SmallBox text={"투표하기"} link="/part/result" text1={currPart} />
+            <Box style={{ opacity: 1 }} onClick={onClick}>
+              <Text> 투표하기 </Text>
+            </Box>
           ) : (
-            <SmallBox
-              text={"투표하기"}
-              link="/part/vote"
-              text1={currPart}
-              disable={true}
-            />
+            // <SmallBox text={"투표하기"} link="/part/result" text1={currPart} />
+            // <SmallBox
+            //   text={"투표하기"}
+            //   link="/part/vote"
+            //   text1={currPart}
+            //   disable={true}
+            // />
+            <Box style={{ opacity: 0.5 }}>
+              <Text> 투표하기 </Text>
+            </Box>
           )}
           {/* <SmallBox
             text={'결과보기'}
@@ -103,4 +134,19 @@ const BoxContainer = styled.div`
 const SmallBoxContainer = styled.div`
   display: flex;
   gap: 1rem;
+`;
+
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px #384084 solid;
+  border-radius: 1rem;
+  padding: 0.5rem 2.5rem;
+  background-color: #384084;
+  opacity: 0.5;
+`;
+const Text = styled.div`
+  font-size: 1.2rem;
+  color: #ffffff;
 `;

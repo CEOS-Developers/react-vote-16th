@@ -10,11 +10,19 @@ const Main = () => {
         <Title>파트장 / 데모데이 투표</Title>
         <BoxContainer>
           <LargeBox text1={'파트장 투표'} text2={'바로가기'} link="/part" />
-          <LargeBox
-            text1={'데모데이 투표'}
-            text2={'바로가기'}
-            link="/demo/vote"
-          />
+          {localStorage.getItem('demo_voted') === 'true' ? (
+            <LargeBox
+              text1={'데모데이 결과'}
+              text2={'바로가기'}
+              link="/demo/result"
+            />
+          ) : (
+            <LargeBox
+              text1={'데모데이 투표'}
+              text2={'바로가기'}
+              link="/demo/vote"
+            />
+          )}
         </BoxContainer>
       </Container>
     </>

@@ -13,10 +13,6 @@ const Header = () => {
     { id: 5, name: 'recipeasy' },
   ];
 
-  // useEffect(() => {
-  //   console.log(axios.defaults.headers.common['Authorization']);
-  // }, []);
-
   const teamId = Number(localStorage.getItem('team'));
   let state =
     teamList[teamId].name +

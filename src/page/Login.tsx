@@ -25,12 +25,9 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.message == '로그인에 성공했습니다') {
           const accessToken = data.token.access;
-          // console.log(accessToken);
           axios.defaults.headers.common['Authorization'] = accessToken;
-          // console.log(axios.defaults.headers.common['Authorization']);
 
           localStorage.setItem('name', data.user.name);
           localStorage.setItem('part', data.user.part);
