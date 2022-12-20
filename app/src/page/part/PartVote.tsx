@@ -27,14 +27,12 @@ const PartVote = () => {
     fetch(`${USER_SERVER}/vote/demo-results/`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setTeam(data);
       });
 
     fetch(`${USER_SERVER}/vote/results/${currPart}/`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setMember(data);
       });
   }, []);
