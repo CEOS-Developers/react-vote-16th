@@ -2,13 +2,17 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import HomePage from './Page/HomePage';
 import SignInPage from './Page/SignInPage';
 import SignUpPage from './Page/SignUpPage';
+<<<<<<< HEAD
 import Header from './components/Header';
+=======
+>>>>>>> a7aa19dd252dd21c9e6148763094bb5def0135e9
 import Voting from './Page/voting';
 import VoteResult from './Page/voteResult';
 
 const Router = () => {
   return (
     <BrowserRouter>
+    {/* 일단 보류 */}
     {/* Header는 로그인 상태일 때만 표시 */}
       {/* <Header /> */}
       <Routes>

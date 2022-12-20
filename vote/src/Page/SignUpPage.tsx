@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUpPage = () => {
   const [name, setName] = useState('');
@@ -11,6 +12,28 @@ const SignUpPage = () => {
   const isValidEmail = email.includes('@') && email.includes('.');
   const isValidPassword = password.length >= 8;
   const navigate = useNavigate();
+  axios.defaults.baseURL = 'http://3.38.123.37';
+
+  const signUpAPI = async () => {
+    await axios
+      .post('/api/auth/registration/', {
+        username: name,
+        email: email,
+        password1: password,
+        password2: passwordConfirm,
+        team: 'Teample',
+        part: part,
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert('회원가입 성공! 로그인 화면으로 이동합니다.');
+        navigate('/'); //홈으로 가서 로그인하게 만들기
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('회원가입 실패');
+      });
+  };
 
   // 회원가입 버튼 클릭
   const signupHandler = () => {
@@ -28,10 +51,8 @@ const SignUpPage = () => {
       alert('이메일 입력양식이 틀렸습니다.');
     } else if (!isValidPassword) {
       alert('비밀번호는 8글자 이상으로 설정하십시오.');
-    }
-    // api연결 - 일단 home으로
-    else {
-      navigate('/');
+    } else {
+      signUpAPI();
     }
   };
 
@@ -79,18 +100,18 @@ const SignUpPage = () => {
             <Label>
               <RInput
                 type="radio"
-                value="FE"
+                value="Frontend"
                 onChange={partHandler}
-                checked={part === 'FE'}
+                checked={part === 'Frontend'}
               />
               Frontend
             </Label>
             <Label>
               <RInput
                 type="radio"
-                value="BE"
+                value="Backend"
                 onChange={partHandler}
-                checked={part === 'BE'}
+                checked={part === 'Backend'}
               />
               Backend
             </Label>
