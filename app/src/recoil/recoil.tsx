@@ -1,21 +1,21 @@
 import { atom } from 'recoil';
 
-export const part = atom<string>({
+export const part = atom<any>({
   key: 'part',
   default: '',
 });
 
-export const name = atom<string>({
+export const name = atom<any>({
   key: 'name',
   default: '',
 });
 
-export const team = atom<string>({
+export const team = atom<any>({
   key: 'team',
   default: '',
 });
 
-export const token = atom<string>({
+export const token = atom<any>({
   key: 'token',
   default: '',
 });

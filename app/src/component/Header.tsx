@@ -1,13 +1,29 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
-  let login = false;
-  let team = 'FINBLE';
-  let part = 'FE';
-  let name = '오지은';
+import { useRecoilState } from 'recoil';
+import { part, name, team, token } from '../recoil/recoil';
+import { useEffect } from 'react';
 
-  let state = team + ' ' + part + ' ' + name;
+const Header = () => {
+  const [newPart, setPart] = useRecoilState(part);
+  const [newName, setName] = useRecoilState(name);
+  const [newTeam, setTeam] = useRecoilState(team);
+  const [newToken, setToken] = useRecoilState(token);
+
+  let state = newTeam + ' ' + newPart + ' ' + newName;
+
+  useEffect(() => {
+    console.log(newName);
+    console.log(state);
+  }, []);
+
+  const logout = () => {
+    setPart('');
+    setName('');
+    setTeam('');
+    setToken('');
+  };
 
   return (
     <Container>
@@ -16,10 +32,10 @@ const Header = () => {
       </Link>
 
       <ButtonContainer>
-        {login ? (
+        {newName != '' ? (
           <>
             <Text>{state}</Text>
-            <Button>로그아웃</Button>
+            <Button onClick={logout}>로그아웃</Button>
           </>
         ) : (
           <>

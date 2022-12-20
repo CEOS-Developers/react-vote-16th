@@ -1,12 +1,52 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { USER_SERVER } from '../config';
+
+import { useRecoilState } from 'recoil';
+import { part, name, team, token } from '../recoil/recoil';
 
 const Login = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
-  const clickLogin = () => {
-    console.log(id, pw);
+  const [newPart, setPart] = useRecoilState(part);
+  const [newName, setName] = useRecoilState(name);
+  const [newTeam, setTeam] = useRecoilState(team);
+  const [newToken, setToken] = useRecoilState(token);
+
+  useEffect(() => {
+    console.log(newPart, newName, newTeam, newToken);
+  }, [newPart]);
+
+  const clickLogin = async () => {
+    let request = {
+      id: id,
+      password: pw,
+    };
+
+    // console.log(JSON.stringify(request));
+
+    fetch(`${USER_SERVER}/vote/login/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.message == '로그인에 성공했습니다') {
+          setName(data.user.name);
+          setPart(data.user.part);
+          setTeam(data.user.team);
+          setToken(data.token.access);
+          // console.log(newName, newPart, newTeam, newToken);
+          window.location.replace('/');
+        } else {
+          alert('존재하지 않는 사용자입니다.');
+        }
+      });
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
