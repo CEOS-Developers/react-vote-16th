@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { MdHowToVote } from 'react-icons/md';
 import { FaVoteYea } from 'react-icons/fa';
 import '../css/animation.css';
 import { Slide, Fade } from 'react-awesome-reveal';
+import { useRecoilState } from 'recoil';
+import { isSignInState,nameState,partState } from '../state/state';
 
 const HomePage = () => {
   //일단 frontend로 둠
-  const [part, setPart] = useState('FE');
-  const [name, setName] = useState('000');
+  const [part, setPart] = useRecoilState<string>(partState);
+  const [name, setName] = useRecoilState<string>(nameState);
 
   return (
     <Fade>
@@ -21,18 +22,18 @@ const HomePage = () => {
         <Slide direction="left">
           <BtnContainer>
             <Vote>
-              {part === 'FE' ? (
+              {part === 'Frontend' ? (
                 <Link to="/voting">
                   <Part id="hv">
                     <MdHowToVote style={{ marginRight: '10px' }} />
-                    {part} 투표하기
+                    FE 투표하기
                   </Part>
                 </Link>
               ) : (
                 <Link to="/voting">
                   <Part id="hv">
                     <MdHowToVote style={{ marginRight: '10px' }} />
-                    {part} 투표하기
+                    BE 투표하기
                   </Part>
                 </Link>
               )}

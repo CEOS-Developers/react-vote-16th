@@ -22,3 +22,23 @@ export const clickState = atom<string>({
   key: 'clickId',
   default: '999',
 });
+
+export const isSignInState = atom<boolean>({
+  key: 'isSignIn',
+  default: false,
+});
+
+export const nameState = atom<string>({
+  key: 'name',
+  default: '세오스',
+});
+
+export const partState = atom<string>({
+  key: 'part',
+  default: 'Frontend',
+});
+
+export const tokenState = atom<string>({
+  key: 'token',
+  default: '',
+});
