@@ -63,6 +63,9 @@ const Voting = () => {
     if (vote !== '999') {
       putVote();
       alert('투표가 완료되었습니다.');
+      setIsClick('999');
+              setVote('999');
+              navigate('/home');
     } else {
       alert('후보자를 선택해주세요.');
     }
@@ -75,12 +78,6 @@ const Voting = () => {
               part : locpart
             }
             )
-            .then((res)=>{
-              console.log(res);
-              setIsClick('999');
-              setVote('999');
-              navigate('/home');
-            })
         }
         catch (e){
             console.log("에러 : " ,e);
