@@ -3,31 +3,26 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { UserInfo, PropsInfo } from '../interface/interfaces';
 import { clickState, voteState } from '../state/state';
+import '../css/animation.css';
 
 const UserBox = styled.div<PropsInfo>`
   background-color: ${(props) =>
     props.isClick === props.id ? 'black' : '#d9d9d9'};
-  color: ${(props) => (props.isClick === props.id ? '#FF8787' : 'black')};
+  color: ${(props) => (props.isClick === props.id ? '#1e90ff' : 'black')};
   border-radius: 10px;
-  margin-bottom: 10px;
   width: 150px;
-  height: 45px;
-  margin-right: 25px;
-
+  height: 50px;
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
-    color: #ff8787;
-    background-color: black;
+    color: white;
+    background-color: #1e90ff;
   }
 `;
 
-const Children = styled.div`
-  margin-top: 15px;
-  text-align : center;
-  .userInfo {
-    margin-left: 10px;
-    margin-top: 5px;
-  }
-`;
+const Children = styled.div``;
 
 const VoteUser = ({ user }: { user: UserInfo }) => {
   const [vote, setVote] = useRecoilState<string>(voteState);
@@ -38,12 +33,8 @@ const VoteUser = ({ user }: { user: UserInfo }) => {
   };
 
   return (
-    <UserBox id={user.userName} isClick={isClick} onClick={onClick}>
-      <Children>
-        <div className="userInfo">
-          {user.userName} ({user.teamName})
-        </div>
-      </Children>
+    <UserBox id={user.userName} isClick={isClick} onClick={onClick} className='hover'>
+      <Children>{user.userName}</Children>
     </UserBox>
   );
 };
