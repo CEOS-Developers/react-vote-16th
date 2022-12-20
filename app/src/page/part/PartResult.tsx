@@ -1,29 +1,38 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import Header from '../../component/Header';
-import VoteBox from '../../component/VoteBox';
-import { USER_SERVER } from '../../config';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import styled from "styled-components";
+import Header from "../../component/Header";
+import VoteBox from "../../component/VoteBox";
+import { USER_SERVER } from "../../config";
 
 const grade = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const PartResult = () => {
   const location = useLocation();
   const part = location.state.data;
+  const [team, setTeam] = useState<any[]>([]);
   const [member, setMember] = useState<any[]>([]);
   let myGrade: any;
 
   useEffect(() => {
+    fetch(`${USER_SERVER}/vote/demo-results/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTeam(data);
+      });
+
     fetch(`${USER_SERVER}/vote/results/${part}/`)
       .then((response) => response.json())
-      .then((data) => setMember(data));
+      .then((data) => {
+        setMember(data);
+      });
   }, []);
 
   return (
     <>
       <Header />
       <Container>
-        <Title>{part === 'front' ? 'FE' : 'BE'} 파트장 결과</Title>
+        <Title>{part === "front" ? "FE" : "BE"} 파트장 결과</Title>
         <BoxContainer>
           {member.map((i: any, index: number) => {
             myGrade = grade[index];
@@ -37,7 +46,7 @@ const PartResult = () => {
                 key={i.id}
                 grade={myGrade}
                 name={i.name}
-                team={i.team}
+                team={team[i.team - 1].name}
                 vote={i.vote_num}
                 type={true}
               />

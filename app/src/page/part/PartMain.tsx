@@ -2,8 +2,13 @@ import styled from "styled-components";
 import LargeBox from "../../component/LargeBox";
 import Header from "../../component/Header";
 import SmallBox from "../../component/SmallBox";
+import { useRecoilValue } from "recoil";
+import { isPartVote, part } from "../../recoil/recoil";
 
 const PartMain = () => {
+  const devPart = useRecoilValue(part);
+  const voteTF = useRecoilValue(isPartVote);
+
   return (
     <>
       <Header />
@@ -12,25 +17,23 @@ const PartMain = () => {
         <BoxContainer>
           <BoxItem>
             <LargeBox text1="FRONT-END" text2="파트장 투표" link="/part/vote" />
-            {/* {user != undefined && user[0].part_voted === true ? (
-              <SmallBox text={"결과보기"} link="/part/result" text1="front" />
-            ) : (
+            {(devPart === "front" || devPart === "") && voteTF === false ? (
               <div onClick={() => alert("투표를 먼저 완료해주세요")}>
                 <SmallBox text={"결과보기"} link="/part" text1="front" />
               </div>
-            )} */}
-            <SmallBox text={"결과보기"} link="/part/result" text1="front" />
+            ) : (
+              <SmallBox text={"결과보기"} link="/part/result" text1="front" />
+            )}
           </BoxItem>
           <BoxItem>
             <LargeBox text1="BACK-END" text2="파트장 투표" link="/part/vote" />
-            {/* {user[0].part_voted === true ? (
-              <SmallBox text={"결과보기"} link="/part/result" text1="back" />
-            ) : (
+            {(devPart === "back" || devPart === "") && voteTF === false ? (
               <div onClick={() => alert("투표를 먼저 완료해주세요")}>
                 <SmallBox text={"결과보기"} link="/part" text1="back" />
               </div>
-            )} */}
-            <SmallBox text={"결과보기"} link="/part/result" text1="back" />
+            ) : (
+              <SmallBox text={"결과보기"} link="/part/result" text1="back" />
+            )}
           </BoxItem>
         </BoxContainer>
       </Container>
