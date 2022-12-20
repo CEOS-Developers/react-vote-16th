@@ -2,28 +2,34 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../../component/Header';
 import NameBox from '../../component/NameBox';
-import SmallBox from '../../component/SmallBox';
+import axios from 'axios';
+import { USER_SERVER } from '../../network/config';
 
 const Team = [
   {
+    id: 1,
+    name: 'Teample',
+    desc: '팀플 활동을 위한 협업 플랫폼',
+  },
+  {
+    id: 2,
     name: 'Finble',
     desc: '주식 관리 포트폴리오 서비스',
   },
   {
+    id: 3,
     name: 'Pre:folio',
     desc: '대학생 포트폴리오 공유 서비스',
   },
   {
+    id: 4,
     name: 'diaMEtes',
     desc: '당뇨병 환자를 위한 식단 관리 서비스',
   },
   {
+    id: 5,
     name: 'Reciepigy',
     desc: '음식 레시피 추천 서비스',
-  },
-  {
-    name: 'Teample',
-    desc: '팀플 활동을 위한 협업 플랫폼',
   },
 ];
 
@@ -31,7 +37,34 @@ const DemoVote = () => {
   const [currIndex, setCurrIndex] = useState(20);
 
   //link="/demo/vote"
-  const clickVote = () => {};
+  const clickVote = () => {
+    console.log(currIndex + 1);
+    const request = {
+      id: currIndex + 1,
+    };
+
+    // console.log(axios.defaults.headers.common['Authorization']);
+    console.log(localStorage.getItem('token'));
+
+    fetch(`${USER_SERVER}/vote/demo-results/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      } as any,
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status == 200) {
+          alert('투표가 반영되었습니다');
+          window.location.replace('/demo/result');
+        } else {
+          alert(data);
+        }
+      });
+  };
 
   return (
     <>

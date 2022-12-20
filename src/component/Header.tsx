@@ -1,18 +1,25 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-import { useRecoilState } from 'recoil';
-import { part, name, team, token } from '../recoil/store';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const Header = () => {
-  const [newPart, setPart] = useRecoilState(part);
-  const [newName, setName] = useRecoilState(name);
-  const [newTeam, setTeam] = useRecoilState(team);
-  const [newToken, setToken] = useRecoilState(token);
+  const teamList = [
+    { id: 0, name: 'null' },
+    { id: 1, name: 'teample' },
+    { id: 2, name: 'finble' },
+    { id: 3, name: 'prefolio' },
+    { id: 4, name: 'diametes' },
+    { id: 5, name: 'recipeasy' },
+  ];
 
+  // useEffect(() => {
+  //   console.log(axios.defaults.headers.common['Authorization']);
+  // }, []);
+
+  const teamId = Number(localStorage.getItem('team'));
   let state =
-    localStorage.getItem('team') +
+    teamList[teamId].name +
     ' | ' +
     localStorage.getItem('part') +
     ' | ' +
