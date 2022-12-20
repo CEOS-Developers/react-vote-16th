@@ -51,7 +51,6 @@ const VoteResult = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log(response.data);
         setFEcandidate(response.data);
       })
       .catch(function (error) {
@@ -64,7 +63,6 @@ const VoteResult = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log(response.data);
         setBEcandidate(response.data);
       })
       .catch(function (error) {

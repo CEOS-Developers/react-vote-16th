@@ -5,7 +5,6 @@ import { UserInfo } from '../interface/interfaces';
 import VoteUser from '../Components/voteUser';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Wrapper } from '../css/wrapper';
 import axios from 'axios';
 import url, {clientURL} from '../apis/baseURL';
 
@@ -61,12 +60,12 @@ const TestVoting = () => {
   };
 
   return (
-    <Wrapper>
+    <div>
       {front.map((user) => (
         <VoteUser key={user.userId} user={user} />
       ))}
       <SubmitBtn onClick={onVote}>투표하기</SubmitBtn>
-    </Wrapper>
+    </div>
   );
 };
 
