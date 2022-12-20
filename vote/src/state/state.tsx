@@ -22,3 +22,8 @@ export const clickState = atom<string>({
   key: 'clickId',
   default: '999',
 });
+
+export const voteNumState = atom<number[]>({
+    key :'voteNumber',
+    default : [],
+})
