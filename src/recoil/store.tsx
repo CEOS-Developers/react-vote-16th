@@ -1,26 +1,26 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const part = atom<any>({
-  key: "part",
-  default: "",
+  key: 'part',
+  default: 'none',
 });
 
 export const name = atom<any>({
-  key: "name",
-  default: "",
+  key: 'name',
+  default: 'none',
 });
 
 export const team = atom<any>({
-  key: "team",
-  default: "",
+  key: 'team',
+  default: 'none',
 });
 
 export const token = atom<any>({
-  key: "token",
-  default: "",
+  key: 'token',
+  default: 'none',
 });
 
 export const isPartVote = atom<any>({
-  key: "partFlag",
+  key: 'partFlag',
   default: false,
 });

@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 import { USER_SERVER } from '../config';
 
 import { useRecoilState } from 'recoil';
-import { part, name, team, token, isPartVote } from '../recoil/recoil';
+import { part, name, team, token, isPartVote } from '../recoil/store';
 
 const Login = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+  const [change, setChange] = useState(false);
 
   const [newPart, setPart] = useRecoilState(part);
   const [newName, setName] = useRecoilState(name);
@@ -15,10 +16,12 @@ const Login = () => {
   const [newToken, setToken] = useRecoilState(token);
   const [newPartFlag, setPartFlag] = useRecoilState(isPartVote);
 
-  useEffect(() => {
-    console.log(newPart, newName, newTeam, newToken);
-    // window.location.replace('/');
-  }, [token]);
+  // useEffect(() => {
+  //   console.log(newPart, newName, newTeam, newToken);
+  //   setTimeout(() => {
+  //     window.location.replace('/');
+  //   }, 1000);
+  // }, [newToken]);
 
   const clickLogin = async () => {
     let request = {
@@ -39,12 +42,23 @@ const Login = () => {
       .then((data) => {
         console.log(data);
         if (data.message == '로그인에 성공했습니다') {
+          alert('로그인에 성공했습니다');
+
           setName(data.user.name);
           setPart(data.user.part);
           setTeam(data.user.team);
           setToken(data.token.access);
           setPartFlag(data.user.part_voted);
+          setChange(true);
+          if (change) {
+            setTimeout(() => {
+              window.location.replace('/');
+            }, 1000);
+          }
           // console.log(newName, newPart, newTeam, newToken);
+          // setTimeout(() => {
+          //   window.location.replace('/');
+          // }, 1000);
         } else {
           alert('존재하지 않는 사용자입니다.');
         }

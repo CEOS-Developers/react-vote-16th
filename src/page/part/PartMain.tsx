@@ -3,7 +3,7 @@ import LargeBox from "../../component/LargeBox";
 import Header from "../../component/Header";
 import SmallBox from "../../component/SmallBox";
 import { useRecoilValue } from "recoil";
-import { isPartVote, part } from "../../recoil/recoil";
+import { isPartVote, part } from "../../recoil/store";
 
 const PartMain = () => {
   const devPart = useRecoilValue(part);

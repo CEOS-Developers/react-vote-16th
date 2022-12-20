@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { useRecoilState } from 'recoil';
-import { part, name, team, token } from '../recoil/recoil';
+import { part, name, team, token } from '../recoil/store';
 import { useEffect } from 'react';
 
 const Header = () => {
@@ -14,8 +14,7 @@ const Header = () => {
   let state = newTeam + ' ' + newPart + ' ' + newName;
 
   useEffect(() => {
-    console.log(newName);
-    console.log(state);
+    // console.log(state);
   }, []);
 
   const logout = () => {
@@ -32,7 +31,7 @@ const Header = () => {
       </Link>
 
       <ButtonContainer>
-        {newName != '' ? (
+        {newName != 'none' ? (
           <>
             <Text>{state}</Text>
             <Button onClick={logout}>로그아웃</Button>
