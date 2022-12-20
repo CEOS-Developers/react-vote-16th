@@ -16,7 +16,7 @@ const Header = () => {
       setIsSignIn(true);
     else
       setIsSignIn(false);
-}, []);
+}, [localStorage.getItem('token')]);
 
   const signOutAPI = async () => {
     await axios

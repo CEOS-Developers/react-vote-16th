@@ -14,9 +14,21 @@ export const Wrapper = styled.div`
 `;
 
 export const ResultWrapper = styled.div`
-  width: 400px;
+  
   display: flex;
+  flex-direction: column;
   flex-flow: wrap;
-  margin: auto;
-  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  
+`;
+
+export const VoteResultWrapper = styled.div`
+  width: 600px;
+  height: 550px;
+  padding: 30px;
+  background: #e9ecef;
+  box-shadow: 0px 0px 8px gray;
+  border-radius: 15px;
+  text-align: center;
 `;

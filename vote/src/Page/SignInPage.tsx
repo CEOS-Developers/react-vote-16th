@@ -28,6 +28,7 @@ const SignInPage = () => {
         password: password,
       })
       .then((response) => {
+        console.log(response.data);
         setToken(response.data.access_token);
         setName(response.data.user.username);
         setPart(response.data.user.part);
