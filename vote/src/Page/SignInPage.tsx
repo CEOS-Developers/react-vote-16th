@@ -82,13 +82,20 @@ const SignInPage = () => {
           />
           <SignInBtn onClick={signinHandler}>로그인</SignInBtn>
           <br />
-          <SignUpBtn
+          <BtnWrapper>
+          <Btn
             onClick={() => {
               navigate('/signup');
             }}
           >
             회원가입
-          </SignUpBtn>
+          </Btn>
+          <Btn className='vote' onClick={()=>{
+            navigate('/nowvote');
+          }}>
+            투표 현황
+          </Btn>
+          </BtnWrapper>
         </InputContainer>
       </Form>
     </SignInContainer>
@@ -115,6 +122,12 @@ const InputContainer = styled.div`
   flex-direction: column;
   width: 300px;
   height: 250px;
+
+  .vote{
+    margin-left : auto;
+    margin-right : 10px;
+  }
+
 `;
 
 const SignInBtn = styled.button`
@@ -131,8 +144,18 @@ const SignInBtn = styled.button`
   padding: 10px;
   background-color: whitesmoke;
 `;
-const SignUpBtn = styled.span`
+const Btn = styled.span`
   text-decoration: underline;
+
+  :hover {
+    cursor: pointer;
+  }
+
+`;
+
+const BtnWrapper= styled.div`
+  display: flex;
+  margin-top : 5px;
 `;
 
 const SignInContainer = styled.div`

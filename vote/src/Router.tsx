@@ -6,6 +6,7 @@ import Voting from './Page/voting';
 import VoteResult from './Page/voteResult';
 import Header from './components/Header';
 import PrivateRouter from './components/privateRouter';
+import NowVote from './Page/nowVote';
 
 const Router = () => {
   return (
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/voting" element={<PrivateRouter><Voting /></PrivateRouter>} />
         <Route path="/result" element={<PrivateRouter><VoteResult /></PrivateRouter>} />
+        <Route path='/nowvote' element={<NowVote/>}/>
       </Routes>
     </BrowserRouter>
   );
