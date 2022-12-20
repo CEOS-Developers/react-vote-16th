@@ -21,13 +21,8 @@ const UserBox = styled.div<PropsInfo>`
 `;
 
 const Children = styled.div`
-  margin-top: 5px;
-  .voteNum {
-    font-size: 5px;
-    text-align: right;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
+  margin-top: 15px;
+  text-align : center;
   .userInfo {
     margin-left: 10px;
     margin-top: 5px;
@@ -43,12 +38,11 @@ const VoteUser = ({ user }: { user: UserInfo }) => {
   };
 
   return (
-    <UserBox id={user.userId} isClick={isClick} onClick={onClick}>
+    <UserBox id={user.userName} isClick={isClick} onClick={onClick}>
       <Children>
         <div className="userInfo">
           {user.userName} ({user.teamName})
         </div>
-        <div className="voteNum">현재 득표수 : {user.voteNum}</div>
       </Children>
     </UserBox>
   );
