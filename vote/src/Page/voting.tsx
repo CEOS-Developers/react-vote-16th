@@ -53,7 +53,7 @@ const Voting = () => {
   const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
   const [vote, setVote] = useRecoilState<string>(voteState);
   const [isClick, setIsClick] = useRecoilState<string>(clickState);
-
+  const locname = localStorage.getItem("name");
   const locpart = localStorage.getItem("part");
 
 
@@ -75,6 +75,7 @@ const Voting = () => {
             await url.put("/api/votes/candidates/"
             ,{
               name : vote,
+              user : locname,
               part : locpart
             }
             )
