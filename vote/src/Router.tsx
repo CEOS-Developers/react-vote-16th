@@ -4,7 +4,7 @@ import SignInPage from './Page/SignInPage';
 import SignUpPage from './Page/SignUpPage';
 import Voting from './Page/voting';
 import VoteResult from './Page/voteResult';
-import Header from './Components/Header';
+import Header from './components/Header';
 
 const Router = () => {
   return (

@@ -33,7 +33,7 @@ const VoteUser = ({ user }: { user: UserInfo }) => {
   };
 
   return (
-    <UserBox id={user.userId} isClick={isClick} onClick={onClick} className='hover'>
+    <UserBox id={user.userName} isClick={isClick} onClick={onClick} className='hover'>
       <Children>{user.userName}</Children>
     </UserBox>
   );

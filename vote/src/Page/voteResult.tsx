@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { UserInfo, CandInfo } from '../interface/interfaces';
 import { clickbtnState } from '../state/state';
 import { ResultWrapper, VoteResultWrapper } from '../css/wrapper';
 import axios from 'axios';
@@ -51,7 +50,6 @@ const VoteResult = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log(response.data.data);
         setFEcandidate(response.data.data);
       })
       .catch(function (error) {
@@ -64,7 +62,6 @@ const VoteResult = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log(response.data.data);
         setBEcandidate(response.data.data);
       })
       .catch(function (error) {
@@ -72,8 +69,8 @@ const VoteResult = () => {
       });
   };
   useEffect(() => {
-    if (res) FEresultAPI();
-    else BEresultAPI();
+      res ? FEresultAPI() : BEresultAPI();
+
   }, []);
 
   return (

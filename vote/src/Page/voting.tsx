@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import {
-  frontUserState,
-  backUserState,
-  voteState,
-  partState,
-} from '../state/state';
+import { frontUserState, backUserState, voteState,partState,clickState } from '../state/state';
 import { UserInfo } from '../interface/interfaces';
-import VoteUser from '../Components/voteUser';
-import React, { useState, useEffect } from 'react';
+import VoteUser from '../components/voteUser';
+import React, { useState,useEffect } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import url,{clientURL} from '../apis/baseURL'; 
 import { Fade } from 'react-awesome-reveal';
 import axios from 'axios';
 
@@ -56,18 +54,35 @@ const Voting = () => {
   const [front, setFront] = useRecoilState<UserInfo[]>(frontUserState);
   const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
   const [vote, setVote] = useRecoilState<string>(voteState);
-  const [part, setPart] = useRecoilState<string>(partState);
-  const token = localStorage.getItem('token');
+  const [isClick, setIsClick] = useRecoilState<string>(clickState);
+  const locpart = localStorage.getItem("part");
   const navigate = useNavigate();
 
   const onVote = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (vote !== '999') {
+      putVote();
       alert('투표가 완료되었습니다.');
-      navigate('/home');
+      setIsClick('999');
+              setVote('999');
+              navigate('/home');
     } else {
       alert('후보자를 선택해주세요.');
     }
   };
+    const putVote = async () =>{
+        try{
+            await url.put("/api/votes/candidates/"
+            ,{
+              name : vote,
+              part : locpart
+            }
+            )
+        }
+        catch (e){
+            console.log("에러 : " ,e);
+        }
+    }
+
 
   axios.defaults.baseURL = 'http://3.38.123.37';
   const votingAPI = async () => {
@@ -96,11 +111,11 @@ const Voting = () => {
   return (
     <Fade>
       <VotingContainer>
-        <h2>{part === 'Frontend' ? 'FE' : 'BE'} 운영진 투표하기 🗳</h2>
+        <h2>{locpart === 'Frontend' ? 'FE' : 'BE'} 운영진 투표하기 🗳</h2>
         <Wrapper>
-          {part === 'Frontend'
-            ? front.map((user) => <VoteUser key={user.userId} user={user} />)
-            : back.map((user) => <VoteUser key={user.userId} user={user} />)}
+          {locpart === 'Frontend'
+            ? front.map((user) => <VoteUser key={user.userName} user={user} />)
+            : back.map((user) => <VoteUser key={user.userName} user={user} />)}
         </Wrapper>
         <SubmitBtn onClick={onVote}>투표하기</SubmitBtn>
       </VotingContainer>
