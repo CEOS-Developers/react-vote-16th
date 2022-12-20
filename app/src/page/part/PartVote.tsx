@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import styled from "styled-components";
-import Header from "../../component/Header";
-import NameBox from "../../component/NameBox";
-import SmallBox from "../../component/SmallBox";
-import { USER_SERVER } from "../../config";
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import Header from '../../component/Header';
+import NameBox from '../../component/NameBox';
+import SmallBox from '../../component/SmallBox';
+import { USER_SERVER } from '../../config';
 
 const PartVote = () => {
   const [team, setTeam] = useState<any[]>([]);
@@ -16,27 +16,34 @@ const PartVote = () => {
   let currPart: string;
   const [member, setMember] = useState<any[]>([]);
 
-  if (part === "FRONT-END") {
-    currPart = "front";
+  if (part === 'FRONT-END') {
+    currPart = 'front';
   } else {
-    currPart = "back";
+    currPart = 'back';
   }
 
   useEffect(() => {
-    fetch(`${USER_SERVER}/vote/results/${currPart}/`)
-      .then((response) => response.json())
-      .then((data) => setMember(data));
-
+    console.log();
     fetch(`${USER_SERVER}/vote/demo-results/`)
       .then((response) => response.json())
-      .then((data) => setTeam(data));
+      .then((data) => {
+        console.log(data);
+        setTeam(data);
+      });
+
+    fetch(`${USER_SERVER}/vote/results/${currPart}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setMember(data);
+      });
   }, []);
 
   return (
     <>
       <Header />
       <Container>
-        <Title>{part === "FRONT-END" ? "FE" : "BE"} 파트장 투표</Title>
+        <Title>{part === 'FRONT-END' ? 'FE' : 'BE'} 파트장 투표</Title>
         <BoxContainer>
           {member.map((i, index) => (
             <div onClick={() => setCurrIndex(index)}>
@@ -44,18 +51,18 @@ const PartVote = () => {
                 text="person"
                 name={i.name}
                 teamName={team[i.team - 1].name}
-                color={index === currIndex ? "#fff" : "black"}
-                bgColor={index === currIndex ? "#384084" : "#fff"}
+                color={index === currIndex ? '#fff' : 'black'}
+                bgColor={index === currIndex ? '#384084' : '#fff'}
               />
             </div>
           ))}
         </BoxContainer>
         <SmallBoxContainer>
           {currIndex != 20 ? (
-            <SmallBox text={"투표하기"} link="/part/result" text1={currPart} />
+            <SmallBox text={'투표하기'} link="/part/result" text1={currPart} />
           ) : (
             <SmallBox
-              text={"투표하기"}
+              text={'투표하기'}
               link="/part/vote"
               text1={currPart}
               disable={true}
