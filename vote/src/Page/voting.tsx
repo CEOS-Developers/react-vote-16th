@@ -8,9 +8,10 @@ import {
 } from '../state/state';
 import { UserInfo } from '../interface/interfaces';
 import VoteUser from '../Components/voteUser';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
+import axios from 'axios';
 
 const SubmitBtn = styled.button`
   width: 150px;
@@ -56,7 +57,7 @@ const Voting = () => {
   const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
   const [vote, setVote] = useRecoilState<string>(voteState);
   const [part, setPart] = useRecoilState<string>(partState);
-
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   const onVote = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -67,6 +68,30 @@ const Voting = () => {
       alert('후보자를 선택해주세요.');
     }
   };
+
+  axios.defaults.baseURL = 'http://3.38.123.37';
+  const votingAPI = async () => {
+    await axios
+      .put(
+        '/api/votes/candidates',
+        {
+          part: 'Frontend',
+          name: '임채리',
+        },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    votingAPI();
+  }, []);
 
   return (
     <Fade>

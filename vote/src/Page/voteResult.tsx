@@ -51,7 +51,8 @@ const VoteResult = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-        setFEcandidate(response.data);
+        console.log(response.data.data);
+        setFEcandidate(response.data.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -63,43 +64,41 @@ const VoteResult = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-        setBEcandidate(response.data);
+        console.log(response.data.data);
+        setBEcandidate(response.data.data);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
   useEffect(() => {
-    {
-      res ? FEresultAPI() : BEresultAPI();
-    }
+    if (res) FEresultAPI();
+    else BEresultAPI();
   }, []);
 
   return (
     <VoteResultWrapper>
       <h2>{res ? 'FE' : 'BE'} 운영진 투표 결과 🗳</h2>
-      <Fade >
-      <ResultWrapper>
-        {res
-          ? FEcandidate.map((cand: any) => (
-              <Rank key={cand.name}>
-                <Children>
-                  {/* <div className="rank">{rank[li]}</div> */}
-                  <div className="name">{cand.name}</div>
-                  <div className="vote">{cand.count}표</div>
-                </Children>
-              </Rank>
-            ))
-          : BEcandidate.map((cand: any) => (
-              <Rank key={cand.name}>
-                <Children>
-                  {/* <div className="rank">{rank[li]}</div> */}
-                  <div className="name">{cand.name}</div>
-                  <div className="vote">{cand.count}표</div>
-                </Children>
-              </Rank>
-            ))}
-      </ResultWrapper>
+      <Fade>
+        <ResultWrapper>
+          {res
+            ? FEcandidate.map((cand: any) => (
+                <Rank key={cand.name}>
+                  <Children>
+                    <div className="name">{cand.name}</div>
+                    <div className="vote">{cand.count}표</div>
+                  </Children>
+                </Rank>
+              ))
+            : BEcandidate.map((cand: any) => (
+                <Rank key={cand.name}>
+                  <Children>
+                    <div className="name">{cand.name}</div>
+                    <div className="vote">{cand.count}표</div>
+                  </Children>
+                </Rank>
+              ))}
+        </ResultWrapper>
       </Fade>
     </VoteResultWrapper>
   );
