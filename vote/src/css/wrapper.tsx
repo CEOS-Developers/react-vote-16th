@@ -15,9 +15,8 @@ export const Wrapper = styled.div`
 
 export const ResultWrapper = styled.div`
   width: 400px;
-  height: 300px;
   display: flex;
   flex-flow: wrap;
   margin: auto;
-  margin-top: 70px;
+  margin-top: 20px;
 `;

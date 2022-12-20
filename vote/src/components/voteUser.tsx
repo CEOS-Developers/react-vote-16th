@@ -6,7 +6,7 @@ import { clickState, voteState } from '../state/state';
 
 const UserBox = styled.div<PropsInfo>`
   background-color: ${(props) =>
-    props.isClick === props.id ? 'white' : '#d9d9d9'};
+    props.isClick === props.id ? 'black' : '#d9d9d9'};
   color: ${(props) => (props.isClick === props.id ? '#FF8787' : 'black')};
   border-radius: 10px;
   margin-bottom: 10px;
@@ -16,14 +16,17 @@ const UserBox = styled.div<PropsInfo>`
 
   &:hover {
     color: #ff8787;
-    background-color: white;
+    background-color: black;
   }
 `;
 
 const Children = styled.div`
+  margin-top: 5px;
   .voteNum {
+    font-size: 5px;
     text-align: right;
     margin-right: 10px;
+    margin-top: 5px;
   }
   .userInfo {
     margin-left: 10px;
@@ -45,7 +48,7 @@ const VoteUser = ({ user }: { user: UserInfo }) => {
         <div className="userInfo">
           {user.userName} ({user.teamName})
         </div>
-        <div className="voteNum">{user.voteNum}</div>
+        <div className="voteNum">현재 득표수 : {user.voteNum}</div>
       </Children>
     </UserBox>
   );

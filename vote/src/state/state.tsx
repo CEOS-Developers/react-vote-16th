@@ -23,6 +23,10 @@ export const clickState = atom<string>({
   default: '999',
 });
 
+export const voteNumState = atom<number[]>({
+    key :'voteNumber',
+    default : [],
+})
 export const isSignInState = atom<boolean>({
   key: 'isSignIn',
   default: false,
@@ -41,4 +45,9 @@ export const partState = atom<string>({
 export const tokenState = atom<string>({
   key: 'token',
   default: '',
+});
+
+export const clickbtnState = atom<Boolean>({
+    key : 'click',
+    default : true
 });
