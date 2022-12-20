@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { UserInfo } from '../interface/interfaces';
+import { UserInfo,CandInfo } from '../interface/interfaces';
 import {
   frontUserState,
   backUserState,
   partState,
   clickbtnState,
 } from '../state/state';
-import { ResultWrapper,VoteResultWrapper } from '../css/wrapper';
+import { ResultWrapper, VoteResultWrapper } from '../css/wrapper';
 import axios from 'axios';
 
 const Rank = styled.div`
@@ -24,7 +24,7 @@ const Children = styled.div`
   text-align: center;
   display: flex;
   align-items: center;
-  padding: 15px 0;
+  padding: 18px 0;
   //   .rank {
   //     font-size: 30px;
   //     margin-left: 20px;
@@ -33,6 +33,7 @@ const Children = styled.div`
   .name {
     font-size: 20px;
     margin-left: 20px;
+    color:#1e90ff;
   }
 
   .vote {
@@ -43,11 +44,13 @@ const Children = styled.div`
 `;
 
 const VoteResult = () => {
-  const [front, setFront] = useRecoilState<UserInfo[]>(frontUserState);
-  const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
+  // const [front, setFront] = useRecoilState<UserInfo[]>(frontUserState);
+  // const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
   const [part, setPart] = useRecoilState<string>(partState);
   const [res, setRes] = useRecoilState<Boolean>(clickbtnState);
   const token = localStorage.getItem('token');
+  const [FEcandidate,setFEcandidate] = useState<string[]>([]);
+  const [BEcandidate,setBEcandidate] = useState<string[]>([]);
   // const [sorted,setSorted] = useState<UserInfo[]>();
   // //   const [cnt, setCnt] = useState(1);
 
@@ -77,42 +80,58 @@ const VoteResult = () => {
   //   }, []);
 
   axios.defaults.baseURL = 'http://3.38.123.37';
+  const FEresultAPI = async () => {
+    await axios
+      .get('/api/votes/candidates/?part=FE', {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setFEcandidate(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const BEresultAPI = async () => {
+    await axios
+      .get('/api/votes/candidates/?part=BE', {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setBEcandidate(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   useEffect(() => {
-    const voteResutltAPI = async () => {
-      await axios
-        .get('/api/votes/candidates/?part=FE', {
-          headers: { Authorization: token },
-        })
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-    voteResutltAPI();
+    {
+      res ? FEresultAPI() : BEresultAPI();
+    }
   }, []);
 
   return (
     <VoteResultWrapper>
-      <h2>{res?'FE':'BE'} 운영진 투표 결과 🗳</h2>
+      <h2>{res ? 'FE' : 'BE'} 운영진 투표 결과 🗳</h2>
       <ResultWrapper>
         {res
-          ? front.map((user, li) => (
-              <Rank key={user.userId}>
+          ? FEcandidate.map((cand:any) => (
+              <Rank key={cand.name}>
                 <Children>
                   {/* <div className="rank">{rank[li]}</div> */}
-                  <div className="name">{user.userName}</div>
-                  {/* <div className="vote">현재 득표수 : {user.voteNum}</div> */}
+                  <div className="name">{cand.name}</div>
+                  <div className="vote">{cand.count}표</div>
                 </Children>
               </Rank>
             ))
-          : back.map((user, li) => (
-              <Rank key={user.userId}>
+          : BEcandidate.map((cand:any) => (
+              <Rank key={cand.name}>
                 <Children>
                   {/* <div className="rank">{rank[li]}</div> */}
-                  <div className="name">{user.userName}</div>
-                  {/* <div className="vote">현재 득표수 : {user.voteNum}</div> */}
+                  <div className="name">{cand.name}</div>
+                  <div className="vote">{cand.count}표</div>
                 </Children>
               </Rank>
             ))}
