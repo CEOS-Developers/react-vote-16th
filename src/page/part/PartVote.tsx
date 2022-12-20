@@ -38,6 +38,9 @@ const PartVote = () => {
       id: currIndex + 1,
     };
 
+    console.log(currPart, request);
+    console.log(`Bearer ${localStorage.getItem('token')}`);
+
     fetch(`${USER_SERVER}/vote/results/${currPart}/`, {
       method: 'PATCH',
       headers: {
@@ -48,13 +51,14 @@ const PartVote = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         if (data[0]) {
           alert(data[0]);
         } else {
           alert('투표가 반영되었습니다');
           localStorage.setItem('part_voted', 'true');
           localStorage.setItem('result', 'front');
-          window.location.replace('/part/result');
+          window.location.replace('/part');
         }
       });
   };
@@ -83,22 +87,10 @@ const PartVote = () => {
               <Text> 투표하기 </Text>
             </Box>
           ) : (
-            // <SmallBox text={"투표하기"} link="/part/result" text1={currPart} />
-            // <SmallBox
-            //   text={"투표하기"}
-            //   link="/part/vote"
-            //   text1={currPart}
-            //   disable={true}
-            // />
             <Box style={{ opacity: 0.5 }}>
               <Text> 투표하기 </Text>
             </Box>
           )}
-          {/* <SmallBox
-            text={'결과보기'}
-            link="/part/result"
-            text1={voteCategory}
-          /> */}
         </SmallBoxContainer>
       </Container>
     </>
