@@ -6,7 +6,7 @@ import '../css/animation.css';
 import { Slide, Fade } from 'react-awesome-reveal';
 import { useRecoilState } from 'recoil';
 import { clickbtnState, isSignInState,nameState,partState } from '../state/state';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const HomePage = () => {
   //일단 frontend로 둠

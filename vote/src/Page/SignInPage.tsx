@@ -78,6 +78,7 @@ const SignInPage = () => {
             placeholder="비밀번호"
             value={password}
             onChange={passwordHandler}
+            type='password'
           />
           <SignInBtn onClick={signinHandler}>로그인</SignInBtn>
           <br />

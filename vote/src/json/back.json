@@ -17,44 +17,44 @@
     {
       "part": "back",
       "userId": "2",
-      "userName": "정상훈",
-      "teamName": "팀플",
-      "voteNum": 0
-    },
-    {
-      "part": "back",
-      "userId": "3",
       "userName": "안혜진",
       "teamName": "123",
       "voteNum": 0
     },
     {
       "part": "back",
-      "userId": "4",
+      "userId": "3",
       "userName": "이정현",
       "teamName": "123",
       "voteNum": 0
     },
     {
       "part": "back",
-      "userId": "5",
+      "userId": "4",
       "userName": "이지안",
       "teamName": "123",
       "voteNum": 0
     },
     {
       "part": "back",
-      "userId": "6",
+      "userId": "5",
       "userName": "전수민",
       "teamName": "팀플",
       "voteNum": 1
     },
     {
       "part": "back",
-      "userId": "7",
+      "userId": "6",
       "userName": "정상훈",
       "teamName": "팀플",
-      "voteNum": -100
+      "voteNum": -99999
+    },
+    {
+      "part": "back",
+      "userId": "7",
+      "userName": "조현영",
+      "teamName": "123",
+      "voteNum": 0
     },
     {
       "part": "back",
