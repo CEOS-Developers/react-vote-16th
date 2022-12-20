@@ -7,6 +7,7 @@ import SmallBox from "../../component/SmallBox";
 import { USER_SERVER } from "../../config";
 
 const PartVote = () => {
+  const [team, setTeam] = useState<any[]>([]);
   const [currIndex, setCurrIndex] = useState(20);
 
   const location = useLocation();
@@ -25,6 +26,10 @@ const PartVote = () => {
     fetch(`${USER_SERVER}/vote/results/${currPart}/`)
       .then((response) => response.json())
       .then((data) => setMember(data));
+
+    fetch(`${USER_SERVER}/vote/demo-results/`)
+      .then((response) => response.json())
+      .then((data) => setTeam(data));
   }, []);
 
   return (
@@ -38,7 +43,7 @@ const PartVote = () => {
               <NameBox
                 text="person"
                 name={i.name}
-                teamName={i.team}
+                teamName={team[i.team - 1].name}
                 color={index === currIndex ? "#fff" : "black"}
                 bgColor={index === currIndex ? "#384084" : "#fff"}
               />
