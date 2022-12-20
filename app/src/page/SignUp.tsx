@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { signup } from '../network/api';
-import { userInfo } from '../assets/interface';
+import { USER_SERVER } from '../config';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -10,15 +9,15 @@ const SignUp = () => {
   const [pw2, setPw2] = useState('');
   const [email, setEmail] = useState('');
 
-  const [team, setTeam] = useState({ id: 1, name: 'Finble' });
-  const [part, setPart] = useState({ id: 'Front', name: '프론트' });
+  const [team, setTeam] = useState({ id: 2, name: 'finble' });
+  const [part, setPart] = useState({ id: 'front', name: '프론트' });
 
   const teamList = [
-    { id: 1, name: 'Finble' },
-    { id: 2, name: 'Pre:folio' },
-    { id: 3, name: 'diaMetes' },
-    { id: 4, name: 'recipeasy' },
-    { id: 5, name: 'Teample' },
+    { id: 1, name: 'teample' },
+    { id: 2, name: 'finble' },
+    { id: 3, name: 'prefolio' },
+    { id: 4, name: 'diametes' },
+    { id: 5, name: 'recipeasy' },
   ];
   const partList = [
     { id: 'plan', name: '기획' },
@@ -31,18 +30,36 @@ const SignUp = () => {
   const [isPart, setIsPart] = useState(false);
 
   const clickRegister = async () => {
-    const request = {
+    let request = {
       id: id,
       password: pw1,
       email: email,
       part: part.id,
       name: name,
       team: team.id,
-    } as userInfo;
+    };
 
-    const response = await signup(request);
+    console.log(request);
 
-    console.log(response);
+    fetch(`${USER_SERVER}/vote/join/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.message == '가입이 성공적으로 이루어졌습니다') {
+          alert(data.message);
+          window.location.replace('/');
+        } else if (data.email) {
+          alert('user의 email이 이미 존재합니다.');
+        } else if (data.id) {
+          alert('user의 id가 이미 존재합니다.');
+        }
+      });
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
