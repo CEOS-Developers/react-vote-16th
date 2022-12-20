@@ -1,41 +1,20 @@
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../component/Header";
 import VoteBox from "../../component/VoteBox";
+import { USER_SERVER } from "../../config";
 
-const Team = [
-  {
-    name: "Finble",
-    desc: "주식 관리 포트폴리오 서비스",
-    vote: 3,
-  },
-  {
-    name: "Pre:folio",
-    desc: "대학생 포트폴리오 공유 서비스",
-    vote: 2,
-  },
-  {
-    name: "diaMEtes",
-    desc: "당뇨병 환자를 위한 식단 관리 서비스",
-    vote: 1,
-  },
-  {
-    name: "Reciepigy",
-    desc: "음식 레시피 추천 서비스",
-    vote: 1,
-  },
-  {
-    name: "Teample",
-    desc: "팀플 활동을 위한 협업 플랫폼",
-    vote: 1,
-  },
-];
 const grade = [1, 2, 3, 4, 5];
 
 const DemoResult = () => {
-  const location = useLocation();
-  const part = location.state.data;
+  const [team, setTeam] = useState<any[]>([]);
   let myGrade;
+
+  useEffect(() => {
+    fetch(`${USER_SERVER}/vote/demo-results/`)
+      .then((response) => response.json())
+      .then((data) => setTeam(data));
+  }, []);
 
   return (
     <>
@@ -43,20 +22,24 @@ const DemoResult = () => {
       <Container>
         <Title>데모데이 투표 결과</Title>
         <BoxContainer>
-          {Team.map((i, index) => {
+          {team.map((i, index) => {
             myGrade = grade[index];
 
-            if (index != 0 && Team[index].vote === Team[index - 1].vote) {
+            if (
+              index != 0 &&
+              team[index].vote_num === team[index - 1].vote_num
+            ) {
               grade[index] = grade[index - 1];
               myGrade = grade[index - 1];
             }
 
             return (
               <VoteBox
+                key={index}
                 grade={myGrade}
                 name={i.name}
-                team={i.desc}
-                vote={i.vote}
+                team={"포트폴리오 서비스"}
+                vote={i.vote_num}
                 type={false}
               />
             );

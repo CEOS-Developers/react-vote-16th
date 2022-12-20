@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import axios from 'axios';
+import { USER_SERVER } from '../config';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -8,17 +10,44 @@ const SignUp = () => {
   const [pw2, setPw2] = useState('');
   const [email, setEmail] = useState('');
 
-  const [team, setTeam] = useState('TEAM');
-  const [part, setPart] = useState('PART');
+  const [team, setTeam] = useState({ id: 1, name: 'Finble' });
+  const [part, setPart] = useState({ id: 'Front', name: '프론트' });
 
-  const teamList = ['Finble', 'Pre:folio', 'diaMetes', 'recipeasy', 'Teample'];
-  const partList = ['기획', '디자인', '프론트', '백엔드'];
+  const teamList = [
+    { id: 1, name: 'Finble' },
+    { id: 2, name: 'Pre:folio' },
+    { id: 3, name: 'diaMetes' },
+    { id: 4, name: 'recipeasy' },
+    { id: 5, name: 'Teample' },
+  ];
+  const partList = [
+    { id: 'plan', name: '기획' },
+    { id: 'design', name: '디자인' },
+    { id: 'front', name: '프론트' },
+    { id: 'back', name: '백' },
+  ];
 
   const [isTeam, setIsTeam] = useState(false);
   const [isPart, setIsPart] = useState(false);
 
   const clickRegister = () => {
-    console.log(name, id, pw1, pw2, email);
+    const request = {
+      id: id,
+      password: pw1,
+      email: email,
+      part: part.id,
+      name: name,
+      team: team.id,
+    };
+
+    axios
+      .post(`${USER_SERVER}/vote/join/`, request)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,6 +82,7 @@ const SignUp = () => {
               }
               value={pw1}
               placeholder="비밀번호"
+              type="password"
             />
             <Input
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -60,7 +90,13 @@ const SignUp = () => {
               }
               value={pw2}
               placeholder="비밀번호 확인"
+              type="password"
             />
+            {pw2 != '' && pw1 != pw2 ? (
+              <ErrorText>비밀번호가 다릅니다</ErrorText>
+            ) : (
+              <></>
+            )}
             <Row>
               <Input
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -78,21 +114,19 @@ const SignUp = () => {
             <Row>
               <Button
                 onClick={() => {
-                  if (!isPart) {
-                    setIsTeam(!isTeam);
-                  }
+                  setIsPart(false);
+                  setIsTeam(!isTeam);
                 }}
               >
-                {team}
+                {team.name}
               </Button>
               <Button
                 onClick={() => {
-                  if (!isTeam) {
-                    setIsPart(!isPart);
-                  }
+                  setIsPart(!isPart);
+                  setIsTeam(false);
                 }}
               >
-                {part}
+                {part.name}
               </Button>
             </Row>
 
@@ -106,8 +140,7 @@ const SignUp = () => {
                         setIsTeam(!isTeam);
                       }}
                     >
-                      {' '}
-                      {item}
+                      {item.name}
                     </ToggleItem>
                   ))}
                 </ToggleBox>
@@ -124,8 +157,7 @@ const SignUp = () => {
                         setIsPart(!isPart);
                       }}
                     >
-                      {' '}
-                      {item}
+                      {item.name}
                     </ToggleItem>
                   ))}
                 </ToggleBox>
@@ -196,7 +228,7 @@ const ModalBox = styled.div`
 
 const Input = styled.input`
   width: 40rem;
-  height: 3rem;
+  height: 2.8rem;
   font-size: 1.3rem;
   border: 1px black solid;
   border-radius: 0.8rem;
@@ -248,4 +280,8 @@ const ToggleItem = styled.div`
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   cursor: pointer;
+`;
+
+const ErrorText = styled.div`
+  color: #384084;
 `;
