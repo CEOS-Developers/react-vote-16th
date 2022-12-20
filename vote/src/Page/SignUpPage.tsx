@@ -89,11 +89,13 @@ const SignUpPage = () => {
             placeholder="비밀번호"
             value={password}
             onChange={passwordHandler}
+            type='password'
           />
           <Input
             placeholder="비밀번호 확인"
             value={passwordConfirm}
             onChange={passwordConfirmHandler}
+            type='password'
           />
           <Input placeholder="이메일" value={email} onChange={emailHandler} />
           <RadioBtnContainer>
