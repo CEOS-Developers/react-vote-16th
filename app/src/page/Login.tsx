@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { USER_SERVER } from '../config';
 
 import { useRecoilState } from 'recoil';
-import { part, name, team, token } from '../recoil/recoil';
+import { part, name, team, token, isPartVote } from '../recoil/recoil';
 
 const Login = () => {
   const [id, setId] = useState('');
@@ -13,10 +13,12 @@ const Login = () => {
   const [newName, setName] = useRecoilState(name);
   const [newTeam, setTeam] = useRecoilState(team);
   const [newToken, setToken] = useRecoilState(token);
+  const [newPartFlag, setPartFlag] = useRecoilState(isPartVote);
 
   useEffect(() => {
     console.log(newPart, newName, newTeam, newToken);
-  }, [newPart]);
+    // window.location.replace('/');
+  }, [token]);
 
   const clickLogin = async () => {
     let request = {
@@ -41,8 +43,8 @@ const Login = () => {
           setPart(data.user.part);
           setTeam(data.user.team);
           setToken(data.token.access);
+          setPartFlag(data.user.part_voted);
           // console.log(newName, newPart, newTeam, newToken);
-          window.location.replace('/');
         } else {
           alert('존재하지 않는 사용자입니다.');
         }

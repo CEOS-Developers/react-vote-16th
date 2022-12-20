@@ -19,3 +19,8 @@ export const token = atom<any>({
   key: 'token',
   default: '',
 });
+
+export const isPartVote = atom<any>({
+  key: 'partFlag',
+  default: false,
+});
