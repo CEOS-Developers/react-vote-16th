@@ -11,3 +11,8 @@ export interface PropsInfo {
   onClick: React.MouseEventHandler;
   isClick: string;
 }
+
+export interface CandInfo {
+  name: string;
+  count: number;
+}

@@ -6,7 +6,7 @@ import '../css/animation.css';
 import { Slide, Fade } from 'react-awesome-reveal';
 import { useRecoilState } from 'recoil';
 import { clickbtnState, isSignInState,nameState,partState } from '../state/state';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const HomePage = () => {
   //일단 frontend로 둠
@@ -28,7 +28,7 @@ const HomePage = () => {
       <HomeContainer>
         <h1>CEOS 운영진 선출 투표 🗳</h1>
         <Welcome>
-          안녕하세요. {locname}({locpart})님.
+          안녕하세요. <span style={{color:'#1e90ff'}}>{locname}({locpart})</span>님.
         </Welcome>
         <Slide direction="left">
           <BtnContainer>
