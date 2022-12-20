@@ -26,7 +26,7 @@ const SignUpPage = () => {
       })
       .then((response) => {
         console.log(response.data);
-        alert('회원가입 성공');
+        alert('회원가입 성공! 로그인 화면으로 이동합니다.');
         navigate('/'); //홈으로 가서 로그인하게 만들기
       })
       .catch(function (error) {
