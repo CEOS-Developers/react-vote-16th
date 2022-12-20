@@ -47,14 +47,14 @@
       "userId": "6",
       "userName": "전수민",
       "teamName": "팀플",
-      "voteNum": 0
+      "voteNum": 1
     },
     {
       "part": "back",
       "userId": "7",
       "userName": "정상훈",
       "teamName": "팀플",
-      "voteNum": 0
+      "voteNum": -100
     },
     {
       "part": "back",

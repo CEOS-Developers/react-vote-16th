@@ -46,3 +46,8 @@ export const tokenState = atom<string>({
   key: 'token',
   default: '',
 });
+
+export const clickbtnState = atom<Boolean>({
+    key : 'click',
+    default : true
+});

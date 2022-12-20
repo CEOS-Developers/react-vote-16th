@@ -16,12 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-<<<<<<< HEAD
   "include": [
     "src"
 , "src/css/GlobalStyle.tsx"  ]
 }
-=======
-  "include": ["src", "src/css/GlobalStyle.tsx"]
-}
->>>>>>> a7aa19dd252dd21c9e6148763094bb5def0135e9

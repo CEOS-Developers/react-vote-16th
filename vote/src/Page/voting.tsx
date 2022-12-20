@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { frontUserState, backUserState, voteState } from '../state/state';
+import { frontUserState, backUserState, voteState,partState } from '../state/state';
 import { UserInfo } from '../interface/interfaces';
 import VoteUser from '../components/voteUser';
 import React, { useState } from 'react';
@@ -25,8 +25,12 @@ const SubmitBtn = styled.button`
 const Voting = () => {
   //메인화면에서 클릭에 따라 프론트나 백 갖고와서 띄울거
   const [front, setFront] = useRecoilState<UserInfo[]>(frontUserState);
+  const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
   const [vote, setVote] = useRecoilState<string>(voteState);
+  const [part, setPart] = useRecoilState<string>(partState);
+
   const navigate = useNavigate();
+
   const onVote = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (vote !== '999') {
       alert('투표가 완료되었습니다.');
@@ -38,7 +42,9 @@ const Voting = () => {
 
   return (
     <Wrapper>
-      {front.map((user) => (
+      {part === 'Frontend' ? front.map((user) => (
+        <VoteUser key={user.userId} user={user} />
+      )) : back.map((user) => (
         <VoteUser key={user.userId} user={user} />
       ))}
       <SubmitBtn onClick={onVote}>투표하기</SubmitBtn>

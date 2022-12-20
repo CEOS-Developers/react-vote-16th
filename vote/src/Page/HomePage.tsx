@@ -5,12 +5,21 @@ import { FaVoteYea } from 'react-icons/fa';
 import '../css/animation.css';
 import { Slide, Fade } from 'react-awesome-reveal';
 import { useRecoilState } from 'recoil';
-import { isSignInState,nameState,partState } from '../state/state';
+import { clickbtnState, isSignInState,nameState,partState } from '../state/state';
+import { useState } from 'react';
 
 const HomePage = () => {
   //일단 frontend로 둠
   const [part, setPart] = useRecoilState<string>(partState);
   const [name, setName] = useRecoilState<string>(nameState);
+  const [res,setRes] = useRecoilState<Boolean>(clickbtnState);
+
+  const onClickFE = () =>{
+    setRes(true);
+  }
+  const onClickBE = () =>{
+    setRes(false);
+  }
 
   return (
     <Fade>
@@ -39,14 +48,14 @@ const HomePage = () => {
               )}
             </Vote>
             <Link to="/result">
-              <Part id="hv">
-                <FaVoteYea style={{ marginRight: '10px' }} />
+              <Part id="hv" onClick={onClickFE}>
+                <FaVoteYea style={{ marginRight: '10px' }}  />
                 FE 투표 결과
               </Part>
             </Link>
             <Link to="/result">
-              <Part id="hv">
-                <FaVoteYea style={{ marginRight: '10px' }} />
+              <Part id="hv" onClick={onClickBE}>
+                <FaVoteYea style={{ marginRight: '10px' }}  />
                 BE 투표 결과
               </Part>
             </Link>

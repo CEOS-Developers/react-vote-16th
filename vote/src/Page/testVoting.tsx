@@ -36,8 +36,9 @@ const TestVoting = () => {
   useEffect(()=>{
     const getVoteNumApi = async () =>{
         try{
-            await url.get("/v1/votes/candidates")
+            await url.get("/api/votes/candidates")
             .then((res)=>{
+                console.log(res.data);
                 setVoteNum(res.data); // 이부분 가져와서 함 바꿔바야댐 데이터 갖고와서 ㅋ카운트만 꺼내서 저장
                 setLoading(false);
             })
