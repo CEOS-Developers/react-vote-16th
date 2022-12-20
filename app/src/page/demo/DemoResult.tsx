@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../component/Header";
 import VoteBox from "../../component/VoteBox";
+import { USER_SERVER } from "../../config";
 
 const grade = [1, 2, 3, 4, 5];
 
 const DemoResult = () => {
-  const location = useLocation();
-  //const part = location.state.data;
   const [team, setTeam] = useState<any[]>([]);
   let myGrade;
 
   useEffect(() => {
-    fetch("https://www.finble.xyz/vote/demo-results/")
+    fetch(`${USER_SERVER}/vote/demo-results/`)
       .then((response) => response.json())
       .then((data) => setTeam(data));
   }, []);
@@ -24,32 +22,28 @@ const DemoResult = () => {
       <Container>
         <Title>데모데이 투표 결과</Title>
         <BoxContainer>
-          {team.length != 0 ? (
-            team.map((i, index) => {
-              myGrade = grade[index];
+          {team.map((i, index) => {
+            myGrade = grade[index];
 
-              if (
-                index != 0 &&
-                team[index].vote_num === team[index - 1].vote_num
-              ) {
-                grade[index] = grade[index - 1];
-                myGrade = grade[index - 1];
-              }
+            if (
+              index != 0 &&
+              team[index].vote_num === team[index - 1].vote_num
+            ) {
+              grade[index] = grade[index - 1];
+              myGrade = grade[index - 1];
+            }
 
-              return (
-                <VoteBox
-                  key={index}
-                  grade={myGrade}
-                  name={i.name}
-                  team={"포트폴리오 서비스"}
-                  vote={i.vote_num}
-                  type={false}
-                />
-              );
-            })
-          ) : (
-            <></>
-          )}
+            return (
+              <VoteBox
+                key={index}
+                grade={myGrade}
+                name={i.name}
+                team={"포트폴리오 서비스"}
+                vote={i.vote_num}
+                type={false}
+              />
+            );
+          })}
         </BoxContainer>
       </Container>
     </>

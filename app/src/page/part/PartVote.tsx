@@ -1,95 +1,10 @@
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import Header from '../../component/Header';
-import NameBox from '../../component/NameBox';
-import SmallBox from '../../component/SmallBox';
-
-const FE = [
-  {
-    name: '강나연',
-    team: 'Pre-Folio',
-  },
-  {
-    name: '김선영',
-    team: 'Finble',
-  },
-  {
-    name: '안채연',
-    team: 'Finble',
-  },
-  {
-    name: '오지은',
-    team: 'Pre-Folio',
-  },
-  {
-    name: '유선호',
-    team: 'Pre-Folio',
-  },
-  {
-    name: '이한비',
-    team: 'Finble',
-  },
-  {
-    name: '이현영',
-    team: 'Finble',
-  },
-  {
-    name: '임채리',
-    team: 'Finble',
-  },
-  {
-    name: '장영준',
-    team: 'Finble',
-  },
-  {
-    name: '정희수',
-    team: 'Finble',
-  },
-];
-
-const BE = [
-  {
-    name: '이지안',
-    team: 'Pre-Folio',
-  },
-  {
-    name: '정상훈',
-    team: 'Finble',
-  },
-  {
-    name: '안혜진',
-    team: 'Finble',
-  },
-  {
-    name: '배수아',
-    team: 'Pre-Folio',
-  },
-  {
-    name: '이정현',
-    team: 'Pre-Folio',
-  },
-  {
-    name: '최수현',
-    team: 'Finble',
-  },
-  {
-    name: '조현영',
-    team: 'Finble',
-  },
-  {
-    name: '전수민',
-    team: 'Finble',
-  },
-  {
-    name: '채승희',
-    team: 'Finble',
-  },
-  {
-    name: '박준열',
-    team: 'Finble',
-  },
-];
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import styled from "styled-components";
+import Header from "../../component/Header";
+import NameBox from "../../component/NameBox";
+import SmallBox from "../../component/SmallBox";
+import { USER_SERVER } from "../../config";
 
 const PartVote = () => {
   const [currIndex, setCurrIndex] = useState(20);
@@ -97,45 +12,47 @@ const PartVote = () => {
   const location = useLocation();
   const part = location.state.data;
 
-  let currPart, voteCategory;
-  if (part === 'FRONT-END') {
-    currPart = FE;
-    voteCategory = 'FE';
+  let currPart: string;
+  const [member, setMember] = useState<any[]>([]);
+
+  if (part === "FRONT-END") {
+    currPart = "front";
   } else {
-    currPart = BE;
-    voteCategory = 'BE';
+    currPart = "back";
   }
+
+  useEffect(() => {
+    fetch(`${USER_SERVER}/vote/results/${currPart}/`)
+      .then((response) => response.json())
+      .then((data) => setMember(data));
+  }, []);
 
   return (
     <>
       <Header />
       <Container>
-        <Title>{part === 'FRONT-END' ? 'FE' : 'BE'} 파트장 투표</Title>
+        <Title>{part === "FRONT-END" ? "FE" : "BE"} 파트장 투표</Title>
         <BoxContainer>
-          {currPart.map((i, index) => (
+          {member.map((i, index) => (
             <div onClick={() => setCurrIndex(index)}>
               <NameBox
                 text="person"
                 name={i.name}
                 teamName={i.team}
-                color={index === currIndex ? '#fff' : 'black'}
-                bgColor={index === currIndex ? '#384084' : '#fff'}
+                color={index === currIndex ? "#fff" : "black"}
+                bgColor={index === currIndex ? "#384084" : "#fff"}
               />
             </div>
           ))}
         </BoxContainer>
         <SmallBoxContainer>
           {currIndex != 20 ? (
-            <SmallBox
-              text={'투표하기'}
-              link="/part/result"
-              text1={voteCategory}
-            />
+            <SmallBox text={"투표하기"} link="/part/result" text1={currPart} />
           ) : (
             <SmallBox
-              text={'투표하기'}
+              text={"투표하기"}
               link="/part/vote"
-              text1={part}
+              text1={currPart}
               disable={true}
             />
           )}
