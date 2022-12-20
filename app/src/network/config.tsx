@@ -1,1 +1,1 @@
-export const USER_SERVER = 'https://www.finble.xyz';
+export const USER_SERVER = 'https://www.finble.com';
