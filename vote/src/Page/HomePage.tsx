@@ -28,7 +28,7 @@ const HomePage = () => {
       <HomeContainer>
         <h1>CEOS 운영진 선출 투표 🗳</h1>
         <Welcome>
-          안녕하세요. {locname}({locpart})님.
+          안녕하세요. <span style={{color:'#1e90ff'}}>{locname}({locpart})</span>님.
         </Welcome>
         <Slide direction="left">
           <BtnContainer>
