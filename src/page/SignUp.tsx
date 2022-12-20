@@ -39,8 +39,6 @@ const SignUp = () => {
       team: team.id,
     };
 
-    console.log(JSON.stringify(request));
-
     fetch(`${USER_SERVER}/vote/join/`, {
       method: 'POST',
       headers: {

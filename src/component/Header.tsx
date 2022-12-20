@@ -11,17 +11,16 @@ const Header = () => {
   const [newTeam, setTeam] = useRecoilState(team);
   const [newToken, setToken] = useRecoilState(token);
 
-  let state = newTeam + ' ' + newPart + ' ' + newName;
-
-  useEffect(() => {
-    // console.log(state);
-  }, []);
+  let state =
+    localStorage.getItem('team') +
+    ' | ' +
+    localStorage.getItem('part') +
+    ' | ' +
+    localStorage.getItem('name');
 
   const logout = () => {
-    setPart('');
-    setName('');
-    setTeam('');
-    setToken('');
+    localStorage.clear();
+    window.location.replace('/');
   };
 
   return (
@@ -31,7 +30,7 @@ const Header = () => {
       </Link>
 
       <ButtonContainer>
-        {newName != 'none' ? (
+        {localStorage.getItem('name') ? (
           <>
             <Text>{state}</Text>
             <Button onClick={logout}>로그아웃</Button>
@@ -100,6 +99,6 @@ const Text = styled.div`
   justify-content: center;
   align-items: center;
   height: 2rem;
-  font-size: 1.6rem;
-  margin-top: 0.4rem;
+  font-size: 1rem;
+  margin-top: 0rem;
 `;

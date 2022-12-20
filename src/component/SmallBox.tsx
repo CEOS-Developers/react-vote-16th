@@ -1,15 +1,15 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const SmallBox = ({ text1, text, link, disable }: any) => {
   return (
     <>
       <Link
         to={link}
-        style={{ textDecoration: "none" }}
+        style={{ textDecoration: 'none' }}
         state={{ data: text1 }}
       >
-        {text == "투표하기" ? (
+        {text == '투표하기' ? (
           disable ? (
             <Box style={{ opacity: 0.5 }}>
               <Text> {text} </Text>

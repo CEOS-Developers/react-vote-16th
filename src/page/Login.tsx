@@ -1,35 +1,20 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { USER_SERVER } from '../config';
 
 import { useRecoilState } from 'recoil';
 import { part, name, team, token, isPartVote } from '../recoil/store';
+import axios from 'axios';
 
 const Login = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
-  const [change, setChange] = useState(false);
-
-  const [newPart, setPart] = useRecoilState(part);
-  const [newName, setName] = useRecoilState(name);
-  const [newTeam, setTeam] = useRecoilState(team);
-  const [newToken, setToken] = useRecoilState(token);
-  const [newPartFlag, setPartFlag] = useRecoilState(isPartVote);
-
-  // useEffect(() => {
-  //   console.log(newPart, newName, newTeam, newToken);
-  //   setTimeout(() => {
-  //     window.location.replace('/');
-  //   }, 1000);
-  // }, [newToken]);
 
   const clickLogin = async () => {
     let request = {
       id: id,
       password: pw,
     };
-
-    // console.log(JSON.stringify(request));
 
     fetch(`${USER_SERVER}/vote/login/`, {
       method: 'POST',
@@ -42,23 +27,19 @@ const Login = () => {
       .then((data) => {
         console.log(data);
         if (data.message == '로그인에 성공했습니다') {
-          alert('로그인에 성공했습니다');
+          const { accessToken } = data.token.access;
+          axios.defaults.headers.common[
+            'Authorization'
+          ] = `Bearer ${accessToken}`;
 
-          setName(data.user.name);
-          setPart(data.user.part);
-          setTeam(data.user.team);
-          setToken(data.token.access);
-          setPartFlag(data.user.part_voted);
-          setChange(true);
-          if (change) {
-            setTimeout(() => {
-              window.location.replace('/');
-            }, 1000);
-          }
-          // console.log(newName, newPart, newTeam, newToken);
-          // setTimeout(() => {
-          //   window.location.replace('/');
-          // }, 1000);
+          localStorage.setItem('name', data.user.name);
+          localStorage.setItem('part', data.user.part);
+          localStorage.setItem('team', data.user.team);
+          localStorage.setItem('access', data.token.access);
+          localStorage.setItem('part_voted', data.user.part_voted);
+
+          alert('로그인에 성공했습니다');
+          window.location.replace('/');
         } else {
           alert('존재하지 않는 사용자입니다.');
         }

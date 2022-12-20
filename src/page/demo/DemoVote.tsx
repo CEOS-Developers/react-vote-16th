@@ -30,6 +30,9 @@ const Team = [
 const DemoVote = () => {
   const [currIndex, setCurrIndex] = useState(20);
 
+  //link="/demo/vote"
+  const clickVote = () => {};
+
   return (
     <>
       <Header />
@@ -50,17 +53,14 @@ const DemoVote = () => {
         </BoxContainer>
         <SmallBoxContainer>
           {currIndex == 20 ? (
-            <SmallBox
-              text="투표하기"
-              link="/demo/vote"
-              text1="데모데이"
-              disable={true}
-            />
+            <Box style={{ opacity: 0.5 }} onClick={clickVote}>
+              <Text> 투표하기 </Text>
+            </Box>
           ) : (
-            <SmallBox text="투표하기" link="/demo/result" text1="데모데이" />
+            <Box style={{ opacity: 1 }} onClick={clickVote}>
+              <Text>투표하기</Text>
+            </Box>
           )}
-
-          {/* <SmallBox text="결과보기" link="/part/result" text1="데모데이" /> */}
         </SmallBoxContainer>
       </Container>
     </>
@@ -96,4 +96,20 @@ const BoxContainer = styled.div`
 const SmallBoxContainer = styled.div`
   display: flex;
   gap: 1rem;
+`;
+
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px #384084 solid;
+  border-radius: 1rem;
+  padding: 0.5rem 2.5rem;
+  background-color: #384084;
+  opacity: 0.5;
+  cursor: pointer;
+`;
+const Text = styled.div`
+  font-size: 1.2rem;
+  color: #ffffff;
 `;
