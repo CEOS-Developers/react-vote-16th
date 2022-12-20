@@ -2,8 +2,24 @@ import styled from "styled-components";
 import LargeBox from "../../component/LargeBox";
 import Header from "../../component/Header";
 import SmallBox from "../../component/SmallBox";
+import { useRecoilValue } from "recoil";
+import { part } from "../../recoil/recoil";
+import { useEffect, useState } from "react";
+import { USER_SERVER } from "../../config";
 
 const PartMain = () => {
+  const user = useRecoilValue(part);
+  const userName = user.name;
+  const userPart = user.part;
+  const [member, setMember] = useState<any[]>([]);
+  // const [member, setMember] = useState();
+
+  useEffect(() => {
+    fetch(`${USER_SERVER}/vote/results/${part}/`)
+      .then((response) => response.json())
+      .then((data) => setMember(data));
+  }, []);
+
   return (
     <>
       <Header />

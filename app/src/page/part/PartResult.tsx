@@ -34,6 +34,7 @@ const PartResult = () => {
 
             return (
               <VoteBox
+                key={i.id}
                 grade={myGrade}
                 name={i.name}
                 team={i.team}

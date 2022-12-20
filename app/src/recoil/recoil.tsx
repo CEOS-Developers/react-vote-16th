@@ -1,6 +1,11 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
-export const part = atom<string>({
-  key: 'devPart',
-  default: 'none',
+interface user {
+  name: string;
+  part: string;
+}
+
+export const part = atom<user>({
+  key: "devPart",
+  default: { name: "안채연", part: "front" },
 });
