@@ -4,6 +4,9 @@ import React from 'react';
 import { RecoilRoot } from 'recoil';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
