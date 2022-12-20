@@ -10,17 +10,18 @@ const Header = () => {
   const [isSignIn, setIsSignIn] = useRecoilState<boolean>(isSignInState);
   axios.defaults.baseURL = 'http://3.38.123.37';
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (localStorage.getItem('token') !== null)
-      setIsSignIn(true);
-    else
-      setIsSignIn(false);
-}, [localStorage.getItem('token')]);
+    if (token !== null) setIsSignIn(true);
+    else setIsSignIn(false);
+  }, [token]);
 
   const signOutAPI = async () => {
     await axios
-      .post('/api/auth/logout/')
+      .post('/api/auth/logout/', {
+        headers: { Authorization: token },
+      })
       .then((response) => {
         console.log(response.data);
         setIsSignIn(false);
@@ -71,7 +72,6 @@ const SignBtn = styled.button`
   width: 100px;
   height: 40px;
   border-radius: 20px;
-
 `;
 
 export default Header;
