@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { clickbtnState } from '../state/state';
-import { ResultWrapper, VoteResultWrapper } from '../css/wrapper';
+import { ResultWrapper } from '../css/wrapper';
 import axios from 'axios';
 import { Fade } from 'react-awesome-reveal';
 

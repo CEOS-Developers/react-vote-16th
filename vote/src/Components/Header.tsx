@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isSignInState } from '../state/state';
 import axios from 'axios';
-import { useEffect } from 'react';
 
 const Header = () => {
   const [isSignIn, setIsSignIn] = useRecoilState<boolean>(isSignInState);
@@ -12,28 +11,34 @@ const Header = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    if (token !== null) setIsSignIn(true);
-    else setIsSignIn(false);
-  }, [token]);
+  // useEffect(() => {
+  //   if (token !== null) setIsSignIn(true);
+  //   else setIsSignIn(false);
+  // }, [token]);
 
-  const signOutAPI = async () => {
-    await axios
-      .post('/api/auth/logout/', {
-        headers: { Authorization: token },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setIsSignIn(false);
-        localStorage.clear();
-        alert('로그아웃 성공! 로그인 화면으로 이동합니다.');
-        navigate('/'); //홈으로 가서 로그인하게 만들기
-      })
-      .catch(function (error) {
-        console.log(error);
-        alert('로그아웃 실패');
-      });
-  };
+  // const signOutAPI = async () => {
+  //   await axios
+  //     .post('/api/auth/logout/', {
+  //       headers: { Authorization: token },
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setIsSignIn(false);
+  //       localStorage.clear();
+  //       alert('로그아웃 성공! 로그인 화면으로 이동합니다.');
+  //       navigate('/'); //홈으로 가서 로그인하게 만들기
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       alert('로그아웃 실패');
+  //     });
+  // };
+  const signOutAPI = () =>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('part');
+    navigate('/');
+  }
 
   return (
     <HeaderContainer>
@@ -47,11 +52,12 @@ const Header = () => {
         </Link>
       )}
 
-      {isSignIn === true ? (
+      {/* {isSignIn === true ? (
         <SignBtn onClick={signOutAPI}>로그아웃</SignBtn>
-      ) : (
-        <></>
-      )}
+        ) : (
+          <></>
+          )} */}
+        {token !== null ? <SignBtn onClick={signOutAPI}>로그아웃</SignBtn> : <></>}
     </HeaderContainer>
   );
 };
