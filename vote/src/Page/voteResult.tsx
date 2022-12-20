@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { UserInfo } from '../interface/interfaces';
-import { frontUserState } from '../state/state';
-import { ResultWrapper, Wrapper } from '../css/wrapper';
+import { frontUserState,backUserState,partState,clickbtnState } from '../state/state';
+import { ResultWrapper } from '../css/wrapper';
 
 const Rank = styled.div`
   width: 350px;
@@ -38,12 +38,24 @@ const Children = styled.div`
 
 const VoteResult = () => {
   const [front, setFront] = useRecoilState<UserInfo[]>(frontUserState);
-  //   const [rank, setRank] = useState([1]);
-  //   const [cnt, setCnt] = useState(1);
+  const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
+  const [part, setPart] = useRecoilState<string>(partState);
+  const [res,setRes] = useRecoilState<Boolean>(clickbtnState);
+  // const [sorted,setSorted] = useState<UserInfo[]>();
+  // //   const [cnt, setCnt] = useState(1);
 
-  const sorted = [...front]; //sort하기 전에 spread로 카피
-  //프론트면 프론트 백이면 백 소티드에 넣으면 됨
-  sorted.sort((a, b) => b.voteNum - a.voteNum);
+  // useEffect(()=>{
+  //   if(part === 'Frontend'){
+  //     setSorted([...back]);
+  //   }
+  //   else{
+  //     setSorted([...front]);
+  //   }
+  // },[])
+  // //sort하기 전에 spread로 카피
+  // //프론트면 프론트 백이면 백 소티드에 넣으면 됨
+  // if(sorted !== undefined)
+  // sorted.sort((a, b) => b.voteNum - a.voteNum);
 
   //   useEffect(() => {
   //     for (let i = 1; i < 10; i++) {
@@ -59,7 +71,15 @@ const VoteResult = () => {
 
   return (
     <ResultWrapper>
-      {sorted.map((user, li) => (
+      {res ? front.map((user, li) => (
+        <Rank key={user.userId}>
+          <Children>
+            {/* <div className="rank">{rank[li]}</div> */}
+            <div className="name">{user.userName}</div>
+            <div className="vote">현재 득표수 : {user.voteNum}</div>
+          </Children>
+        </Rank>
+      )) : back.map((user, li) => (
         <Rank key={user.userId}>
           <Children>
             {/* <div className="rank">{rank[li]}</div> */}

@@ -1,51 +1,63 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { MdHowToVote } from 'react-icons/md';
 import { FaVoteYea } from 'react-icons/fa';
 import '../css/animation.css';
 import { Slide, Fade } from 'react-awesome-reveal';
+import { useRecoilState } from 'recoil';
+import { clickbtnState, isSignInState,nameState,partState } from '../state/state';
+import { useState } from 'react';
 
 const HomePage = () => {
   //일단 frontend로 둠
-  const [part, setPart] = useState('FE');
-  const [name, setName] = useState('000');
+  const [part, setPart] = useRecoilState<string>(partState);
+  const [name, setName] = useRecoilState<string>(nameState);
+  const [res,setRes] = useRecoilState<Boolean>(clickbtnState);
+  const locname = localStorage.getItem("name");
+  const locpart = localStorage.getItem("part");
+
+  const onClickFE = () =>{
+    setRes(true);
+  }
+  const onClickBE = () =>{
+    setRes(false);
+  }
 
   return (
     <Fade>
       <HomeContainer>
         <h1>CEOS 운영진 선출 투표 🗳</h1>
         <Welcome>
-          안녕하세요. {name}({part})님.
+          안녕하세요. {locname}({locpart})님.
         </Welcome>
         <Slide direction="left">
           <BtnContainer>
             <Vote>
-              {part === 'FE' ? (
+              {locpart === 'Frontend' ? (
                 <Link to="/voting">
                   <Part id="hv">
                     <MdHowToVote style={{ marginRight: '10px' }} />
-                    {part} 투표하기
+                    FE 투표하기
                   </Part>
                 </Link>
               ) : (
                 <Link to="/voting">
                   <Part id="hv">
                     <MdHowToVote style={{ marginRight: '10px' }} />
-                    {part} 투표하기
+                    BE 투표하기
                   </Part>
                 </Link>
               )}
             </Vote>
             <Link to="/result">
-              <Part id="hv">
-                <FaVoteYea style={{ marginRight: '10px' }} />
+              <Part id="hv" onClick={onClickFE}>
+                <FaVoteYea style={{ marginRight: '10px' }}  />
                 FE 투표 결과
               </Part>
             </Link>
             <Link to="/result">
-              <Part id="hv">
-                <FaVoteYea style={{ marginRight: '10px' }} />
+              <Part id="hv" onClick={onClickBE}>
+                <FaVoteYea style={{ marginRight: '10px' }}  />
                 BE 투표 결과
               </Part>
             </Link>

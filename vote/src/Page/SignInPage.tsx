@@ -1,20 +1,62 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import {
+  isSignInState,
+  nameState,
+  partState,
+  tokenState,
+} from '../state/state';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [token, setToken] = useRecoilState<string>(tokenState);
+  const [isSignIn, setIsSignIn] = useRecoilState<boolean>(isSignInState);
+  const [name, setName] = useRecoilState<string>(nameState);
+  const [part, setPart] = useRecoilState<string>(partState);
   const navigate = useNavigate();
+  axios.defaults.baseURL = 'http://3.38.123.37';
+
+  const signInAPI = async () => {
+    await axios
+      .post('/api/auth/login/ ', {
+        username: name,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        setToken(response.data.access_token);
+        setName(response.data.user.username);
+        setPart(response.data.user.part);
+        setIsSignIn(true);
+        localStorage.clear();
+        localStorage.setItem('token', response.data.access_token);
+        localStorage.setItem('name', response.data.user.username);
+        localStorage.setItem('part', response.data.user.part);
+        navigate('/home'); //메인 화면으로 이동
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('로그인 실패');
+      });
+  };
 
   // 로그인 버튼 클릭
   const signinHandler = () => {
-    // api연결 - 일단 home으로
-    navigate('/');
+    if (email === '') alert('이메일은 필수 항목입니다.');
+    else if (password === '') alert('비밀번호는 필수 항목입니다.');
+    else if (name === '') alert('이름은 필수 항목입니다.');
+    else signInAPI();
   };
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+  };
+  const nameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
   };
 
   const emailHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +71,7 @@ const SignInPage = () => {
       <h2>CEOS 운영진 선출 투표 🗳</h2>
       <Form onSubmit={onSubmit}>
         <InputContainer>
+          <Input placeholder="이름" value={name} onChange={nameHandler} />
           <Input placeholder="이메일" value={email} onChange={emailHandler} />
           <Input
             placeholder="비밀번호"
@@ -92,7 +135,7 @@ const SignUpBtn = styled.span`
 
 const SignInContainer = styled.div`
   width: 400px;
-  height: 350px;
+  height: 450px;
   padding: 30px;
   display: flex;
   flex-direction: column;
