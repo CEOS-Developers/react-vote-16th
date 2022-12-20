@@ -38,7 +38,7 @@ const DemoResult = () => {
                 key={index}
                 grade={myGrade}
                 name={i.name}
-                team={"포트폴리오 서비스"}
+                team={i.description}
                 vote={i.vote_num}
                 type={false}
               />

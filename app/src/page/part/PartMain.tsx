@@ -3,22 +3,30 @@ import LargeBox from "../../component/LargeBox";
 import Header from "../../component/Header";
 import SmallBox from "../../component/SmallBox";
 import { useRecoilValue } from "recoil";
-import { part } from "../../recoil/recoil";
+import { name, part } from "../../recoil/recoil";
 import { useEffect, useState } from "react";
 import { USER_SERVER } from "../../config";
 
 const PartMain = () => {
-  const user = useRecoilValue(part);
-  const userName = user.name;
-  const userPart = user.part;
+  const userName = useRecoilValue(name);
+  const userPart = useRecoilValue(part);
   const [member, setMember] = useState<any[]>([]);
   // const [member, setMember] = useState();
 
   useEffect(() => {
-    fetch(`${USER_SERVER}/vote/results/${part}/`)
+    fetch(`${USER_SERVER}/vote/results/${userPart}/`)
       .then((response) => response.json())
       .then((data) => setMember(data));
   }, []);
+
+  let user;
+  useEffect(() => {
+    user = member.filter(
+      (i: any) => i.name === userName && i.part === userPart
+    );
+  }, [member]);
+
+  console.log(user);
 
   return (
     <>
@@ -28,11 +36,25 @@ const PartMain = () => {
         <BoxContainer>
           <BoxItem>
             <LargeBox text1="FRONT-END" text2="파트장 투표" link="/part/vote" />
+            {/* {user != undefined && user[0].part_voted === true ? (
+              <SmallBox text={"결과보기"} link="/part/result" text1="front" />
+            ) : (
+              <div onClick={() => alert("투표를 먼저 완료해주세요")}>
+                <SmallBox text={"결과보기"} link="/part" text1="front" />
+              </div>
+            )} */}
             <SmallBox text={"결과보기"} link="/part/result" text1="front" />
           </BoxItem>
           <BoxItem>
             <LargeBox text1="BACK-END" text2="파트장 투표" link="/part/vote" />
-            <SmallBox text="결과보기" link="/part/result" text1="back" />
+            {/* {user[0].part_voted === true ? (
+              <SmallBox text={"결과보기"} link="/part/result" text1="back" />
+            ) : (
+              <div onClick={() => alert("투표를 먼저 완료해주세요")}>
+                <SmallBox text={"결과보기"} link="/part" text1="back" />
+              </div>
+            )} */}
+            <SmallBox text={"결과보기"} link="/part/result" text1="back" />
           </BoxItem>
         </BoxContainer>
       </Container>

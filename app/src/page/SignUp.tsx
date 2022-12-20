@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import axios from 'axios';
-import { USER_SERVER } from '../config';
+import { signup } from '../network/api';
+import { userInfo } from '../assets/interface';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -30,7 +30,7 @@ const SignUp = () => {
   const [isTeam, setIsTeam] = useState(false);
   const [isPart, setIsPart] = useState(false);
 
-  const clickRegister = () => {
+  const clickRegister = async () => {
     const request = {
       id: id,
       password: pw1,
@@ -38,16 +38,11 @@ const SignUp = () => {
       part: part.id,
       name: name,
       team: team.id,
-    };
+    } as userInfo;
 
-    axios
-      .post(`${USER_SERVER}/vote/join/`, request)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const response = await signup(request);
+
+    console.log(response);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -84,6 +79,11 @@ const SignUp = () => {
               placeholder="비밀번호"
               type="password"
             />
+            {pw1.length != 0 && pw1.length < 8 ? (
+              <ErrorText>8자 이상의 비밀번호를 입력해주세요</ErrorText>
+            ) : (
+              <></>
+            )}
             <Input
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setPw2(e.target.value)

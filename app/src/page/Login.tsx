@@ -34,6 +34,7 @@ const Login = () => {
               }
               value={pw}
               placeholder="비밀번호"
+              type="password"
             />
             <Button onClick={clickLogin}>로그인</Button>
           </ModalBox>

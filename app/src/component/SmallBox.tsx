@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const SmallBox = ({ text1, text, link, disable }: any) => {
+  let alertmsg: string;
+
   return (
     <>
       <Link
