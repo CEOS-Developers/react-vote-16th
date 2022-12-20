@@ -4,10 +4,12 @@ import { frontUserState, backUserState, voteState,partState,clickState } from '.
 import { UserInfo } from '../interface/interfaces';
 import VoteUser from '../components/voteUser';
 import React, { useState,useEffect } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import url,{clientURL} from '../apis/baseURL'; 
 import { Fade } from 'react-awesome-reveal';
+import axios from 'axios';
 
 const SubmitBtn = styled.button`
   width: 150px;
@@ -53,10 +55,7 @@ const Voting = () => {
   const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
   const [vote, setVote] = useRecoilState<string>(voteState);
   const [isClick, setIsClick] = useRecoilState<string>(clickState);
-
   const locpart = localStorage.getItem("part");
-
-
   const navigate = useNavigate();
 
   const onVote = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -84,6 +83,30 @@ const Voting = () => {
         }
     }
 
+
+  axios.defaults.baseURL = 'http://3.38.123.37';
+  const votingAPI = async () => {
+    await axios
+      .put(
+        '/api/votes/candidates',
+        {
+          part: 'Frontend',
+          name: '임채리',
+        },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    votingAPI();
+  }, []);
 
   return (
     <Fade>
