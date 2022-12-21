@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import Router from "next/router";
 
 import Candidate from '../../components/Candidate';
 
 import api from '../../api';
+import { getCookie } from '../../util/cookie';
+import { Navigate } from 'react-router-dom';
 
 const Vote = () => {
   interface CandidateProps {
@@ -17,15 +20,28 @@ const Vote = () => {
 
   const fetchCandidates = async () => {
     try {
-      const response = await api.get('/candidates/');
+      
+     
+        const response = await api.get('/candidates/');
       setCand(response.data);
+
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchCandidates();
+    if(getCookie("is_login")===undefined)
+    {
+      alert("로그인 후 접속");
+      Router.push("/");
+    }
+    else{
+      fetchCandidates();
+    }
+      
+
+    
   }, []);
 
   console.log(cand);
