@@ -18,5 +18,9 @@
   },
   "include": [
     "src"
-, "src/css/GlobalStyle.tsx"  ]
+, "src/css/GlobalStyle.tsx"  ],
+"exclude": [
+  "node_modules",
+  "build"
+]
 }
