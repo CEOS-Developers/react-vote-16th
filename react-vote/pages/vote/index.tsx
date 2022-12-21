@@ -4,41 +4,33 @@ import axios from 'axios';
 
 import Candidate from '../../components/Candidate';
 
+import api from '../../api';
+
 const Vote = () => {
-  // interface CandidateProps {
-  //   id: Number;
-  //   name: String;
-  //   vote_count: Number;
-  // }
-  // const [cand, setCand] = useState<CandidateProps[] | null>(null);
+  interface CandidateProps {
+    id: Number;
+    name: String;
+    vote_count: Number;
+    position: String;
+  }
+  const [cand, setCand] = useState<CandidateProps[] | null>(null);
 
-  // const fetchCandidates = async () => {
-  //   try {
-  //     const response = await axios.get('https://www.ceosvote.link/candidates/');
-  //     setCand(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const fetchCandidates = async () => {
+    try {
+      const response = await api.get('/candidates/');
+      setCand(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchCandidates();
-  // }, []);
+  useEffect(() => {
+    fetchCandidates();
+  }, []);
 
-  // console.log(cand);
+  console.log(cand);
 
   const team = 'FE';
-
-  const cand = [
-    { id: 1, name: '안채연', position: 'FE', vote_count: 3 },
-    { id: 2, name: '오지은', vote_count: 1, position: 'FE' },
-    { id: 3, name: '강나연', vote_count: 1, position: 'FE' },
-    { id: 4, name: '장영준', vote_count: 2, position: 'FE' },
-    { id: 11, name: '안혜진', vote_count: 2, position: 'BE' },
-    { id: 12, name: '이정현', vote_count: 3, position: 'BE' },
-    { id: 13, name: '채승희', vote_count: 3, position: 'BE' },
-    { id: 14, name: '최수현', vote_count: 1, position: 'BE' },
-  ];
 
   return (
     <div>
@@ -47,7 +39,7 @@ const Vote = () => {
           pathname: `/vote/[team]`,
           query: {
             vote_list: JSON.stringify(
-              cand.filter((cand) => cand.position === team)
+              cand?.filter((cand) => cand.position === team)
             ),
           },
         }}
@@ -60,7 +52,7 @@ const Vote = () => {
           pathname: `/result/FE`,
           query: {
             vote_list: JSON.stringify(
-              cand.filter((cand) => cand.position === 'FE')
+              cand?.filter((cand) => cand.position === 'FE')
             ),
           },
         }}
@@ -73,7 +65,7 @@ const Vote = () => {
           pathname: `/vote/[team]`,
           query: {
             vote_list: JSON.stringify(
-              cand.filter((cand) => cand.position === team)
+              cand?.filter((cand) => cand.position === team)
             ),
           },
         }}
@@ -86,7 +78,7 @@ const Vote = () => {
           pathname: `/result/BE`,
           query: {
             vote_list: JSON.stringify(
-              cand.filter((cand) => cand.position === 'BE')
+              cand?.filter((cand) => cand.position === 'BE')
             ),
           },
         }}
