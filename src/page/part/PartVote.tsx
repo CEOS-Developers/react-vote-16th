@@ -6,13 +6,13 @@ import NameBox from "../../component/NameBox";
 import { USER_SERVER } from "../../config";
 
 const PartVote = () => {
+  const [member, setMember] = useState<any[]>([]);
   const [team, setTeam] = useState<any[]>([]);
   const [currIndex, setCurrIndex] = useState(50);
   const location = useLocation();
   const part = location.state.data;
-  let currPart: string;
-  const [member, setMember] = useState<any[]>([]);
 
+  let currPart: string;
   if (part === "FRONT-END") {
     currPart = "front";
   } else {
@@ -38,8 +38,8 @@ const PartVote = () => {
       id: currIndex,
     };
 
-    console.log(currPart, request);
-    console.log(`Bearer ${localStorage.getItem("token")}`);
+    // console.log(currPart, request);
+    // console.log(`Bearer ${localStorage.getItem("token")}`);
 
     fetch(`${USER_SERVER}/vote/results/${currPart}/`, {
       method: "PATCH",
@@ -51,7 +51,7 @@ const PartVote = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data[0]) {
           alert(data[0]);
         } else {
@@ -69,7 +69,7 @@ const PartVote = () => {
       <Container>
         <Title>{part === "FRONT-END" ? "FE" : "BE"} 파트장 투표</Title>
         <BoxContainer>
-          {member.map((i, index) => (
+          {member.map((i) => (
             <div onClick={() => setCurrIndex(i.id)}>
               <NameBox
                 text="person"

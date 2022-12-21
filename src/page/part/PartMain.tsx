@@ -7,7 +7,6 @@ const PartMain = () => {
   const devPart = localStorage.getItem("part");
   const voteTF = localStorage.getItem("part_voted");
 
-  console.log(devPart);
   return (
     <>
       <Header />
@@ -23,7 +22,9 @@ const PartMain = () => {
               />
             ) : (
               <Box>
-                자신의 파트의 파트장만 <br /> 투표할 수 있습니다.
+                {devPart === null
+                  ? `로그인 후 이용 가능합니다`
+                  : "BACK-END 파트장 투표"}
               </Box>
             )}
 
@@ -42,6 +43,7 @@ const PartMain = () => {
               />
             )}
           </BoxItem>
+
           <BoxItem>
             {devPart === "back" ? (
               <LargeBox
@@ -51,7 +53,9 @@ const PartMain = () => {
               />
             ) : (
               <Box>
-                자신의 파트의 파트장만 <br /> 투표할 수 있습니다.
+                {devPart === null
+                  ? "로그인 후 이용 가능합니다"
+                  : `BACK-END \n 파트장 투표`}
               </Box>
             )}
             {(devPart === "back" && voteTF === "false") || devPart === null ? (
@@ -90,25 +94,18 @@ const BoxContainer = styled.div`
 
 const Box = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 18rem;
   width: 18rem;
-  border: 3px #384084 solid;
+  border: 3px rgb(222, 226, 230) solid;
+  background: rgb(222, 226, 230);
+  color: #7d7d7d;
   border-radius: 1rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin 0 5rem;
 
-  text-align: center;
   font-size: 1.5rem;
   line-height: 3rem;
-  color: black;
-
-  &:hover {
-    background-color: #384084;
-    color: #ffffff;
-  }
 `;
 
 const BoxItem = styled.div`

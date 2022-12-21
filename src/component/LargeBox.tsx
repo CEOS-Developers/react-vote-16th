@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const LargeBox = ({ text1, text2, link }: any) => {
   return (
@@ -7,7 +7,7 @@ const LargeBox = ({ text1, text2, link }: any) => {
       <Link
         to={link}
         state={{ data: text1 }}
-        style={{ textDecoration: 'none' }}
+        style={{ textDecoration: "none" }}
       >
         <Box>
           {text1} <br /> {text2}
@@ -28,8 +28,7 @@ const Box = styled.div`
   width: 18rem;
   border: 3px #384084 solid;
   border-radius: 1rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin: 0 5rem;
 
   text-align: center;
   font-size: 1.5rem;
