@@ -63,7 +63,7 @@ const TeamresultPage = () => {
 
   return (
     <VoteResultWrapper>
-      <h2>데모데이 투표 결과 🗳</h2>
+      <h2>팀 투표 결과 🗳</h2>
       <Fade >
       <ResultWrapper>
         {team.map((cand: any) => (
