@@ -6,7 +6,7 @@ import Router from "next/router";
 import Candidate from '../../components/Candidate';
 
 import api from '../../api';
-import { getCookie } from '../../util/cookie';
+import { getCookie, removeCookie } from '../../util/cookie';
 import { Navigate } from 'react-router-dom';
 
 const Vote = () => {
@@ -43,6 +43,11 @@ const Vote = () => {
 
     
   }, []);
+
+  const LogOut=()=>{
+    removeCookie("is_login");
+    Router.push("/");
+  }
 
   console.log(cand);
 
@@ -102,6 +107,7 @@ const Vote = () => {
       >
         BE 결과보기
       </Link>
+      <button onClick={LogOut}>logOut</button>
       <style jsx>{``}</style>
     </div>
   );
