@@ -18,9 +18,12 @@ const HomePage = () => {
 
   const onClickFE = () =>{
     setRes('FE');
+    console.log(res);
   }
   const onClickBE = () =>{
     setRes('BE');
+    console.log(res);
+
   }
 
   return (

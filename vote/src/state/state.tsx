@@ -1,11 +1,17 @@
-import { UserInfo } from '../interface/interfaces';
+import { UserInfo,TeamInfo } from '../interface/interfaces';
 import { atom } from 'recoil';
 import FrontUserList from '../json/front.json';
 import BackUserList from '../json/back.json';
+import TeamList from '../json/team.json';
 
 export const frontUserState = atom<UserInfo[]>({
   key: 'FrontList',
   default: FrontUserList.UserList,
+});
+
+export const teamState = atom<TeamInfo[]>({
+  key: 'FrontList',
+  default: TeamList.TeamList
 });
 
 export const backUserState = atom<UserInfo[]>({
@@ -18,7 +24,17 @@ export const voteState = atom<string>({
   default: '999',
 });
 
+export const teamVoteState = atom<string>({
+  key: 'teamVoteNum',
+  default: '999',
+});
+
 export const clickState = atom<string>({
+  key: 'clickId',
+  default: '999',
+});
+
+export const clickTeamState = atom<string>({
   key: 'clickId',
   default: '999',
 });
@@ -49,5 +65,5 @@ export const tokenState = atom<string>({
 
 export const clickbtnState = atom<string>({
     key : 'click',
-    default : 'FE'
+    default : 'FE',
 });
