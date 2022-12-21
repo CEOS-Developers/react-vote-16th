@@ -4,7 +4,7 @@ import Candidate from '../../components/Candidate';
 
 const Vote = ({ router: { query } }: any) => {
   const voteList = JSON.parse(query.vote_list);
-  console.log(voteList);
+  console.log(query.vote_list);
   return (
     <div className="container">
       <div className="title">FE 투표하기</div>

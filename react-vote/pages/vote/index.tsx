@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import Router from 'next/router';
 
 import Candidate from '../../components/Candidate';
 
 import api from '../../api';
+import { getCookie, removeCookie } from '../../util/cookie';
+import { Navigate } from 'react-router-dom';
 
 const Vote = () => {
   interface CandidateProps {
@@ -34,10 +37,20 @@ const Vote = () => {
     }
   };
 
-  useEffect(() => {
+  if (getCookie('is_login') === undefined) {
+    alert('로그인 후 접속');
+    Router.push('/');
+  } else {
     fetchCandidates();
     fetchTeams();
-  }, []);
+  }
+
+  const LogOut = () => {
+    removeCookie('is_login');
+    Router.push('/');
+  };
+
+  console.log(cand);
 
   const team = 'FE';
 
@@ -124,7 +137,7 @@ const Vote = () => {
           데모데이 <br /> 결과보기
         </div>
       </Link>
-
+      <button onClick={LogOut}>logOut</button>
       <style jsx>{`
         .vote-btn {
           width: 10em;
