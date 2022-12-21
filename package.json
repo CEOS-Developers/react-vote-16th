@@ -47,7 +47,6 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26",
-    "rollup-plugin-terser": "^7.0.2"
+    "@types/styled-components": "^5.1.26"
   }
 }
