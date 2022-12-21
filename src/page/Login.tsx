@@ -26,7 +26,6 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.message == '로그인에 성공했습니다') {
-          console.log(data.token);
           const accessToken = data.token.access;
           axios.defaults.headers.common['Authorization'] = accessToken;
 

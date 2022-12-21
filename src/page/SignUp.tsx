@@ -48,7 +48,6 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data[0]) {
           alert(data[0]);
         } else if (data.message == '가입이 성공적으로 이루어졌습니다') {

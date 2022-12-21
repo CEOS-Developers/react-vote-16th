@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import styled from "styled-components";
-import Header from "../../component/Header";
-import NameBox from "../../component/NameBox";
-import { USER_SERVER } from "../../config";
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import Header from '../../component/Header';
+import NameBox from '../../component/NameBox';
+import { USER_SERVER } from '../../config';
 
 const PartVote = () => {
   const [team, setTeam] = useState<any[]>([]);
@@ -13,10 +13,10 @@ const PartVote = () => {
   let currPart: string;
   const [member, setMember] = useState<any[]>([]);
 
-  if (part === "FRONT-END") {
-    currPart = "front";
+  if (part === 'FRONT-END') {
+    currPart = 'front';
   } else {
-    currPart = "back";
+    currPart = 'back';
   }
 
   useEffect(() => {
@@ -38,27 +38,23 @@ const PartVote = () => {
       id: currIndex,
     };
 
-    console.log(currPart, request);
-    console.log(`Bearer ${localStorage.getItem("token")}`);
-
     fetch(`${USER_SERVER}/vote/results/${currPart}/`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       } as any,
       body: JSON.stringify(request),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data[0]) {
           alert(data[0]);
         } else {
-          alert("투표가 반영되었습니다");
-          localStorage.setItem("part_voted", "true");
-          localStorage.setItem("result", "front");
-          window.location.replace("/part");
+          alert('투표가 반영되었습니다');
+          localStorage.setItem('part_voted', 'true');
+          localStorage.setItem('result', 'front');
+          window.location.replace('/part');
         }
       });
   };
@@ -67,7 +63,7 @@ const PartVote = () => {
     <>
       <Header />
       <Container>
-        <Title>{part === "FRONT-END" ? "FE" : "BE"} 파트장 투표</Title>
+        <Title>{part === 'FRONT-END' ? 'FE' : 'BE'} 파트장 투표</Title>
         <BoxContainer>
           {member.map((i, index) => (
             <div onClick={() => setCurrIndex(i.id)}>
@@ -75,8 +71,8 @@ const PartVote = () => {
                 text="person"
                 name={i.name}
                 teamName={team[i.team - 1].name}
-                color={i.id === currIndex ? "#fff" : "black"}
-                bgColor={i.id === currIndex ? "#384084" : "#fff"}
+                color={i.id === currIndex ? '#fff' : 'black'}
+                bgColor={i.id === currIndex ? '#384084' : '#fff'}
               />
             </div>
           ))}

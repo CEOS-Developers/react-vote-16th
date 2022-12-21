@@ -35,7 +35,7 @@ const Team = [
 
 const DemoVote = () => {
   const [currIndex, setCurrIndex] = useState(20);
-  
+
   const clickVote = () => {
     const request = {
       id: currIndex + 1,
@@ -51,7 +51,6 @@ const DemoVote = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.status == 200) {
           alert('투표가 반영되었습니다');
           window.location.replace('/demo/result');
