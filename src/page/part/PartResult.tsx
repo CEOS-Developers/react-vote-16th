@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import Header from '../../component/Header';
-import VoteBox from '../../component/VoteBox';
-import { USER_SERVER } from '../../config';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import styled from "styled-components";
+import Header from "../../component/Header";
+import VoteBox from "../../component/VoteBox";
+import { USER_SERVER } from "../../config";
 
 const grade = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -28,18 +28,22 @@ const PartResult = () => {
       });
   }, []);
 
+  console.log(member);
+
   return (
     <>
       <Header />
       <Container>
-        <Title>{part === 'front' ? 'FE' : 'BE'} 파트장 결과</Title>
+        <Title>{part === "front" ? "FE" : "BE"} 파트장 결과</Title>
         <BoxContainer>
           {member.map((i: any, index: number) => {
-            myGrade = grade[index];
-            if (index != 0 && member[index].vote === member[index - 1].vote) {
+            if (
+              index != 0 &&
+              member[index].vote_num === member[index - 1].vote_num
+            ) {
               grade[index] = grade[index - 1];
-              myGrade = grade[index];
             }
+            myGrade = grade[index];
 
             return (
               <VoteBox
