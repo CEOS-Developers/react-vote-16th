@@ -56,6 +56,7 @@ const Voting = () => {
   const [res, setRes] = useRecoilState<string>(clickbtnState);
   const locname = localStorage.getItem("name");
   const locpart = localStorage.getItem("part");
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   const onVote = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -83,6 +84,8 @@ const Voting = () => {
               user : locname,
               part : locpart
             }
+            // ,
+            // {headers : {Authorization : `Bearer ${token}`}}
             )
         }
         catch (e){
