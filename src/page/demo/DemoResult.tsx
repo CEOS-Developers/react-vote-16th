@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Header from "../../component/Header";
-import VoteBox from "../../component/VoteBox";
-import { USER_SERVER } from "../../config";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Header from '../../component/Header';
+import VoteBox from '../../component/VoteBox';
+import { USER_SERVER } from '../../config';
 
 const grade = [1, 2, 3, 4, 5];
 

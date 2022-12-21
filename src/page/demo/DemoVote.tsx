@@ -1,9 +1,9 @@
-import { useState } from "react";
-import styled from "styled-components";
-import Header from "../../component/Header";
-import NameBox from "../../component/NameBox";
-import { USER_SERVER } from "../../network/config";
-import { useEffect } from "react";
+import { useState } from 'react';
+import styled from 'styled-components';
+import Header from '../../component/Header';
+import NameBox from '../../component/NameBox';
+import { USER_SERVER } from '../../network/config';
+import { useEffect } from 'react';
 
 const DemoVote = () => {
   const [currIndex, setCurrIndex] = useState(20);
@@ -22,22 +22,22 @@ const DemoVote = () => {
     };
 
     fetch(`${USER_SERVER}/vote/demo-results/`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       } as any,
       body: JSON.stringify(request),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.status == 200) {
-          alert("투표가 반영되었습니다");
-          window.location.replace("/demo/result");
-          localStorage.setItem("demo_voted", "true");
+          alert('투표가 반영되었습니다');
+          window.location.replace('/demo/result');
+          localStorage.setItem('demo_voted', 'true');
         } else {
-          if (data.code === "token_not_valid")
-            alert("로그인 후 이용가능합니다");
+          if (data.code === 'token_not_valid')
+            alert('로그인 후 이용가능합니다');
           else alert(data);
         }
       });
@@ -49,14 +49,14 @@ const DemoVote = () => {
       <Container>
         <Title>데모데이 투표</Title>
         <BoxContainer>
-          {team.map((i) => (
-            <div onClick={() => setCurrIndex(i.id)}>
+          {team.map((i, key) => (
+            <div key={key} onClick={() => setCurrIndex(i.id)}>
               <NameBox
                 text="demo"
                 teamName={i.name}
                 teamDesc={i.description}
-                color={i.id === currIndex ? "#fff" : "black"}
-                bgColor={i.id === currIndex ? "#384084" : "#fff"}
+                color={i.id === currIndex ? '#fff' : 'black'}
+                bgColor={i.id === currIndex ? '#384084' : '#fff'}
               />
             </div>
           ))}

@@ -1,29 +1,29 @@
-import styled from "styled-components";
-import { useState } from "react";
-import { USER_SERVER } from "../config";
+import styled from 'styled-components';
+import { useState } from 'react';
+import { USER_SERVER } from '../config';
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [id, setId] = useState("");
-  const [pw1, setPw1] = useState("");
-  const [pw2, setPw2] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('');
+  const [id, setId] = useState('');
+  const [pw1, setPw1] = useState('');
+  const [pw2, setPw2] = useState('');
+  const [email, setEmail] = useState('');
 
-  const [team, setTeam] = useState({ id: 2, name: "finble" });
-  const [part, setPart] = useState({ id: "front", name: "프론트" });
+  const [team, setTeam] = useState({ id: 2, name: 'finble' });
+  const [part, setPart] = useState({ id: 'front', name: '프론트' });
 
   const teamList = [
-    { id: 1, name: "teample" },
-    { id: 2, name: "finble" },
-    { id: 3, name: "prefolio" },
-    { id: 4, name: "diametes" },
-    { id: 5, name: "recipeasy" },
+    { id: 1, name: 'teample' },
+    { id: 2, name: 'finble' },
+    { id: 3, name: 'prefolio' },
+    { id: 4, name: 'diametes' },
+    { id: 5, name: 'recipeasy' },
   ];
   const partList = [
-    { id: "plan", name: "기획" },
-    { id: "design", name: "디자인" },
-    { id: "front", name: "프론트" },
-    { id: "back", name: "백" },
+    { id: 'plan', name: '기획' },
+    { id: 'design', name: '디자인' },
+    { id: 'front', name: '프론트' },
+    { id: 'back', name: '백' },
   ];
 
   const [isTeam, setIsTeam] = useState(false);
@@ -31,9 +31,9 @@ const SignUp = () => {
 
   const clickRegister = async () => {
     if (pw1 != pw2) {
-      alert("비밀번호 필드와 비밀번호 확인 필드의 데이터가 다릅니다.");
+      alert('비밀번호 필드와 비밀번호 확인 필드의 데이터가 다릅니다.');
     } else if (pw1.length < 8) {
-      alert("8자 이상의 비밀번호를 입력해주세요");
+      alert('8자 이상의 비밀번호를 입력해주세요');
     } else {
       let request = {
         id: id,
@@ -45,9 +45,9 @@ const SignUp = () => {
       };
 
       fetch(`${USER_SERVER}/vote/join/`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(request),
       })
@@ -55,9 +55,9 @@ const SignUp = () => {
         .then((data) => {
           if (data[0]) {
             alert(data[0]);
-          } else if (data.message == "가입이 성공적으로 이루어졌습니다") {
+          } else if (data.message == '가입이 성공적으로 이루어졌습니다') {
             alert(data.message);
-            window.location.replace("/");
+            window.location.replace('/');
           } else if (data.email) {
             alert(data.email);
           } else if (data.id) {
@@ -113,7 +113,7 @@ const SignUp = () => {
               placeholder="비밀번호 확인"
               type="password"
             />
-            {pw2 != "" && pw1 != pw2 ? (
+            {pw2 != '' && pw1 != pw2 ? (
               <ErrorText>비밀번호가 다릅니다</ErrorText>
             ) : (
               <></>
@@ -151,13 +151,14 @@ const SignUp = () => {
 
             <Row>
               {isTeam ? (
-                <ToggleBox style={{ marginRight: "18.5rem" }}>
-                  {teamList.map((item) => (
+                <ToggleBox style={{ marginRight: '18.5rem' }}>
+                  {teamList.map((item, idx: number) => (
                     <ToggleItem
                       onClick={() => {
                         setTeam(item);
                         setIsTeam(!isTeam);
                       }}
+                      key={idx}
                     >
                       {item.name}
                     </ToggleItem>
@@ -168,9 +169,10 @@ const SignUp = () => {
               )}
 
               {isPart ? (
-                <ToggleBox style={{ marginLeft: "19.5rem" }}>
-                  {partList.map((item) => (
+                <ToggleBox style={{ marginLeft: '19.5rem' }}>
+                  {partList.map((item, idx) => (
                     <ToggleItem
+                      key={idx}
                       onClick={() => {
                         setPart(item);
                         setIsPart(!isPart);
