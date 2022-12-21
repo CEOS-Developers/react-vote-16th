@@ -9,6 +9,7 @@ const SignUpPage = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [email, setEmail] = useState('');
   const [part, setPart] = useState('');
+  const [team, setTeam] = useState('');
   const isValidEmail = email.includes('@') && email.includes('.');
   const isValidPassword = password.length >= 8;
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const SignUpPage = () => {
         email: email,
         password1: password,
         password2: passwordConfirm,
-        team: 'Teample',
+        team: team,
         part: part,
       })
       .then((response) => {
@@ -31,7 +32,7 @@ const SignUpPage = () => {
       })
       .catch(function (error) {
         console.log(error);
-        alert('회원가입 실패');
+        alert('회원가입 실패(⚠️원인: 항목 간 중복된 내용‼️ or 이미 존재하는 사용자 or 서버 에러)');
       });
   };
 
@@ -78,6 +79,10 @@ const SignUpPage = () => {
     console.log(event.target.value);
     setPart(event.target.value);
   };
+  const teamHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(event.target.value);
+    setTeam(event.target.value);
+  };
 
   return (
     <SignUpContainer>
@@ -118,6 +123,15 @@ const SignUpPage = () => {
               Backend
             </Label>
           </RadioBtnContainer>
+          <div style={{display:'flex',justifyContent:'center'}}>
+          <SelectBoxContainer onChange={teamHandler}>
+            <option value='Teample'>Teample</option>
+            <option value='Forget Me Not.'>Forget Me Not.</option>
+            <option value='Pre:folio'>Pre:folio</option>
+            <option value='diaMEtes'>diaMEtes</option>
+            <option value='recipeasy'>recipeasy</option>
+          </SelectBoxContainer>
+          </div>
           <SignUpBtn onClick={signupHandler}>회원가입</SignUpBtn>
           <br />
           <SignInBtn
@@ -132,6 +146,15 @@ const SignUpPage = () => {
     </SignUpContainer>
   );
 };
+
+const SelectBoxContainer = styled.select`
+  margin-top: 20px;
+  width: 180px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 18px;
+  padding: 0px 10px;
+`;
 
 const Form = styled.form``;
 

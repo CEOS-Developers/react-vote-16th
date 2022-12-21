@@ -41,7 +41,7 @@ const SignInPage = () => {
       })
       .catch(function (error) {
         console.log(error);
-        alert('로그인 실패');
+        alert('로그인 실패. 다시 시도하세요.');
       });
   };
 

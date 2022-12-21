@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Fade } from 'react-awesome-reveal';
 
 const Rank = styled.div`
-  width: 200px;
+  width: 300px;
   height: 60px;
   background-color: #d9d9d9;
   flex-flow: wrap;
@@ -38,58 +38,38 @@ const Children = styled.div`
   }
 `;
 
-const VoteResult = () => {
+const TeamresultPage = () => {
   const [res, setRes] = useRecoilState<string>(clickbtnState);
   const token = localStorage.getItem('token');
-  const [FEcandidate, setFEcandidate] = useState<string[]>([]);
-  const [BEcandidate, setBEcandidate] = useState<string[]>([]);
+  const [team, setTeam] = useState<string[]>([]);
   axios.defaults.baseURL = 'http://3.38.123.37';
-  const FEresultAPI = async () => {
+  const TeamresultAPI = async () => {
     await axios
-      .get('/api/votes/candidates/?part=Frontend&ordering=-count', {
+      .get('/api/votes/teams?ordering=-count',
+      {
         headers: { Authorization: token },
       })
       .then((response) => {
-        setFEcandidate(response.data.data);
+        setTeam(response.data.data);
       })
       .catch(function (error) {
         console.log(error);
+        alert('준비 중입니다.')
       });
   };
-  const BEresultAPI = async () => {
-    await axios
-      .get('/api/votes/candidates/?part=Backend&ordering=-count', {
-        headers: { Authorization: token },
-      })
-      .then((response) => {
-        setBEcandidate(response.data.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+
   useEffect(() => {
-      res === 'FE' ? FEresultAPI() : BEresultAPI();
+    TeamresultAPI();
   }, []);
 
   return (
     <VoteResultWrapper>
-      <h2>{res === 'FE' ? 'FE' : 'BE'} 운영진 투표 결과 🗳</h2>
+      <h2>팀 투표 결과 🗳</h2>
       <Fade >
       <ResultWrapper>
-        {res === 'FE'
-          ? FEcandidate.map((cand: any) => (
+        {team.map((cand: any) => (
               <Rank key={cand.name}>
                 <Children>
-                  <div className="name">{cand.name}</div>
-                  <div className="vote">{cand.count}표</div>
-                </Children>
-              </Rank>
-            ))
-          : BEcandidate.map((cand: any) => (
-              <Rank key={cand.name}>
-                <Children>
-                  {/* <div className="rank">{rank[li]}</div> */}
                   <div className="name">{cand.name}</div>
                   <div className="vote">{cand.count}표</div>
                 </Children>
@@ -101,4 +81,4 @@ const VoteResult = () => {
   );
 };
 
-export default VoteResult;
+export default TeamresultPage;

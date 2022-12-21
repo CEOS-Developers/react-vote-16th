@@ -8,6 +8,8 @@ import Header from './components/Header';
 import PrivateRouter from './components/privateRouter';
 import PublicRouter from './components/publicRouter';
 import NowVote from './Page/nowVote';
+import TeamvotePage from './Page/TeamvotePage';
+import TeamresultPage from './Page/TeamresultPage';
 
 const Router = () => {
   return (
@@ -23,6 +25,8 @@ const Router = () => {
         <Route path="/voting" element={<PrivateRouter><Voting /></PrivateRouter>} />
         <Route path="/result" element={<PrivateRouter><VoteResult /></PrivateRouter>} />
         <Route path='/nowvote' element={<PublicRouter><NowVote/></PublicRouter>}/>
+        <Route path='/teamresult' element={<PrivateRouter><TeamresultPage/></PrivateRouter>}/>
+        <Route path='/teamvoting' element={<PrivateRouter><TeamvotePage/></PrivateRouter>}/>
       </Routes>
     </BrowserRouter>
   );
