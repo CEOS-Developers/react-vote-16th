@@ -37,13 +37,16 @@ const Vote = () => {
     }
   };
 
-  if (getCookie('is_login') === undefined) {
-    alert('로그인 후 접속');
-    Router.push('/');
-  } else {
-    fetchCandidates();
-    fetchTeams();
-  }
+  useEffect(()=>{
+    if (getCookie('is_login') === undefined) {
+      alert('로그인 후 접속');
+      Router.push('/');
+    } else {
+      fetchCandidates();
+      fetchTeams();
+    }
+  },[])
+  
 
   const LogOut = () => {
     removeCookie('is_login');
