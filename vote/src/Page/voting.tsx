@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { frontUserState, backUserState, voteState,partState,clickState } from '../state/state';
+import { frontUserState, backUserState, voteState,partState,clickState, clickbtnState } from '../state/state';
 import { UserInfo } from '../interface/interfaces';
 import VoteUser from '../components/voteUser';
 import React, { useState,useEffect } from 'react';
@@ -55,6 +55,8 @@ const Voting = () => {
   const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
   const [vote, setVote] = useRecoilState<string>(voteState);
   const [isClick, setIsClick] = useRecoilState<string>(clickState);
+  const [res, setRes] = useRecoilState<string>(clickbtnState);
+  const locname = localStorage.getItem("name");
   const locpart = localStorage.getItem("part");
   const navigate = useNavigate();
 
@@ -63,17 +65,25 @@ const Voting = () => {
       putVote();
       alert('투표가 완료되었습니다.');
       setIsClick('999');
-              setVote('999');
-              navigate('/home');
+      setVote('999');
+      if(locpart === 'Frontend'){
+        setRes('FE')
+      }
+      else{
+        setRes('BE')
+      }
+      navigate('/result');
     } else {
       alert('후보자를 선택해주세요.');
     }
   };
+  axios.defaults.baseURL = 'http://3.38.123.37';
     const putVote = async () =>{
         try{
             await url.put("/api/votes/candidates/"
             ,{
               name : vote,
+              user : locname,
               part : locpart
             }
             )
@@ -82,31 +92,6 @@ const Voting = () => {
             console.log("에러 : " ,e);
         }
     }
-
-
-  axios.defaults.baseURL = 'http://3.38.123.37';
-  const votingAPI = async () => {
-    await axios
-      .put(
-        '/api/votes/candidates',
-        {
-          part: 'Frontend',
-          name: '임채리',
-        },
-        {
-          headers: { Authorization: token },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-  useEffect(() => {
-    votingAPI();
-  }, []);
 
   return (
     <Fade>

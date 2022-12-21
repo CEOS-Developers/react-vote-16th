@@ -8,6 +8,10 @@ export const ResultWrapper = styled.div`
   flex-flow: wrap;
   justify-content: center;
   align-items: center;
+
+  .be{
+    margin-left : 50px;
+  }
   
 `;
 
