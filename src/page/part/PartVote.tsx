@@ -38,9 +38,6 @@ const PartVote = () => {
       id: currIndex,
     };
 
-    // console.log(currPart, request);
-    // console.log(`Bearer ${localStorage.getItem("token")}`);
-
     fetch(`${USER_SERVER}/vote/results/${currPart}/`, {
       method: "PATCH",
       headers: {
@@ -51,7 +48,6 @@ const PartVote = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
         if (data[0]) {
           alert(data[0]);
         } else {
