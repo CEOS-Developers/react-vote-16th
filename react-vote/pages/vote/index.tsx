@@ -91,11 +91,11 @@ const fetchTeams = async () => {
           pathname: `/vote/[team]`,
           query: {
             vote_list: JSON.stringify(
-              cand?.filter((cand) => cand.position === team)
+              cand?.filter((cand) => cand.position === 'BE')
             ),
           },
         }}
-        as={`/vote/${team}`}
+        as={`/vote/BE`}
       >
         <div className="vote-btn">BE 투표하기</div>
       </Link>
