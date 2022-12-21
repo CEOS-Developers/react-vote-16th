@@ -47,9 +47,7 @@ const Header = () => {
           <Logo src={require('../Img/ceos.webp')} alt="CEOS" />
         </Link>
       ) : (
-        <Link to="/">
-          <Logo src={require('../Img/ceos.webp')} alt="CEOS" />
-        </Link>
+        <></>
       )}
 
       {/* {isSignIn === true ? (
