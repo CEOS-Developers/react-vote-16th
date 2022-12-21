@@ -80,11 +80,11 @@ export default function JoinPage() {
 
   const selectTeamList = [
     '팀을 선택하세요',
-    'Recipeasy',
-    'Forgetmenot',
-    'Prefolio',
-    'Diametes',
-    'Teample',
+    'recipeasy',
+    'forgetmenot',
+    'prefolio',
+    'diametes',
+    'teample',
   ];
   const [selectedTeam, setTeam] = useState('');
 

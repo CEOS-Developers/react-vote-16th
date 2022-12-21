@@ -19,7 +19,7 @@ const Vote = () => {
   const [cand, setCand] = useState<CandidateProps[] | null>(null);
   const [teams, setTeams] = useState([]);
 
-  const fetchCandidates = async () => {
+const fetchCandidates = async () => {
     try {
       const response = await api.get('/candidates/');
       setCand(response.data);
@@ -28,7 +28,7 @@ const Vote = () => {
     }
   };
 
-  const fetchTeams = async () => {
+const fetchTeams = async () => {
     try {
       const response = await api.get('/teams/');
       setTeams(response.data);
