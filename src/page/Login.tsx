@@ -1,14 +1,11 @@
-import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import { USER_SERVER } from '../config';
-
-import { useRecoilState } from 'recoil';
-import { part, name, team, token, isPartVote } from '../recoil/store';
-import axios from 'axios';
+import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { USER_SERVER } from "../config";
+import axios from "axios";
 
 const Login = () => {
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
 
   const clickLogin = async () => {
     let request = {
@@ -17,30 +14,30 @@ const Login = () => {
     };
 
     fetch(`${USER_SERVER}/vote/login/`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(request),
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.message == '로그인에 성공했습니다') {
+        if (data.message == "로그인에 성공했습니다") {
           console.log(data.token);
           const accessToken = data.token.access;
-          axios.defaults.headers.common['Authorization'] = accessToken;
+          axios.defaults.headers.common["Authorization"] = accessToken;
 
-          localStorage.setItem('name', data.user.name);
-          localStorage.setItem('part', data.user.part);
-          localStorage.setItem('team', data.user.team);
-          localStorage.setItem('access', data.token.access);
-          localStorage.setItem('part_voted', data.user.part_voted);
-          localStorage.setItem('token', accessToken);
+          localStorage.setItem("name", data.user.name);
+          localStorage.setItem("part", data.user.part);
+          localStorage.setItem("team", data.user.team);
+          localStorage.setItem("access", data.token.access);
+          localStorage.setItem("part_voted", data.user.part_voted);
+          localStorage.setItem("token", accessToken);
 
-          alert('로그인에 성공했습니다');
-          window.location.replace('/');
+          alert("로그인에 성공했습니다");
+          window.location.replace("/");
         } else {
-          alert('존재하지 않는 사용자입니다.');
+          alert("존재하지 않는 사용자입니다.");
         }
       });
   };
@@ -61,7 +58,7 @@ const Login = () => {
                 setId(e.target.value)
               }
               value={id}
-              style={{ marginTop: '8rem' }}
+              style={{ marginTop: "8rem" }}
               placeholder="아이디"
             />
             <Input
