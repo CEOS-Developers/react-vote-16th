@@ -10,7 +10,7 @@ export const frontUserState = atom<UserInfo[]>({
 });
 
 export const teamState = atom<TeamInfo[]>({
-  key: 'FrontList',
+  key: 'TeamList',
   default: TeamList.TeamList
 });
 
