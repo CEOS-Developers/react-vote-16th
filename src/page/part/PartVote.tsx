@@ -65,17 +65,20 @@ const PartVote = () => {
       <Container>
         <Title>{part === "FRONT-END" ? "FE" : "BE"} 파트장 투표</Title>
         <BoxContainer>
-          {member.map((i) => (
-            <div onClick={() => setCurrIndex(i.id)}>
-              <NameBox
-                text="person"
-                name={i.name}
-                teamName={team[i.team - 1].name}
-                color={i.id === currIndex ? "#fff" : "black"}
-                bgColor={i.id === currIndex ? "#384084" : "#fff"}
-              />
-            </div>
-          ))}
+          {member.map((i) => {
+            const teamName: any = team.filter((t: any) => t.id === i.team);
+            return (
+              <div onClick={() => setCurrIndex(i.id)}>
+                <NameBox
+                  text="person"
+                  name={i.name}
+                  teamName={teamName[0].name}
+                  color={i.id === currIndex ? "#fff" : "black"}
+                  bgColor={i.id === currIndex ? "#384084" : "#fff"}
+                />
+              </div>
+            );
+          })}
         </BoxContainer>
         <SmallBoxContainer>
           {currIndex != 20 ? (

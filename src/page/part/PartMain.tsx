@@ -1,11 +1,14 @@
-import styled from 'styled-components';
-import LargeBox from '../../component/LargeBox';
-import Header from '../../component/Header';
-import SmallBox from '../../component/SmallBox';
+import styled from "styled-components";
+import LargeBox from "../../component/LargeBox";
+import Header from "../../component/Header";
+import SmallBox from "../../component/SmallBox";
 
 const PartMain = () => {
-  const devPart = localStorage.getItem('part');
-  const voteTF = localStorage.getItem('part_voted');
+  const devPart = localStorage.getItem("part");
+  const voteTF = localStorage.getItem("part_voted");
+
+  // let str = "\n 파트장투표";
+  // str = str.replace(/\n/g, "<br />");
 
   return (
     <>
@@ -14,7 +17,7 @@ const PartMain = () => {
         <Title>파트장 투표</Title>
         <BoxContainer>
           <BoxItem>
-            {devPart === 'front' ? (
+            {devPart === "front" ? (
               <LargeBox
                 text1="FRONT-END"
                 text2="파트장 투표"
@@ -24,28 +27,28 @@ const PartMain = () => {
               <Box>
                 {devPart === null
                   ? `로그인 후 이용 가능합니다`
-                  : "BACK-END 파트장 투표"}
+                  : "FRONT-END 파트장 투표"}
               </Box>
             )}
 
-            {(devPart === 'front' && voteTF === 'false') || devPart === null ? (
-              <div onClick={() => alert('투표를 먼저 완료해주세요')}>
-                <SmallBox text={'결과보기'} link="/part" text1="front" />
+            {(devPart === "front" && voteTF === "false") || devPart === null ? (
+              <div onClick={() => alert("투표를 먼저 완료해주세요")}>
+                <SmallBox text={"결과보기"} link="/part" text1="front" />
               </div>
             ) : (
               <SmallBox
-                text={'결과보기'}
+                text={"결과보기"}
                 link="/part/result"
                 text1="front"
                 onClick={() => {
-                  localStorage.setItem('result', 'front');
+                  localStorage.setItem("result", "front");
                 }}
               />
             )}
           </BoxItem>
 
           <BoxItem>
-            {devPart === 'back' ? (
+            {devPart === "back" ? (
               <LargeBox
                 text1="BACK-END"
                 text2="파트장 투표"
@@ -55,15 +58,15 @@ const PartMain = () => {
               <Box>
                 {devPart === null
                   ? "로그인 후 이용 가능합니다"
-                  : `BACK-END \n 파트장 투표`}
+                  : `BACK-END 파트장 투표`}
               </Box>
             )}
-            {(devPart === 'back' && voteTF === 'false') || devPart === null ? (
-              <div onClick={() => alert('투표를 먼저 완료해주세요')}>
-                <SmallBox text={'결과보기'} link="/part" text1="back" />
+            {(devPart === "back" && voteTF === "false") || devPart === null ? (
+              <div onClick={() => alert("투표를 먼저 완료해주세요")}>
+                <SmallBox text={"결과보기"} link="/part" text1="back" />
               </div>
             ) : (
-              <SmallBox text={'결과보기'} link="/part/result" text1="back" />
+              <SmallBox text={"결과보기"} link="/part/result" text1="back" />
             )}
           </BoxItem>
         </BoxContainer>

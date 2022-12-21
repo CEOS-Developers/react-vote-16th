@@ -88,7 +88,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 600;
   margin-right: 40rem;
   margin-bottom: 1rem;
@@ -99,26 +99,28 @@ const ModalBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50rem;
-  height: 30rem;
+  width: 48rem;
+  height: 28rem;
   border-radius: 1rem;
   background-color: white;
 `;
 
 const Input = styled.input`
-  width: 40rem;
-  height: 3rem;
-  font-size: 1.3rem;
+  width: 35rem;
+  height: 2.5rem;
+  font-size: 0.8rem;
   border: 1px black solid;
   border-radius: 0.8rem;
   margin-top: 2rem;
+  padding: 0.3rem 1rem;
+  outline: none;
 `;
 
 const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10rem;
+  width: 8rem;
   height: 3rem;
   background-color: #384084;
   border-radius: 0.8rem;
