@@ -14,6 +14,7 @@ const Vote = () => {
     position: String;
   }
   const [cand, setCand] = useState<CandidateProps[] | null>(null);
+  const [teams, setTeams] = useState([]);
 
   const fetchCandidates = async () => {
     try {
@@ -24,11 +25,19 @@ const Vote = () => {
     }
   };
 
+  const fetchTeams = async () => {
+    try {
+      const response = await api.get('/teams/');
+      setTeams(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchCandidates();
+    fetchTeams();
   }, []);
-
-  console.log(cand);
 
   const team = 'FE';
 
@@ -87,6 +96,34 @@ const Vote = () => {
       >
         <div className="vote-btn">BE 결과보기</div>
       </Link>
+      <Link
+        href={{
+          pathname: `/vote/final`,
+          query: {
+            vote_list: JSON.stringify(teams),
+          },
+        }}
+        as={`/vote/final`}
+      >
+        <div className="vote-btn">
+          데모데이
+          <br />
+          투표하기
+        </div>
+      </Link>
+      <Link
+        href={{
+          pathname: `/result/final`,
+          query: {
+            vote_list: JSON.stringify(teams),
+          },
+        }}
+        as={`/result/final`}
+      >
+        <div className="vote-btn">
+          데모데이 <br /> 결과보기
+        </div>
+      </Link>
 
       <style jsx>{`
         .vote-btn {
@@ -95,6 +132,15 @@ const Vote = () => {
           padding: 2rem;
           border: 1px solid white;
           border-radius: 1rem;
+
+          line-height: 140%;
+
+          font-weight: 600;
+        }
+
+        .vote-btn:hover {
+          background: white;
+          color: black;
         }
 
         .container {

@@ -1,15 +1,15 @@
 import { withRouter } from 'next/router';
 
-import Candidate from '../../components/Candidate';
+import Team from '../../components/Team';
 
 const Vote = ({ router: { query } }: any) => {
   const voteList = JSON.parse(query.vote_list);
   console.log(voteList);
   return (
     <div className="container">
-      <div className="title">FE 투표하기</div>
-      {voteList.map((cand: any) => (
-        <Candidate key={cand.id} {...cand} />
+      <div className="title">데모데이 투표하기</div>
+      {voteList.map((team: any) => (
+        <Team key={team.id} {...team} />
       ))}
       <style jsx>{`
         .title {

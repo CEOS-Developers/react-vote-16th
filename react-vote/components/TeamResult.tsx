@@ -1,16 +1,15 @@
-import { withRouter } from 'next/router';
+import ResultTeam from './ResultTeam';
 
-import Candidate from '../../components/Candidate';
-
-const Vote = ({ router: { query } }: any) => {
-  const voteList = JSON.parse(query.vote_list);
+const TeamResult = (voteList: any) => {
   console.log(voteList);
   return (
     <div className="container">
-      <div className="title">FE 투표하기</div>
-      {voteList.map((cand: any) => (
-        <Candidate key={cand.id} {...cand} />
-      ))}
+      <div className="title">결과보기</div>
+      {Object.values(voteList)
+        .sort((a: any, b: any) => b.vote_count - a.vote_count)
+        .map((team: any) => (
+          <ResultTeam key={team.id} {...team} />
+        ))}
       <style jsx>{`
         .title {
           font-size: 1.25rem;
@@ -20,9 +19,7 @@ const Vote = ({ router: { query } }: any) => {
         .container {
           display: flex;
           flex-direction: column;
-
           align-items: center;
-
           gap: 1rem;
         }
       `}</style>
@@ -30,4 +27,4 @@ const Vote = ({ router: { query } }: any) => {
   );
 };
 
-export default withRouter(Vote);
+export default TeamResult;

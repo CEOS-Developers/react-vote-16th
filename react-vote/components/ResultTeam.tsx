@@ -1,10 +1,10 @@
-const ResultCandidate = (candidate: any) => {
+const ResultTeam = (team: any) => {
   return (
-    <div className="candidate">
-      <div>{candidate.name}</div>
-      <div>{candidate.vote_count}</div>
+    <div className="team">
+      <div>{team.team_name}</div>
+      <div>{team.vote_count}</div>
       <style jsx>{`
-        .candidate {
+        .team {
           display: flex;
           gap: 1rem;
 
@@ -19,4 +19,4 @@ const ResultCandidate = (candidate: any) => {
   );
 };
 
-export default ResultCandidate;
+export default ResultTeam;

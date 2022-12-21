@@ -1,28 +1,28 @@
 import { useState, useEffect } from 'react';
 import api from '../api';
 
-const Candidate = (candidate: any) => {
-  const postCandidates = async (id: any) => {
+const Team = (team: any) => {
+  const postCandidates = async (name: any) => {
     try {
-      const response = await api.post('/candidates/', {
-        id: id,
+      const response = await api.post('/teams/', {
+        team_name: name,
       });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleClickVoteCount = (id: any) => {
-    postCandidates(id);
+  const handleClickVoteCount = (name: any) => {
+    postCandidates(name);
   };
 
   return (
     <div
       className="candidate"
-      onClick={() => handleClickVoteCount(candidate.id)}
+      onClick={() => handleClickVoteCount(team.team_name)}
     >
-      <div>{candidate.name}</div>
-      <div>{candidate.vote_count}</div>
+      <div>{team.team_name}</div>
+      <div>{team.vote_count}</div>
       <style jsx>{`
         .candidate {
           display: flex;
@@ -45,4 +45,4 @@ const Candidate = (candidate: any) => {
   );
 };
 
-export default Candidate;
+export default Team;
