@@ -30,35 +30,42 @@ const SignUp = () => {
   const [isPart, setIsPart] = useState(false);
 
   const clickRegister = async () => {
-    let request = {
-      id: id,
-      password: pw1,
-      email: email,
-      part: part.id,
-      name: name,
-      team: team.id,
-    };
+    if (pw1 != pw2) {
+      alert('비밀번호 필드와 비밀번호 확인 필드의 데이터가 다릅니다.');
+    } else if (pw1.length < 8) {
+      alert('8자 이상의 비밀번호를 입력해주세요');
+    } else {
+      let request = {
+        id: id,
+        password: pw1,
+        email: email,
+        part: part.id,
+        name: name,
+        team: team.id,
+      };
 
-    fetch(`${USER_SERVER}/vote/join/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(request),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data[0]) {
-          alert(data[0]);
-        } else if (data.message == '가입이 성공적으로 이루어졌습니다') {
-          alert(data.message);
-          window.location.replace('/');
-        } else if (data.email) {
-          alert(data.email);
-        } else if (data.id) {
-          alert(data.id);
-        }
-      });
+      fetch(`${USER_SERVER}/vote/join/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data[0]) {
+            alert(data[0]);
+          } else if (data.message == '가입이 성공적으로 이루어졌습니다') {
+            alert(data.message);
+            window.location.replace('/');
+          } else if (data.email) {
+            alert(data.email);
+          } else if (data.id) {
+            alert(data.id);
+          }
+        });
+    }
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
