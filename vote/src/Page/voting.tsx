@@ -4,12 +4,10 @@ import { frontUserState, backUserState, voteState,partState,clickState, clickbtn
 import { UserInfo } from '../interface/interfaces';
 import VoteUser from '../components/voteUser';
 import React, { useState,useEffect } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import url,{clientURL} from '../apis/baseURL'; 
 import { Fade } from 'react-awesome-reveal';
-import axios from 'axios';
 
 const SubmitBtn = styled.button`
   width: 150px;
@@ -77,7 +75,6 @@ const Voting = () => {
       alert('후보자를 선택해주세요.');
     }
   };
-  axios.defaults.baseURL = 'http://3.38.123.37';
     const putVote = async () =>{
         try{
             await url.put("/api/votes/candidates/"
