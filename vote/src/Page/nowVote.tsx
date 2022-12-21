@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { clickbtnState } from '../state/state';
-import { ResultWrapper, VoteResultWrapper } from '../css/wrapper';
+import { ResultWrapper } from '../css/wrapper';
 import axios from 'axios';
 import { Fade } from 'react-awesome-reveal';
 
 const Rank = styled.div`
-  width: 200px;
-  height: 60px;
+  width: 180px;
+  height: 40px;
   background-color: #d9d9d9;
   flex-flow: wrap;
   border-radius: 10px;
@@ -19,7 +19,7 @@ const Children = styled.div`
   text-align: center;
   display: flex;
   align-items: center;
-  padding: 18px 0;
+ padding: 10px 0;
   //   .rank {
   //     font-size: 30px;
   //     margin-left: 20px;
@@ -38,7 +38,7 @@ const Children = styled.div`
   }
 `;
 
-const VoteResult = () => {
+const NowVote = () => {
   const [res, setRes] = useRecoilState<string>(clickbtnState);
   const token = localStorage.getItem('token');
   const [FEcandidate, setFEcandidate] = useState<string[]>([]);
@@ -69,17 +69,18 @@ const VoteResult = () => {
       });
   };
   useEffect(() => {
-      res === 'FE' ? FEresultAPI() : BEresultAPI();
+      FEresultAPI();
+      BEresultAPI();
   }, []);
 
   return (
-    <VoteResultWrapper>
-      <h2>{res === 'FE' ? 'FE' : 'BE'} 운영진 투표 결과 🗳</h2>
+    <>
       <Fade >
       <ResultWrapper>
-        {res === 'FE'
-          ? FEcandidate.map((cand: any) => (
-              <Rank key={cand.name}>
+    <div className='fe'>
+      <h2>FE 운영진 투표 현황 🗳</h2>
+        {FEcandidate.map((cand: any) => (
+            <Rank key={cand.name}>
                 <Children>
                   {/* <div className="rank">{rank[li]}</div> */}
                   <div className="name">{cand.name}</div>
@@ -87,7 +88,11 @@ const VoteResult = () => {
                 </Children>
               </Rank>
             ))
-          : BEcandidate.map((cand: any) => (
+        }
+        </div>
+        <div className='be'>
+        <h2>BE 운영진 투표 현황 🗳</h2>
+         { BEcandidate.map((cand: any) => (
               <Rank key={cand.name}>
                 <Children>
                   {/* <div className="rank">{rank[li]}</div> */}
@@ -96,10 +101,11 @@ const VoteResult = () => {
                 </Children>
               </Rank>
             ))}
+      </div>
       </ResultWrapper>
       </Fade>
-    </VoteResultWrapper>
+    </>
   );
 };
 
-export default VoteResult;
+export default NowVote;

@@ -31,7 +31,7 @@ const SignUpPage = () => {
       })
       .catch(function (error) {
         console.log(error);
-        alert('회원가입 실패');
+        alert('회원가입 실패(⚠️원인: 항목 간 중복된 내용‼️ or 이미 존재하는 사용자 or 서버 에러)');
       });
   };
 
@@ -177,6 +177,7 @@ const SignUpBtn = styled.button`
 `;
 const SignInBtn = styled.span`
   text-decoration: underline;
+
 `;
 
 const RadioBtnContainer = styled.div`

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { frontUserState, backUserState, voteState,partState,clickState } from '../state/state';
+import { frontUserState, backUserState, voteState,partState,clickState, clickbtnState } from '../state/state';
 import { UserInfo } from '../interface/interfaces';
-import VoteUser from '../Components/voteUser';
+import VoteUser from '../components/voteUser';
 import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -49,6 +49,8 @@ const Voting = () => {
   const [back, setBack] = useRecoilState<UserInfo[]>(backUserState);
   const [vote, setVote] = useRecoilState<string>(voteState);
   const [isClick, setIsClick] = useRecoilState<string>(clickState);
+  const [res, setRes] = useRecoilState<string>(clickbtnState);
+
   const locname = localStorage.getItem("name");
   const locpart = localStorage.getItem("part");
   const navigate = useNavigate();
@@ -57,8 +59,14 @@ const Voting = () => {
       putVote();
       alert('투표가 완료되었습니다.');
       setIsClick('999');
-              setVote('999');
-              navigate('/home');
+      setVote('999');
+      if(locpart === 'Frontend'){
+        setRes('FE')
+      }
+      else{
+        setRes('BE')
+      }
+      navigate('/result');
     } else {
       alert('후보자를 선택해주세요.');
     }
