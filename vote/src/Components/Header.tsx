@@ -33,29 +33,25 @@ const Header = () => {
   //       alert('로그아웃 실패');
   //     });
   // };
-  const signOutAPI = () => {
+  const signOutAPI = () =>{
     localStorage.removeItem('token');
     localStorage.removeItem('name');
     localStorage.removeItem('part');
     navigate('/');
-  };
+  }
 
   return (
     <HeaderContainer>
-      {token !== null ? (
-        <>
-          <div>
-            <Link to="/home">
-              <Logo src={require('../Img/ceos.webp')} alt="CEOS" />
-            </Link>
-          </div>
-          <div>
-            <SignBtn onClick={signOutAPI}>로그아웃</SignBtn>
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
+        <Link to="/home">
+          <Logo src={require('../Img/ceos.webp')} alt="CEOS" />
+        </Link>
+
+      {/* {isSignIn === true ? (
+        <SignBtn onClick={signOutAPI}>로그아웃</SignBtn>
+        ) : (
+          <></>
+          )} */}
+        {token !== null ? <SignBtn onClick={signOutAPI}>로그아웃</SignBtn> : <></>}
     </HeaderContainer>
   );
 };

@@ -46,7 +46,7 @@ const VoteResult = () => {
   axios.defaults.baseURL = 'http://3.38.123.37';
   const FEresultAPI = async () => {
     await axios
-      .get('/api/votes/candidates/?part=FE&ordering=-count', {
+      .get('/api/votes/candidates/?part=Frontend&ordering=-count', {
         headers: { Authorization: token },
       })
       .then((response) => {

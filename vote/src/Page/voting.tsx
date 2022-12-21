@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import url,{clientURL} from '../apis/baseURL'; 
 import { Fade } from 'react-awesome-reveal';
+
 const SubmitBtn = styled.button`
   width: 150px;
   height: 50px;
@@ -52,6 +53,7 @@ const Voting = () => {
   const [res, setRes] = useRecoilState<string>(clickbtnState);
   const locname = localStorage.getItem("name");
   const locpart = localStorage.getItem("part");
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const onVote = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (vote !== '999') {
@@ -70,7 +72,6 @@ const Voting = () => {
       alert('후보자를 선택해주세요.');
     }
   };
-const token = localStorage.getItem('token');
   axios.defaults.baseURL = 'http://3.38.123.37';
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const putVote = async () =>{
@@ -80,6 +81,8 @@ const token = localStorage.getItem('token');
               name : vote,
               part : locpart
             }
+            ,
+            {headers : {Authorization : `Bearer ${token}`}}
             )
 
         }

@@ -16,3 +16,7 @@ export interface CandInfo {
   name: string;
   count: number;
 }
+
+export interface TeamInfo{
+    team : string;
+}
