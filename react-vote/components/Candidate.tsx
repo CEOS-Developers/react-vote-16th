@@ -2,13 +2,6 @@ import { useState, useEffect } from 'react';
 import api from '../api';
 
 const Candidate = (candidate: any) => {
-  interface CandidateProps {
-    id: Number;
-    name: String;
-    vote_count: Number;
-    position: String;
-  }
-
   const postCandidates = async (id: any) => {
     try {
       const response = await api.post('/candidates/', {

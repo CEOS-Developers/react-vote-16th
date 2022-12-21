@@ -45,10 +45,10 @@ export default function Home() {
 
   return (
     <>
-      <Link href={'/joinPage'}>회원가입페이지</Link>
-      <Form>
+      <div className="form">
         <h1>로그인</h1>
-        <IdInput
+        <input
+          className="input-id"
           name="email"
           value={id}
           onChange={(e) => {
@@ -56,7 +56,8 @@ export default function Home() {
           }}
           placeholder="id를 입력하시오"
         />
-        <PwInput
+        <input
+          className="input-pw"
           name="password"
           value={pw}
           onChange={(e) => {
@@ -64,57 +65,51 @@ export default function Home() {
           }}
           placeholder="pw를 입력하시오"
         />
-        <Button onClick={login}>로그인</Button>
-      </Form>
+        <button className="login-button" onClick={login}>
+          로그인
+        </button>
+        <Link href={'/joinPage'}>회원가입하기</Link>
+      </div>
+      <style jsx>{`
+        .form {
+          width: 60vw;
+          height: 70vh;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+
+          border: 1px solid gainsboro;
+        }
+
+        .input-id,
+        .input-pw {
+          width: 70%;
+          height: 2.5rem;
+
+          padding: 1rem;
+          border: 1px solid gainsboro;
+
+          border-radius: 10px;
+        }
+        .login-button {
+          width: 70%;
+          height: 2.5rem;
+
+          border: 1px solid gainsboro;
+
+          border-radius: 10px;
+
+          background-color: white;
+          color: black;
+        }
+        .login-button:hover,
+        .login-button:active {
+          background: grey;
+        }
+      `}</style>
     </>
   );
 }
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 40rem;
-  height: 50rem;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid gainsboro;
-  margin-left: 480px;
-`;
-
-const IdInput = styled.input`
-  margin: 5px;
-  padding: 3px;
-  border: 1px solid gainsboro;
-  width: 30rem;
-  height: 3rem;
-  border-radius: 10px;
-  margin: 10px 0px 10px 0px;
-`;
-
-const PwInput = styled.input`
-  margin: 5px;
-  padding: 3px;
-  border: 1px solid gainsboro;
-  width: 30rem;
-  height: 3rem;
-  border-radius: 10px;
-  margin: 10px 0px 10px 0px;
-`;
-
-const Button = styled.button`
-  margin: 5px;
-  padding: 3px;
-  border: 1px solid gainsboro;
-  width: 30rem;
-  height: 3rem;
-  border-radius: 10px;
-  margin: 10px 0px 10px 0px;
-  background-color: white;
-  color: black;
-  &:hover {
-    background: grey;
-  }
-  &:active {
-    background: grey;
-  }
-`;
