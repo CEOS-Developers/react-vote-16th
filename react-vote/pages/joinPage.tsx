@@ -167,8 +167,8 @@ export default function JoinPage() {
       </form>
       <style jsx>{`
         .form {
-          width: 60vw;
-          height: 70vh;
+          width: 30rem;
+          height: 50rem;
 
           display: flex;
           flex-direction: column;
