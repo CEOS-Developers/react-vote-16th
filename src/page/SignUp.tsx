@@ -48,13 +48,16 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.message == '가입이 성공적으로 이루어졌습니다') {
+        console.log(data);
+        if (data[0]) {
+          alert(data[0]);
+        } else if (data.message == '가입이 성공적으로 이루어졌습니다') {
           alert(data.message);
           window.location.replace('/');
         } else if (data.email) {
-          alert('user의 email이 이미 존재합니다.');
+          alert(data.email);
         } else if (data.id) {
-          alert('user의 id가 이미 존재합니다.');
+          alert(data.id);
         }
       });
   };

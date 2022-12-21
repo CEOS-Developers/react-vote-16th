@@ -35,8 +35,7 @@ const Team = [
 
 const DemoVote = () => {
   const [currIndex, setCurrIndex] = useState(20);
-
-  //link="/demo/vote"
+  
   const clickVote = () => {
     const request = {
       id: currIndex + 1,
