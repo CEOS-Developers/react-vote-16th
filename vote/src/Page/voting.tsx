@@ -70,13 +70,14 @@ const Voting = () => {
       alert('후보자를 선택해주세요.');
     }
   };
+const token = localStorage.getItem('token');
   axios.defaults.baseURL = 'http://3.38.123.37';
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const putVote = async () =>{
         try{
             await url.put("/api/votes/candidates/"
             ,{
               name : vote,
-              user : locname,
               part : locpart
             }
             )

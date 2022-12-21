@@ -43,11 +43,10 @@ const TeamresultPage = () => {
   const token = localStorage.getItem('token');
   const [team, setTeam] = useState<string[]>([]);
   axios.defaults.baseURL = 'http://3.38.123.37';
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   const TeamresultAPI = async () => {
     await axios
-      .get('/api/votes/teams?ordering=-count', {
-        headers: { Authorization: token },
-      })
+      .get('/api/votes/teams?ordering=-count')
       .then((response) => {
         setTeam(response.data.data);
       })
