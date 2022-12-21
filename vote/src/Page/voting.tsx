@@ -77,7 +77,7 @@ const Voting = () => {
             await url.put("/api/votes/candidates/"
             ,{
               name : vote,
-              user : locname,
+
               part : locpart
             }
             ,
