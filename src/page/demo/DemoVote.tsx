@@ -1,62 +1,44 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import Header from '../../component/Header';
-import NameBox from '../../component/NameBox';
-import axios from 'axios';
-import { USER_SERVER } from '../../network/config';
-
-const Team = [
-  {
-    id: 1,
-    name: 'Teample',
-    desc: '팀플 활동을 위한 협업 플랫폼',
-  },
-  {
-    id: 2,
-    name: 'Finble',
-    desc: '주식 관리 포트폴리오 서비스',
-  },
-  {
-    id: 3,
-    name: 'Pre:folio',
-    desc: '대학생 포트폴리오 공유 서비스',
-  },
-  {
-    id: 4,
-    name: 'diaMEtes',
-    desc: '당뇨병 환자를 위한 식단 관리 서비스',
-  },
-  {
-    id: 5,
-    name: 'Reciepigy',
-    desc: '음식 레시피 추천 서비스',
-  },
-];
+import { useState } from "react";
+import styled from "styled-components";
+import Header from "../../component/Header";
+import NameBox from "../../component/NameBox";
+import { USER_SERVER } from "../../network/config";
+import { useEffect } from "react";
 
 const DemoVote = () => {
   const [currIndex, setCurrIndex] = useState(20);
+  const [team, setTeam] = useState<any[]>([]);
 
+  useEffect(() => {
+    fetch(`${USER_SERVER}/vote/demo-results/`)
+      .then((res) => res.json())
+      .then((data) => setTeam(data));
+  }, []);
+
+  //link="/demo/vote"
   const clickVote = () => {
     const request = {
-      id: currIndex + 1,
+      id: currIndex,
     };
 
     fetch(`${USER_SERVER}/vote/demo-results/`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       } as any,
       body: JSON.stringify(request),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.status == 200) {
-          alert('투표가 반영되었습니다');
-          window.location.replace('/demo/result');
-          localStorage.setItem('demo_voted', 'true');
+          alert("투표가 반영되었습니다");
+          window.location.replace("/demo/result");
+          localStorage.setItem("demo_voted", "true");
         } else {
-          alert(data);
+          if (data.code === "token_not_valid")
+            alert("로그인 후 이용가능합니다");
+          else alert(data);
         }
       });
   };
@@ -67,14 +49,14 @@ const DemoVote = () => {
       <Container>
         <Title>데모데이 투표</Title>
         <BoxContainer>
-          {Team.map((i, index) => (
-            <div onClick={() => setCurrIndex(index)}>
+          {team.map((i) => (
+            <div onClick={() => setCurrIndex(i.id)}>
               <NameBox
                 text="demo"
                 teamName={i.name}
-                teamDesc={i.desc}
-                color={index === currIndex ? '#fff' : 'black'}
-                bgColor={index === currIndex ? '#384084' : '#fff'}
+                teamDesc={i.description}
+                color={i.id === currIndex ? "#fff" : "black"}
+                bgColor={i.id === currIndex ? "#384084" : "#fff"}
               />
             </div>
           ))}

@@ -43,12 +43,14 @@ const PartResult = () => {
             }
             myGrade = grade[index];
 
+            const teamName: any = team.filter((t: any) => t.id === i.team);
+
             return (
               <VoteBox
                 key={i.id}
                 grade={myGrade}
                 name={i.name}
-                team={team[i.team - 1].name}
+                team={teamName[0].name}
                 vote={i.vote_num}
                 type={true}
               />

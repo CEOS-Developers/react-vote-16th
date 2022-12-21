@@ -1,29 +1,28 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import axios from 'axios';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const teamList = [
-    { id: 0, name: 'null' },
-    { id: 1, name: 'teample' },
-    { id: 2, name: 'finble' },
-    { id: 3, name: 'prefolio' },
-    { id: 4, name: 'diametes' },
-    { id: 5, name: 'recipeasy' },
+    { id: 0, name: "null" },
+    { id: 1, name: "teample" },
+    { id: 2, name: "finble" },
+    { id: 3, name: "prefolio" },
+    { id: 4, name: "diametes" },
+    { id: 5, name: "recipeasy" },
   ];
 
-  const teamId = Number(localStorage.getItem('team'));
+  const teamId = Number(localStorage.getItem("team"));
   let state =
+    localStorage.getItem("name") +
+    " ( " +
     teamList[teamId].name +
-    ' | ' +
-    localStorage.getItem('part') +
-    ' | ' +
-    localStorage.getItem('name');
+    " , " +
+    localStorage.getItem("part") +
+    " ) ";
 
   const logout = () => {
     localStorage.clear();
-    window.location.replace('/');
+    window.location.replace("/");
   };
 
   return (
@@ -33,7 +32,7 @@ const Header = () => {
       </Link>
 
       <ButtonContainer>
-        {localStorage.getItem('name') ? (
+        {localStorage.getItem("name") ? (
           <>
             <Text>{state}</Text>
             <Button onClick={logout}>로그아웃</Button>
@@ -41,14 +40,14 @@ const Header = () => {
         ) : (
           <>
             <Link
-              to={'/login'}
-              style={{ textDecoration: 'none', color: 'black' }}
+              to={"/login"}
+              style={{ textDecoration: "none", color: "black" }}
             >
               <Button>로그인</Button>
             </Link>
             <Link
-              to={'/signUp'}
-              style={{ textDecoration: 'none', color: 'black' }}
+              to={"/signUp"}
+              style={{ textDecoration: "none", color: "black" }}
             >
               <Button>회원가입</Button>
             </Link>
@@ -78,8 +77,8 @@ const Container = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  flex-direction: row;
   gap: 1rem;
+  align-items: center;
 `;
 
 const Button = styled.div`
