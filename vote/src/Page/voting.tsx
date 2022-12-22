@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { frontUserState, backUserState, voteState,partState,clickState, clickbtnState } from '../state/state';
 import { UserInfo } from '../interface/interfaces';
-import VoteUser from '../components/voteUser';
+import VoteUser from '../Components/voteUser';
 import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
