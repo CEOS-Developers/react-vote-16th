@@ -58,7 +58,7 @@ const VoteResult = () => {
   };
   const BEresultAPI = async () => {
     await axios
-      .get('/api/votes/candidates/?part=BE&ordering=-count', {
+      .get('/api/votes/candidates/?part=Backend&ordering=-count', {
         headers: { Authorization: token },
       })
       .then((response) => {

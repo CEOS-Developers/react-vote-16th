@@ -10,7 +10,7 @@ const UserBox = styled.div<PropsInfo>`
     props.isClick === props.id ? 'black' : '#d9d9d9'};
   color: ${(props) => (props.isClick === props.id ? '#1e90ff' : 'black')};
   border-radius: 10px;
-  width: 150px;
+  width: 200px;
   height: 50px;
   margin: 8px;
   display: flex;

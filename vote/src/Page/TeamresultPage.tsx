@@ -45,7 +45,8 @@ const TeamresultPage = () => {
   axios.defaults.baseURL = 'http://3.38.123.37';
   const TeamresultAPI = async () => {
     await axios
-      .get('/api/votes/teams?ordering=-count', {
+      .get('/api/votes/teams?ordering=-count',
+      {
         headers: { Authorization: token },
       })
       .then((response) => {
@@ -63,7 +64,7 @@ const TeamresultPage = () => {
 
   return (
     <VoteResultWrapper>
-      <h2>데모데이 투표 결과 🗳</h2>
+      <h2>팀 투표 결과 🗳</h2>
       <Fade >
       <ResultWrapper>
         {team.map((cand: any) => (

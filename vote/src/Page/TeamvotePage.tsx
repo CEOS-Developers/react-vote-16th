@@ -59,11 +59,11 @@ const TeamvotePage = () => {
 
   const onVote = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (vote !== '999') {
-      putVote();
+        TeamresultAPI ();
       alert('투표가 완료되었습니다.');
       setIsClick('999');
       setVote('999');
-
+        console.log(vote);
       navigate('/teamresult');
     } else {
       alert('후보자를 선택해주세요.');
@@ -71,25 +71,29 @@ const TeamvotePage = () => {
   };
 
 
-    const putVote = async () =>{
-        try{
-            await url.put("/api/votes/teams"
-            ,{
-              team : "Teample"
-            }
-            ,
-            {headers : {Authorization : `Bearer ${token}`}}
-            )
+  axios.defaults.baseURL = 'http://3.38.123.37';
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  const TeamresultAPI = async () => {
+    await axios
+      .put('/api/votes/teams', {        
+            name : vote,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
-        }
-        catch (e){
-            console.log("에러 : " ,e);
-        }
-    }
+  useEffect(() => {
+    TeamresultAPI();
+  }, []);
+
   return (
     <Fade>
       <VotingContainer>
-        <h2>데모데이 투표하기 🗳</h2>
+        <h2>팀 투표하기 🗳</h2>
         <Wrapper>
             {teams.map((team,li)=>(
                 <VoteTeam key={team.team} team={team}/>
