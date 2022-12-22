@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import {  teamVoteState, clickState, clickbtnState, teamState, clickTeamState } from '../state/state';
 import { TeamInfo, UserInfo } from '../interface/interfaces';
-import VoteTeam from '../components/voteTeam';
+import VoteTeam from '../Components/voteTeam';
 import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
