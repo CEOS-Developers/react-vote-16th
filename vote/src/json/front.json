@@ -1,0 +1,74 @@
+{
+  "UserList": [
+    {
+      "part": "front",
+      "userId": "0",
+      "userName": "강나연",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "front",
+      "userId": "1",
+      "userName": "김선영",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "front",
+      "userId": "2",
+      "userName": "안채연",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "front",
+      "userId": "3",
+      "userName": "오지은",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "front",
+      "userId": "4",
+      "userName": "유선호",
+      "teamName": "팀플",
+      "voteNum": 100
+    },
+    {
+      "part": "front",
+      "userId": "5",
+      "userName": "이한비",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "front",
+      "userId": "6",
+      "userName": "이현영",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "front",
+      "userId": "7",
+      "userName": "임채리",
+      "teamName": "팀플",
+      "voteNum": 1
+    },
+    {
+      "part": "front",
+      "userId": "8",
+      "userName": "장영준",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "front",
+      "userId": "9",
+      "userName": "정희수",
+      "teamName": "123",
+      "voteNum": 0
+    }
+  ]
+}

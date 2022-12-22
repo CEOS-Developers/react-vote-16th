@@ -1,0 +1,74 @@
+{
+  "UserList": [
+    {
+      "part": "back",
+      "userId": "0",
+      "userName": "박준열",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "back",
+      "userId": "1",
+      "userName": "배수아",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "back",
+      "userId": "2",
+      "userName": "안혜진",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "back",
+      "userId": "3",
+      "userName": "이정현",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "back",
+      "userId": "4",
+      "userName": "이지안",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "back",
+      "userId": "5",
+      "userName": "전수민",
+      "teamName": "팀플",
+      "voteNum": 1
+    },
+    {
+      "part": "back",
+      "userId": "6",
+      "userName": "정상훈",
+      "teamName": "팀플",
+      "voteNum": -99999
+    },
+    {
+      "part": "back",
+      "userId": "7",
+      "userName": "조현영",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "back",
+      "userId": "8",
+      "userName": "채승희",
+      "teamName": "123",
+      "voteNum": 0
+    },
+    {
+      "part": "back",
+      "userId": "9",
+      "userName": "최수현",
+      "teamName": "123",
+      "voteNum": 0
+    }
+  ]
+}
