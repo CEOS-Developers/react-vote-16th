@@ -18,8 +18,9 @@ const Vote = () => {
   }
   const [cand, setCand] = useState<CandidateProps[] | null>(null);
   const [teams, setTeams] = useState([]);
+  const [myTeam, setMyTeam] = useState('FE');
 
-const fetchCandidates = async () => {
+  const fetchCandidates = async () => {
     try {
       const response = await api.get('/candidates/');
       setCand(response.data);
@@ -28,7 +29,7 @@ const fetchCandidates = async () => {
     }
   };
 
-const fetchTeams = async () => {
+  const fetchTeams = async () => {
     try {
       const response = await api.get('/teams/');
       setTeams(response.data);
@@ -37,7 +38,9 @@ const fetchTeams = async () => {
     }
   };
 
-  useEffect(()=>{
+  console.log(getCookie('is_login'));
+
+  useEffect(() => {
     if (getCookie('is_login') === undefined) {
       alert('로그인 후 접속');
       Router.push('/');
@@ -45,8 +48,7 @@ const fetchTeams = async () => {
       fetchCandidates();
       fetchTeams();
     }
-  },[])
-  
+  }, []);
 
   const LogOut = () => {
     removeCookie('is_login');
@@ -55,95 +57,109 @@ const fetchTeams = async () => {
 
   console.log(cand);
 
-  const team = 'FE';
-
   return (
-    <div className="container">
-      <Link
-        href={{
-          pathname: `/vote/[team]`,
-          query: {
-            vote_list: JSON.stringify(
-              cand?.filter((cand) => cand.position === team)
-            ),
-          },
-        }}
-        as={`/vote/${team}`}
-      >
-        <div className="vote-btn">FE 투표하기</div>
-      </Link>
-      <Link
-        href={{
-          pathname: `/result/FE`,
-          query: {
-            vote_list: JSON.stringify(
-              cand?.filter((cand) => cand.position === 'FE')
-            ),
-          },
-        }}
-        as={`/result/FE`}
-      >
-        <div className="vote-btn">FE 결과보기</div>
-      </Link>
+    <div>
+      <div className="container">
+        <Link
+          href={{
+            pathname: `/vote/[myTeam]`,
+            query: {
+              vote_list: JSON.stringify(
+                cand?.filter((cand) => cand.position === myTeam)
+              ),
+            },
+          }}
+          as={`/vote/${myTeam}`}
+        >
+          {myTeam === 'FE' ? (
+            <button className="vote-btn">FE 투표하기</button>
+          ) : (
+            <button className="vote-btn" disabled>
+              FE 투표하기
+            </button>
+          )}
+        </Link>
+        <Link
+          href={{
+            pathname: `/result/FE`,
+            query: {
+              vote_list: JSON.stringify(
+                cand?.filter((cand) => cand.position === 'FE')
+              ),
+            },
+          }}
+          as={`/result/FE`}
+        >
+          <button className="vote-btn">FE 결과보기</button>
+        </Link>
 
-      <Link
-        href={{
-          pathname: `/vote/[team]`,
-          query: {
-            vote_list: JSON.stringify(
-              cand?.filter((cand) => cand.position === 'BE')
-            ),
-          },
-        }}
-        as={`/vote/BE`}
-      >
-        <div className="vote-btn">BE 투표하기</div>
-      </Link>
-      <Link
-        href={{
-          pathname: `/result/BE`,
-          query: {
-            vote_list: JSON.stringify(
-              cand?.filter((cand) => cand.position === 'BE')
-            ),
-          },
-        }}
-        as={`/result/BE`}
-      >
-        <div className="vote-btn">BE 결과보기</div>
-      </Link>
-      <Link
-        href={{
-          pathname: `/vote/final`,
-          query: {
-            vote_list: JSON.stringify(teams),
-          },
-        }}
-        as={`/vote/final`}
-      >
-        <div className="vote-btn">
-          데모데이
-          <br />
-          투표하기
-        </div>
-      </Link>
-      <Link
-        href={{
-          pathname: `/result/final`,
-          query: {
-            vote_list: JSON.stringify(teams),
-          },
-        }}
-        as={`/result/final`}
-      >
-        <div className="vote-btn">
-          데모데이 <br /> 결과보기
-        </div>
-      </Link>
-      <button onClick={LogOut}>logOut</button>
+        <Link
+          href={{
+            pathname: `/vote/[myTeam]`,
+            query: {
+              vote_list: JSON.stringify(
+                cand?.filter((cand) => cand.position === 'BE')
+              ),
+            },
+          }}
+          as={`/vote/BE`}
+        >
+          {myTeam === 'BE' ? (
+            <button className="vote-btn">BE 투표하기</button>
+          ) : (
+            <button className="vote-btn" disabled>
+              BE 투표하기
+            </button>
+          )}
+        </Link>
+        <Link
+          href={{
+            pathname: `/result/BE`,
+            query: {
+              vote_list: JSON.stringify(
+                cand?.filter((cand) => cand.position === 'BE')
+              ),
+            },
+          }}
+          as={`/result/${myTeam}`}
+        >
+          <button className="vote-btn">BE 결과보기</button>
+        </Link>
+        <Link
+          href={{
+            pathname: `/vote/final`,
+            query: {
+              vote_list: JSON.stringify(teams),
+            },
+          }}
+          as={`/vote/final`}
+        >
+          <button className="vote-btn">
+            데모데이
+            <br />
+            투표하기
+          </button>
+        </Link>
+        <Link
+          href={{
+            pathname: `/result/final`,
+            query: {
+              vote_list: JSON.stringify(teams),
+            },
+          }}
+          as={`/result/final`}
+        >
+          <button className="vote-btn">
+            데모데이 <br /> 결과보기
+          </button>
+        </Link>
+      </div>
+      <button className="logout-btn" onClick={LogOut}>
+        로그아웃
+      </button>
       <style jsx>{`
         .vote-btn {
-          width: 10em;
+          width: 12em;
           height: 10rem;
           padding: 2rem;
           border: 1px solid white;
@@ -163,6 +179,13 @@ const fetchTeams = async () => {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 1rem 1rem;
+        }
+        .logout-btn {
+          width: 100%;
+          padding: 1rem;
+          margin-top: 1rem;
+
+          line-height: 140%;
         }
       `}</style>
     </div>

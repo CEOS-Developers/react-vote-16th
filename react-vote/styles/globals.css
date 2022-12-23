@@ -103,10 +103,15 @@ nav,
 section {
   display: block;
 }
+
+html {
+  color-scheme: dark;
+}
+
 body {
   line-height: 1;
-  font-family: 'Open Sans', sans-serif;
-  color: #444444;
+  color: white;
+  background: black;
 }
 ol,
 ul {
@@ -162,14 +167,4 @@ input[type='number']::-webkit-outer-spin-button {
 
 input:focus {
   outline: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
 }

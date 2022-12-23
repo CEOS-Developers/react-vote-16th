@@ -6,9 +6,9 @@ const ResultCandidate = (candidate: any) => {
       <style jsx>{`
         .candidate {
           display: flex;
-          gap: 1rem;
+          justify-content: space-between;
 
-          width: 30rem;
+          width: 10rem;
           padding: 1.5rem;
 
           border: 1px solid white;
